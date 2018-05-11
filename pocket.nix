@@ -128,6 +128,9 @@
         }
       ];
     };
+    extraModprobeConfig = ''
+      options i915 enable_rc6=1 enable_fbc=1
+    '';
   };
 
   networking.hostName = "pocket";
