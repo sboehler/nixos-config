@@ -77,8 +77,12 @@
     };
     zsh = {
       enable = true;
+      enableCompletion = true;
+      enableAutosuggestions = true;
       ohMyZsh = {
         enable = true;
+        custom = "${./zsh-custom}";
+        theme = "silvio";
         plugins = [
           "git"
           "gradle"
@@ -90,13 +94,27 @@
         ];
       };
       interactiveShellInit = ''
+        export EDITOR=nvim
+        export PATH=$HOME/.local/bin:$PATH
+        export PASSWORD_STORE_X_SELECTION=primary
+        export GPG_TTY=$(tty)
+
         bindkey -M viins 'jk' vi-cmd-mode
         bindkey -M vicmd 'k' history-substring-search-up
         bindkey -M vicmd 'j' history-substring-search-down
 
         bindkey -M emacs '^P' history-substring-search-up
         bindkey -M emacs '^N' history-substring-search-down
+
+        eval $(${pkgs.coreutils}/bin/dircolors "${./dircolors.ansi-universal}")
+
+        systemctl --user import-environment
       '';
+
+      shellAliases = {
+        vim = "nvim";
+        firefox="MOZ_USE_XINPUT2=1 firefox";
+      };
     };
     ssh = {
       startAgent = true;
@@ -126,18 +144,17 @@
   };
 
   users = {
+    defaultUserShell = pkgs.zsh;
     extraUsers = {
       silvio = {
         home = "/home/silvio";
         description = "Silvio Böhler";
         isNormalUser = true;
-        shell = pkgs.zsh;
         extraGroups = ["wheel" "docker" "libvirtd" "audio" "transmission"];
         uid = 1000;
         openssh.authorizedKeys.keys = ["ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDFqXLmL2FVGAkSlndgqaEDx0teA6Ai1wLu21KSdcBnV6XldetAHZ8AAeodgEqIYD/sO69xCm9Kwa3DbktdMO28MO6A7poQ4jvDVHray7mpsm3z5xgc1HAadjNUBvlPjPBbCvZkhcI2/MSvVknl5uFXeH58AqaIq6Ump4gIC27Mj9vLMuw7S5MoR6vJgxKK/h52yuKXs8bisBvrHYngBgxA0wpg/v3G04iplPtTtyIY3uqkgPv3VfMSEyOuZ+TLujFg36FxU5I7Ok0Bjf8f+/OdE41MYYUH1VPIHFtxNs8MPCcz2Sv0baxEhAiEBpnWsQx8mBhxmQ/cK4Ih2EOLqPKR"];
       };
       root = {
-        shell = pkgs.zsh;
         openssh.authorizedKeys.keys = ["ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDFqXLmL2FVGAkSlndgqaEDx0teA6Ai1wLu21KSdcBnV6XldetAHZ8AAeodgEqIYD/sO69xCm9Kwa3DbktdMO28MO6A7poQ4jvDVHray7mpsm3z5xgc1HAadjNUBvlPjPBbCvZkhcI2/MSvVknl5uFXeH58AqaIq6Ump4gIC27Mj9vLMuw7S5MoR6vJgxKK/h52yuKXs8bisBvrHYngBgxA0wpg/v3G04iplPtTtyIY3uqkgPv3VfMSEyOuZ+TLujFg36FxU5I7Ok0Bjf8f+/OdE41MYYUH1VPIHFtxNs8MPCcz2Sv0baxEhAiEBpnWsQx8mBhxmQ/cK4Ih2EOLqPKR silvio"];
       };
     };
