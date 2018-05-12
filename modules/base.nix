@@ -109,7 +109,9 @@
 
         eval $(${pkgs.coreutils}/bin/dircolors "${./dircolors.ansi-universal}")
 
-        systemctl --user import-environment
+        if [ $USER = "silvio" ]; then
+          systemctl --user import-environment
+        fi
       '';
 
       shellAliases = {
