@@ -93,6 +93,9 @@ in
       xmonad = {
         enable = true;
         enableContribAndExtras = true;
+        extraPackages = haskellPackages: [
+          haskellPackages.hostname
+        ];
       };
     };
   };
