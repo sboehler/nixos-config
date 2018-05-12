@@ -98,6 +98,7 @@
         export PATH=$HOME/.local/bin:$PATH
         export PASSWORD_STORE_X_SELECTION=primary
         export GPG_TTY=$(tty)
+        HYPHEN_INSENSITIVE="true"
 
         bindkey -M viins 'jk' vi-cmd-mode
         bindkey -M vicmd 'k' history-substring-search-up
