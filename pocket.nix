@@ -183,6 +183,15 @@
           MatchProduct	"Goodix Capacitive TouchScreen"
           Option  	"TransformationMatrix" "0 1 0 -1 0 1 0 0 1"
         ''
+        ''
+          Identifier      "GPD trackpoint"
+          MatchProduct    "SINO WEALTH Gaming Keyboard"
+          MatchIsPointer  "on"
+          Driver          "libinput"
+          Option          "ScrollButton" "3"
+          Option          "ScrollMethod" "button"
+          Option          "MiddleEmulation" "True"
+        ''
       ];
     };
 
