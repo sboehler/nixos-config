@@ -85,11 +85,12 @@
     };
 
     "/mnt/data" = {
-      device = "/dev/mapper/data1";
+      device = "/dev/mapper/data3";
       fsType = "btrfs";
       options = [
         "noatime"
-        "noauto"
+        "x-systemd.requires=/dev/mapper/data3"
+        "x-systemd.requires=/dev/mapper/data4"
       ];
     };
 
@@ -104,6 +105,7 @@
         data1 UUID=af15ec68-4c42-4468-b74f-5c63288d5670 /root/data_keyfile luks
         data2 UUID=cb7824f0-2f90-45cc-8584-702fc16f9cd6 /root/data_keyfile luks
         data3 UUID=73bbc691-046e-43ed-ae1e-360d43168047 /root/data_keyfile luks
+        data4 UUID=aeb9807b-7888-4702-9870-43f838e3aa4a /root/data_keyfile luks
       '';
     };
   };
