@@ -155,10 +155,10 @@
   nix.distributedBuilds = true;
 
   services.xserver = {
-    dpi = 200;
+    dpi = 180;
     displayManager.sessionCommands = ''
       xrdb "${pkgs.writeText "xrdb.conf" ''
-        Xft.dpi: 200
+        Xft.dpi: 180
         Xcursor.theme: Vanilla-DMZ
         Xcursor.size: 48
       ''}"
