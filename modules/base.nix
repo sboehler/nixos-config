@@ -116,7 +116,6 @@
 
       shellAliases = {
         vim = "nvim";
-        firefox="MOZ_USE_XINPUT2=1 firefox";
       };
     };
     ssh = {

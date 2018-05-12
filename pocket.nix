@@ -141,6 +141,7 @@
   environment.variables = {
     GDK_SCALE = "2";
     GDK_DPI_SCALE = "0.5";
+    MOZ_USE_XINPUT2 = "1";
   };
 
   nix.buildMachines = [{
