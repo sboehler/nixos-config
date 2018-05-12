@@ -96,6 +96,10 @@
   };
 
   boot = {
+    kernelParams = [
+      "i915.enable_rc6=1"
+      "i915.enable_fbc=1"
+    ];
     kernelModules = [ "kvm-intel" ];
     kernelPackages = pkgs.linuxPackagesFor pkgs.linux_testing;
 
@@ -128,9 +132,6 @@
         }
       ];
     };
-    extraModprobeConfig = ''
-      options i915 enable_rc6=1 enable_fbc=1
-    '';
   };
 
   networking.hostName = "pocket";
