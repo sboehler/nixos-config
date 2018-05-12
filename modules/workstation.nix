@@ -82,11 +82,19 @@ in
       naturalScrolling = true;
     };
     displayManager = {
+      lightdm = {
+        enable = true;
+      };
       sessionCommands = ''
           xset s 600 0
           xset r rate 400 60
           xss-lock -- i3lock -n &
       '';
+    };
+    desktopManager = {
+      xterm = {
+        enable = false;
+      };
     };
     windowManager = {
       default = "xmonad";
