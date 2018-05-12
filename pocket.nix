@@ -179,9 +179,9 @@
       '';
       inputClassSections = [
         ''
-          Identifier	"calibration"
+          Identifier	  "calibration"
           MatchProduct	"Goodix Capacitive TouchScreen"
-          Option  	"TransformationMatrix" "0 1 0 -1 0 1 0 0 1"
+          Option  	    "TransformationMatrix" "0 1 0 -1 0 1 0 0 1"
         ''
         ''
           Identifier      "GPD trackpoint"
@@ -191,6 +191,8 @@
           Option          "ScrollButton" "3"
           Option          "ScrollMethod" "button"
           Option          "MiddleEmulation" "True"
+          Option          "AccelSpeed" "1"
+          Option  	      "TransformationMatrix" "3 0 0 0 3 0 0 0 1"
         ''
       ];
     };
