@@ -11,24 +11,27 @@ in
     evince
     exiftool
     firefox
+    gnome3.eog
+    gnome3.nautilus
     gthumb
     haskellPackages.xmobar
     i3lock
     icedtea8_web
     imagemagick7
     ispell
-    nix-repl
+    isync
     libreoffice
     nix-repl
-    gnome3.nautilus
-    vlc
-    gnome3.eog
+    nix-repl
     pavucontrol
     shared_mime_info
     silver-searcher
     termite
     vanilla-dmz
     virtmanager
+    virtmanager
+    vlc
+    wpa_supplicant
     xautolock
     xiccd
     xorg.xbacklight
@@ -37,8 +40,6 @@ in
     xorg.xev
     xsel
     xss-lock
-    virtmanager
-    wpa_supplicant
   ]
 
   ++ (with unstable; [
@@ -87,7 +88,7 @@ in
       };
       sessionCommands = ''
           xset s 600 0
-          xset r rate 400 60
+          xset r rate 440 50
           xss-lock -l -- i3lock -n &
       '';
     };
