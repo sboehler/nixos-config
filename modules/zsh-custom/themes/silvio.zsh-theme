@@ -7,4 +7,4 @@ else
   local pwd='%{$fg[blue]%}%~%{$reset_color%}'
 fi
 
-PROMPT="${user} ${pwd}$ "
+PROMPT="${user} ${pwd} $ "
