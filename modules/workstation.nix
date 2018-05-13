@@ -88,7 +88,7 @@ in
       sessionCommands = ''
           xset s 600 0
           xset r rate 400 60
-          xss-lock -- i3lock -n &
+          xss-lock -l -- i3lock -n &
       '';
     };
     desktopManager = {
