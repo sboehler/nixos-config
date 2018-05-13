@@ -21,6 +21,7 @@ in
     ispell
     isync
     libreoffice
+    mu
     nix-repl
     nix-repl
     pavucontrol
