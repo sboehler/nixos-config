@@ -78,7 +78,6 @@
     zsh = {
       enable = true;
       enableCompletion = true;
-      enableAutosuggestions = true;
       ohMyZsh = {
         enable = true;
         custom = "${./zsh-custom}";
