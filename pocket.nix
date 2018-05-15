@@ -6,7 +6,6 @@
       <nixpkgs/nixos/modules/installer/scan/not-detected.nix>
       ./modules/networking.nix
       ./modules/wifi.nix
-      ./modules/laptop.nix
       ./modules/resolved.nix
       ./modules/workstation.nix
       ./modules/base.nix
@@ -93,6 +92,33 @@
         '';
       };
     };
+  };
+
+  services.logind = {
+    lidSwitch = "suspend";
+    extraConfig = ''
+      IdleAction=suspend
+      IdleActionSec=30s
+      HandlePowerKey=poweroff
+    '';
+  };
+  powerManagement = {
+    enable = true;
+    powerDownCommands = ''
+      rmmod goodix
+    '';
+    powerUpCommands = ''
+      modorobe goodix
+    '';
+
+  };
+
+  services.tlp = {
+    enable = true;
+    extraConfig = ''
+      DISK_DEVICES="mmcblk0"
+      DISK_IOSCHED="deadline"
+      '';
   };
 
   boot = {
