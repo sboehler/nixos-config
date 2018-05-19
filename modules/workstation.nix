@@ -5,6 +5,7 @@ in
 {
   environment.systemPackages = with pkgs; [
     ack
+    arandr
     chromium
     darktable
     dmenu
@@ -61,12 +62,13 @@ in
     apply-refact
     cabal2nix
     ghc
+    ghcid
     hasktags
     hindent
     hlint
     hpack
     hoogle
-    #stylish-haskell
+    stylish-haskell
   ]);
 
   virtualisation.libvirtd.enable = true;
