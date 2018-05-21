@@ -249,5 +249,5 @@
   }];
 
   system.stateVersion = "18.09"; # Did you read the comment?
-  nix.maxJobs = lib.mkDefault 1;
+  nix.maxJobs = lib.mkDefault 4;
 }
