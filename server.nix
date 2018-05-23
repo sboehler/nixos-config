@@ -37,6 +37,8 @@
     kernelModules = [ "kvm-amd" ];
   };
 
+  programs.mosh.enable = true;
+
   services.samba = {
     enable = true;
     extraConfig = ''
