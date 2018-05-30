@@ -6,7 +6,6 @@
       <nixpkgs/nixos/modules/installer/scan/not-detected.nix>
       ./modules/networking.nix
       ./modules/wifi.nix
-      ./modules/resolved.nix
       ./modules/workstation.nix
       ./modules/base.nix
       ./modules/efi.nix
