@@ -247,6 +247,6 @@
     device = "/dev/disk/by-uuid/6c4af545-7c97-4c3e-8015-17d8103430fa";
   }];
 
-  system.stateVersion = "18.09"; # Did you read the comment?
+  system.nixos.stateVersion = "18.09"; # Did you read the comment?
   nix.maxJobs = lib.mkDefault 4;
 }
