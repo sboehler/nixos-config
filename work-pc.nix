@@ -5,6 +5,7 @@
     [
        <nixpkgs/nixos/modules/installer/scan/not-detected.nix>
       ./modules/networking.nix
+      ./modules/resolved.nix
       ./modules/workstation.nix
       ./modules/base.nix
       ./modules/efi.nix
@@ -42,6 +43,10 @@
   };
 
   virtualisation.virtualbox.host.enable = true;
+
+  services.btrfs.autoScrub = {
+    fileSystems = ["/mnt/data"];
+  };
 
   services.postgresql = {
     enable = true;
