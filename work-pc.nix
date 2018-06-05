@@ -53,8 +53,12 @@
     package = pkgs.postgresql100;
   };
 
+  fonts.fontconfig = {
+    dpi = 132;
+  };
+
   services.xserver = {
-    dpi = 144;
+    dpi = 132;
     videoDrivers = ["nvidia"];
     xrandrHeads = [
       {
