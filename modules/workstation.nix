@@ -63,7 +63,7 @@ in
     cabal2nix
     ghc
     ghcid
-    hasktags
+    # hasktags
     hindent
     hlint
     hpack
