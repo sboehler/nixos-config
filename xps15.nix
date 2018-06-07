@@ -54,11 +54,11 @@
     GDK_DPI_SCALE = "0.5";
   };
 
+  fonts.fontconfig.dpi = 168;
   services.xserver = {
-    dpi = 200;
+    dpi = 168;
     displayManager.sessionCommands = ''
-      xrdb "${pkgs.writeText "xrdb.conf" ''
-        Xft.dpi: 200
+      xrdb -merge "${pkgs.writeText "xrdb.conf" ''
         Xcursor.theme: Vanilla-DMZ
         Xcursor.size: 48
       ''}"

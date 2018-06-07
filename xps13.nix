@@ -45,20 +45,15 @@
 
   i18n.consoleFont = "latarcyrheb-sun32";
 
-  environment.variables = {
-    GDK_SCALE = "2";
-    GDK_DPI_SCALE = "0.5";
-  };
-
   environment.systemPackages = with pkgs; [
     intel-ocl
   ];
 
+  fonts.fontconfig.dpi = 168;
   services.xserver = {
-    dpi = 200;
+    dpi = 168;
     displayManager.sessionCommands = ''
-      xrdb "${pkgs.writeText "xrdb.conf" ''
-        Xft.dpi: 200
+      xrdb -merge "${pkgs.writeText "xrdb.conf" ''
         Xcursor.theme: Vanilla-DMZ
         Xcursor.size: 48
       ''}"
