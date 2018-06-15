@@ -1,7 +1,4 @@
 { pkgs, config, ... }:
-let
-  unstable = import <nixpkgs-unstable> { config = { allowUnfree = true; }; };
-in
 {
   environment.systemPackages = with pkgs; [
     ack
@@ -9,11 +6,14 @@ in
     chromium
     darktable
     dmenu
+    docker_compose
+    emacs
     evince
     exiftool
     firefox
     gnome3.eog
     gnome3.nautilus
+    gradle
     gthumb
     haskellPackages.xmobar
     i3lock
@@ -21,13 +21,19 @@ in
     imagemagick7
     ispell
     isync
+    jetbrains.datagrip
+    jetbrains.idea-community
     libreoffice
+    mitscheme
     mu
     nix-repl
     nix-repl
+    nodejs-8_x
+    openjdk
     pavucontrol
     shared_mime_info
     silver-searcher
+    skypeforlinux
     termite
     vanilla-dmz
     virtmanager
@@ -42,20 +48,8 @@ in
     xorg.xev
     xsel
     xss-lock
-  ]
-
-  ++ (with unstable; [
-    docker_compose
-    emacs
-    gradle
-    jetbrains.datagrip
-    jetbrains.idea-community
-    nodejs-8_x
-    mitscheme
-    skypeforlinux
-    openjdk
     yarn
-  ])
+  ]
 
   ++ (with pkgs.haskellPackages; [
     cabal-install
