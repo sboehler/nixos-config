@@ -20,6 +20,8 @@
 
     kernelModules = [ "kvm-intel" ];
 
+    kernelPackages = pkgs.linuxPackagesFor pkgs.linux_4_16;
+
     initrd = {
       availableKernelModules = [
         "xhci_pci"
@@ -39,7 +41,7 @@
       ];
     };
     extraModprobeConfig = ''
-      options i915 enable_rc6=1 enable_fbc=1
+      options i915 enable_fbc=1
       options iwlwifi power_save=Y
       options iwldvm force_cam=N
     '';
