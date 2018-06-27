@@ -32,10 +32,12 @@
     nodejs-8_x
     openjdk
     pavucontrol
+    rubber
     shared_mime_info
     silver-searcher
     skypeforlinux
     termite
+    texlive.combined.scheme-full
     vanilla-dmz
     virtmanager
     virtmanager
