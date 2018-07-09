@@ -17,6 +17,7 @@
     gradle
     gthumb
     haskellPackages.xmobar
+    hplip
     i3lock
     icedtea8_web
     imagemagick7
