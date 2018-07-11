@@ -25,10 +25,12 @@
     isync
     jetbrains.datagrip
     jetbrains.idea-community
+    keepassx2
+    libreoffice
+    libxml2
     mitscheme
     libreoffice
     mu
-    nix-repl
     nix-repl
     nodejs-8_x
     openjdk
@@ -56,6 +58,7 @@
     xss-lock
     yarn
     zbar
+    zip
   ]
 
   ++ (with pkgs.haskellPackages; [
@@ -77,6 +80,10 @@
   hardware.pulseaudio.enable = true;
 
   services.udisks2.enable = true;
+
+  boot.kernel.sysctl = {
+    "vm.swappiness" = 10;
+  };
 
   services.xserver = {
     enable = true;
