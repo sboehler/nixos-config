@@ -20,7 +20,7 @@
 
     kernelModules = [ "kvm-intel" ];
 
-    kernelPackages = pkgs.linuxPackagesFor pkgs.linux_4_16;
+    kernelPackages = pkgs.linuxPackagesFor pkgs.linux_4_17;
 
     initrd = {
       availableKernelModules = [
@@ -77,7 +77,7 @@
   };
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/c73b976c-f863-4e0b-b509-23e1c0d11a1b";
+    { device = "/dev/disk/by-uuid/270eb045-3b47-4cc4-b8a2-07ec6eb5bada";
       fsType = "btrfs";
       options = [ "subvol=@nixos" ];
     };
@@ -88,15 +88,9 @@
     };
 
   fileSystems."/home" =
-    { device = "/dev/disk/by-uuid/c73b976c-f863-4e0b-b509-23e1c0d11a1b";
+    { device = "/dev/disk/by-uuid/270eb045-3b47-4cc4-b8a2-07ec6eb5bada";
       fsType = "btrfs";
-      options = [ "subvol=@nixos_home" ];
-    };
-
-  fileSystems."/home/silvio/arch_home" =
-    { device = "/dev/disk/by-uuid/c73b976c-f863-4e0b-b509-23e1c0d11a1b";
-      fsType = "btrfs";
-      options = [ "subvol=@root" ];
+      options = [ "subvol=@nixos-home" ];
     };
 
   swapDevices = [{
