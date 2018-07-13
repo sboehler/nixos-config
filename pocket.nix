@@ -7,6 +7,7 @@
       ./modules/networking.nix
       ./modules/wifi.nix
       ./modules/workstation.nix
+      ./modules/resolved.nix
       ./modules/base.nix
       ./modules/efi.nix
       ./modules/broadcom
@@ -14,7 +15,7 @@
 
   nixpkgs.config = {
     packageOverrides = pkgs: {
-      linux_testing = pkgs.linux_testing.override {
+      linux_4_17 = pkgs.linux_4_17.override {
         extraConfig = ''
           ACPI_CUSTOM_METHOD m
           B43_SDIO y
@@ -129,7 +130,7 @@
       "gpd-pocket-fan.speed_on_ac=0"
     ];
     kernelModules = [ "kvm-intel" ];
-    kernelPackages = pkgs.linuxPackagesFor pkgs.linux_testing;
+    kernelPackages = pkgs.linuxPackagesFor pkgs.linux_4_17;
 
     initrd = {
       kernelModules = [
@@ -248,6 +249,6 @@
     device = "/dev/disk/by-uuid/6c4af545-7c97-4c3e-8015-17d8103430fa";
   }];
 
-  system.nixos.stateVersion = "18.09"; # Did you read the comment?
+  system.stateVersion = "18.03"; # Did you read the comment?
   nix.maxJobs = lib.mkDefault 4;
 }

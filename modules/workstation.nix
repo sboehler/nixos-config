@@ -25,8 +25,8 @@
     isync
     jetbrains.datagrip
     jetbrains.idea-community
-    libreoffice
     mitscheme
+    libreoffice
     mu
     nix-repl
     nix-repl
