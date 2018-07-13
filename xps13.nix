@@ -45,10 +45,6 @@
 
   i18n.consoleFont = "latarcyrheb-sun32";
 
-  environment.systemPackages = with pkgs; [
-    intel-ocl
-  ];
-
   fonts.fontconfig.dpi = 168;
   services.xserver = {
     dpi = 168;

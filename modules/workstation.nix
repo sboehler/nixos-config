@@ -11,7 +11,6 @@
     evince
     exiftool
     firefox
-    flashplayer
     gnome3.eog
     gnome3.nautilus
     gradle
