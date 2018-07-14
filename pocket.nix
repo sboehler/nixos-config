@@ -228,6 +228,17 @@
     ];
   };
 
+  hardware.pulseaudio = {
+    extraConfig = ''
+      set-card-profile alsa_card.platform-cht-bsw-rt5645 HiFi
+      set-default-sink alsa_output.platform-cht-bsw-rt5645.HiFi__hw_chtrt5645_0__sink
+      set-sink-port alsa_output.platform-cht-bsw-rt5645.HiFi__hw_chtrt5645_0__sink [Out] Speaker
+    '';
+    daemon.config = {
+      "realtime-scheduling" = "no";
+    };
+  };
+
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/f9c1df0d-5bcf-448b-9684-1b0b6712f5e1";
     fsType = "btrfs";
