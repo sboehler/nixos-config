@@ -48,6 +48,7 @@
     xautolock
     xiccd
     xorg.xbacklight
+    xorg.xkill
     xorg.xcursorthemes
     xorg.xdpyinfo
     xorg.xev
@@ -80,7 +81,7 @@
   services.xserver = {
     enable = true;
     layout = "us(altgr-intl)";
-    xkbOptions = "ctrl:nocaps,compose:ralt,terminate:ctrl_alt_bksp";
+    xkbOptions = "ctrl:nocaps,compose:ralt,altwin:swap_lalt_lwin,terminate:ctrl_alt_bksp";
     libinput = {
       enable = true;
       naturalScrolling = true;
