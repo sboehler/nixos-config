@@ -53,6 +53,7 @@
     xsel
     xss-lock
     yarn
+    zbar
   ]
 
   ++ (with pkgs.haskellPackages; [
