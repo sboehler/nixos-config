@@ -33,6 +33,7 @@
     nodejs-8_x
     openjdk
     pavucontrol
+    rofi
     rubber
     shared_mime_info
     silver-searcher
