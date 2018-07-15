@@ -45,7 +45,7 @@
     git
     gnupg
     gptfdisk
-    gopass
+    unstable.gopass
     hdparm
     inetutils
     jnettop
