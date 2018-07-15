@@ -1,7 +1,15 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
+  let
+    unstableTarball = fetchTarball https://github.com/NixOS/nixpkgs/archive/dae9cf6106da19f79a39714f183ed253c62b32c5.tar.gz;
+  in
 {
   nixpkgs = {
     config = {
+      packageOverrides = pkgs: {
+        unstable = import unstableTarball {
+          config = config.nixpkgs.config;
+        };
+      };
       allowUnfree = true;
     };
   };
@@ -44,7 +52,7 @@
     nix-prefetch-scripts
     neovim
     nvme-cli
-    pass
+    (unstable.pass.withExtensions (e: [e.pass-otp]))
     patchelf
     pciutils
     pinentry
