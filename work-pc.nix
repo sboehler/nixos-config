@@ -5,7 +5,7 @@
     [
        <nixpkgs/nixos/modules/installer/scan/not-detected.nix>
       ./modules/networking.nix
-      ./modules/resolved.nix
+      # ./modules/resolved.nix
       ./modules/workstation.nix
       ./modules/base.nix
       ./modules/efi.nix
@@ -89,7 +89,7 @@
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/661bd881-7275-4f5e-80a4-08acdc97c2b3";
     fsType = "btrfs";
-    options = ["subvol=@nixos"];
+    options = ["subvol=@nixos" "compress=lzo"];
   };
 
   fileSystems."/boot" = {
@@ -100,7 +100,7 @@
   fileSystems."/home" = {
     device = "/dev/disk/by-uuid/661bd881-7275-4f5e-80a4-08acdc97c2b3";
     fsType = "btrfs";
-    options = ["subvol=@nixos_home"];
+    options = ["subvol=@nixos_home" "compress=lzo"];
   };
 
   fileSystems."/mnt/data" = {
