@@ -11,6 +11,7 @@
     evince
     exiftool
     firefox
+    flashplayer
     gnome3.eog
     gnome3.nautilus
     gradle
@@ -32,7 +33,7 @@
     mu
     nix-repl
     nodejs-8_x
-    openjdk
+    openjdk10
     pavucontrol
     rofi
     rubber
