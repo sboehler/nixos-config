@@ -118,7 +118,7 @@
 
   boot = {
     kernelParams = [
-      "i915.enable_fbc=1"
+      # "i915.enable_fbc=1"
       "gpd-pocket-fan.speed_on_ac=0"
     ];
     kernelModules = [ "kvm-intel" ];
