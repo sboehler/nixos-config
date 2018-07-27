@@ -1,5 +1,11 @@
 { pkgs, config, ... }:
 {
+  nixpkgs.config = {
+    packageOverrides = pkgs: {
+      yarn = pkgs.yarn.override { nodejs = pkgs.nodejs-8_x;  };
+    };
+  };
+
   environment.systemPackages = with pkgs; [
     ack
     arandr
