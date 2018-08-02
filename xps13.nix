@@ -41,6 +41,12 @@
     '';
   };
 
+  services.tlp = {
+    extraConfig = ''
+      DISK_DEVICES="nvme0n1";
+    '';
+  };
+
   networking.hostName = "xps13";
 
   i18n.consoleFont = "latarcyrheb-sun32";
