@@ -186,8 +186,8 @@
         Xcursor.size: 48
       ''}"
     '';
-    videoDrivers = [ "intel" ];
-    useGlamor = true;
+    # videoDrivers = [ "intel" ];
+    # useGlamor = true;
     xrandrHeads = [
       {
         output = "DSI1";
