@@ -47,6 +47,10 @@
     '';
   };
 
+  services.transmission = {
+    enable = true;
+  };
+
   networking.hostName = "xps13";
 
   i18n.consoleFont = "latarcyrheb-sun32";

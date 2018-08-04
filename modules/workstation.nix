@@ -39,8 +39,10 @@
     mu
     nix-repl
     nodejs-8_x
+    notmuch
     openjdk10
     pavucontrol
+    python36Packages.html2text
     rofi
     rubber
     shared_mime_info
