@@ -47,6 +47,7 @@
     rubber
     shared_mime_info
     silver-searcher
+    spotify
     # skypeforlinux
     termite
     texlive.combined.scheme-full
