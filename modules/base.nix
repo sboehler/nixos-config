@@ -95,7 +95,6 @@
         plugins = [
           "git"
           "gradle"
-          "vi-mode"
           "nvm"
           "rsync"
           "stack"
@@ -108,13 +107,9 @@
         export PASSWORD_STORE_X_SELECTION=primary
         export GPG_TTY=$(tty)
         HYPHEN_INSENSITIVE="true"
-
-        bindkey -M viins 'jk' vi-cmd-mode
-        bindkey -M vicmd 'k' history-substring-search-up
-        bindkey -M vicmd 'j' history-substring-search-down
-
-        bindkey -M emacs '^P' history-substring-search-up
-        bindkey -M emacs '^N' history-substring-search-down
+	
+	bindkey -M emacs '^P' history-substring-search-up
+	bindkey -M emacs '^N' history-substring-search-down
 
         eval $(${pkgs.coreutils}/bin/dircolors "${./dircolors.ansi-universal}")
 
