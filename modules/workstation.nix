@@ -15,7 +15,7 @@
     docker_compose
     emacs
     evince
-    exiftool
+    unstable.exiftool
     firefox
     # flashplayer
     gnome3.eog
@@ -35,14 +35,14 @@
     libreoffice
     libxml2
     mitscheme
-    libreoffice
     mu
+    libreoffice
     nix-repl
     nodejs-8_x
     notmuch
+    offlineimap
     openjdk10
     pavucontrol
-    python36Packages.html2text
     rofi
     rubber
     shared_mime_info

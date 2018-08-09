@@ -54,7 +54,6 @@
     neovim
     nvme-cli
     (unstable.pass.withExtensions (e: [e.pass-otp]))
-    unstable.exiftool
     patchelf
     pciutils
     pinentry
