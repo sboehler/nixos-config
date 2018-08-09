@@ -1,14 +1,23 @@
 { pkgs, config, ... }:
 {
   nixpkgs.config = {
-    packageOverrides = pkgs: {
+
+    packageOverrides = pkgs: rec {
       yarn = pkgs.yarn.override { nodejs = pkgs.nodejs-8_x;  };
+
+      haskellPackages = pkgs.haskellPackages.override {
+        overrides = haskellPackagesNew: haskellPackagesOld: rec {
+          beans = haskellPackagesNew.callPackage ./beans.nix {};
+        };
+      };
+
     };
   };
 
   environment.systemPackages = with pkgs; [
     ack
     arandr
+    haskellPackages.beans
     chromium
     darktable
     dmenu
