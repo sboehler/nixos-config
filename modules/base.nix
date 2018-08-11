@@ -1,6 +1,6 @@
 { config, pkgs, ... }:
   let
-    unstableTarball = fetchTarball https://github.com/NixOS/nixpkgs/archive/dae9cf6106da19f79a39714f183ed253c62b32c5.tar.gz;
+    unstableTarball = fetchTarball https://github.com/NixOS/nixpkgs/archive/2428f5dda13475afba2dee93f4beb2bd97086930.tar.gz;
   in
 {
   nixpkgs = {
@@ -106,7 +106,7 @@
         export PASSWORD_STORE_X_SELECTION=primary
         export GPG_TTY=$(tty)
         HYPHEN_INSENSITIVE="true"
-	
+
 	bindkey -M emacs '^P' history-substring-search-up
 	bindkey -M emacs '^N' history-substring-search-down
 
