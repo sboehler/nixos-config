@@ -86,13 +86,10 @@
     cabal-install
     apply-refact
     cabal2nix
-    ghc
-    ghcid
     # hasktags
     hindent
     hlint
     hpack
-    hoogle
     stylish-haskell
   ]);
 

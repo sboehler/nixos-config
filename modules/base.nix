@@ -47,7 +47,6 @@
     gptfdisk
     unstable.gopass
     hdparm
-    inetutils
     jnettop
     ncftp
     nix-prefetch-scripts
