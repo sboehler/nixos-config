@@ -4,8 +4,8 @@
 
 { pkgs }:
 (pkgs.buildFHSUserEnv {
-  name = "gradlew";
-  targetPkgs = pkgs: (with pkgs;
+  name = "gw";
+  targetPkgs = Pkgs: (with pkgs;
   [
     stdenv.cc.cc.lib
     docker_compose
