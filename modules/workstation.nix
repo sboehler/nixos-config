@@ -11,6 +11,8 @@
         };
       };
 
+      gw = pkgs.callPackage ./gradlew.nix {};
+
     };
   };
 
@@ -26,6 +28,7 @@
     evince
     unstable.exiftool
     firefox
+    gw
     # flashplayer
     gnome3.eog
     gnome3.nautilus
