@@ -17,16 +17,16 @@
   };
 
   environment.systemPackages = with pkgs; [
+    # flashplayer
+    # skypeforlinux
     ack
     arandr
-    haskellPackages.beans
     chromium
     darktable
     dmenu
     docker_compose
     emacs
     evince
-    unstable.exiftool
     firefox
     gw
     # flashplayer
@@ -34,7 +34,6 @@
     gnome3.nautilus
     gradle
     gthumb
-    haskellPackages.xmobar
     hplip
     i3lock
     icedtea8_web
@@ -48,21 +47,21 @@
     libxml2
     mitscheme
     mu
-    libreoffice
     nix-repl
     nodejs-8_x
     notmuch
     offlineimap
     openjdk10
     pavucontrol
+    pandoc
     rofi
     rubber
     shared_mime_info
     silver-searcher
     spotify
-    # skypeforlinux
     termite
     texlive.combined.scheme-full
+    unstable.exiftool
     vanilla-dmz
     virtmanager
     virtmanager
@@ -71,10 +70,10 @@
     xautolock
     xiccd
     xorg.xbacklight
-    xorg.xkill
     xorg.xcursorthemes
     xorg.xdpyinfo
     xorg.xev
+    xorg.xkill
     xsel
     xss-lock
     yarn
@@ -83,6 +82,7 @@
   ]
 
   ++ (with pkgs.haskellPackages; [
+    beans
     cabal-install
     apply-refact
     cabal2nix
@@ -91,6 +91,8 @@
     hlint
     hpack
     stylish-haskell
+    xmobar
+
   ]);
 
   virtualisation.libvirtd.enable = true;
