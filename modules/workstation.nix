@@ -21,6 +21,7 @@
     # skypeforlinux
     ack
     arandr
+    beancount
     chromium
     darktable
     dmenu
