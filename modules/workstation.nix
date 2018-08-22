@@ -29,6 +29,7 @@
     emacs
     evince
     firefox
+    git-review
     gw
     # flashplayer
     gnome3.eog
