@@ -153,6 +153,8 @@
     extraOptions = ["-v"];
   };
 
+  services.emacs.enable = true;
+
   fonts = {
     enableDefaultFonts = true;
     fonts = with pkgs; [
