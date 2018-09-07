@@ -29,6 +29,7 @@
     emacs
     evince
     firefox
+    fdupes
     git-review
     gw
     # flashplayer
