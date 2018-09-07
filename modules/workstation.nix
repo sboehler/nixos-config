@@ -90,7 +90,7 @@
     cabal2nix
     # hasktags
     hindent
-    hlint
+    # hlint
     hpack
     stylish-haskell
     xmobar
