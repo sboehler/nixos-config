@@ -58,6 +58,7 @@
     pandoc
     rofi
     rubber
+    sbcl
     shared_mime_info
     silver-searcher
     spotify
