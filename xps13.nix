@@ -6,6 +6,7 @@
        <nixpkgs/nixos/modules/installer/scan/not-detected.nix>
       ./modules/networking.nix
       ./modules/wifi.nix
+      ./modules/mbsyncd.nix
       ./modules/buildmachine.nix
       ./modules/laptop.nix
       ./modules/resolved.nix
