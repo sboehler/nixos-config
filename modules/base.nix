@@ -100,14 +100,14 @@
         ];
       };
       interactiveShellInit = ''
-        export EDITOR=nvim
+        export EDITOR="emacsclient -c"
         export PATH=$HOME/.local/bin:$PATH
         export PASSWORD_STORE_X_SELECTION=primary
         export GPG_TTY=$(tty)
         HYPHEN_INSENSITIVE="true"
 
-	bindkey -M emacs '^P' history-substring-search-up
-	bindkey -M emacs '^N' history-substring-search-down
+        bindkey -M emacs '^P' history-substring-search-up
+        bindkey -M emacs '^N' history-substring-search-down
 
         eval $(${pkgs.coreutils}/bin/dircolors "${./dircolors.ansi-universal}")
 
