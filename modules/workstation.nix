@@ -20,6 +20,7 @@
     # flashplayer
     # skypeforlinux
     ack
+    ansible
     arandr
     beancount
     chromium
