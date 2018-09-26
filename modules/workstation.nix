@@ -20,7 +20,7 @@
     # flashplayer
     # skypeforlinux
     ack
-    ansible
+    unstable.ansible
     arandr
     beancount
     chromium
@@ -48,6 +48,7 @@
     jetbrains.idea-community
     keepassx2
     libreoffice
+    libressl
     libxml2
     mitscheme
     mu
@@ -58,6 +59,7 @@
     openjdk10
     pavucontrol
     pandoc
+    python3
     rofi
     rubber
     sbcl
