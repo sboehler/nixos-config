@@ -38,6 +38,10 @@
     };
   };
 
+  hardware.pulseaudio.extraConfig = ''
+    set-default-sink alsa_output.usb-Creative_Technology_Ltd_Sound_Blaster_E5_A3060110121-00.analog-stereo
+  '';
+
   networking.hostName = "tw-pc-silvio";
 
   services.syncthing = {
