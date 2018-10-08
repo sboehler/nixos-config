@@ -16,7 +16,7 @@
   boot = {
     kernelModules = [ "kvm-intel" ];
 
-    kernelPackages = pkgs.linuxPackagesFor pkgs.linux_4_17;
+    kernelPackages = pkgs.linuxPackagesFor pkgs.linux_4_18;
 
     initrd = {
       availableKernelModules = [
@@ -117,7 +117,7 @@
     device = "/dev/disk/by-uuid/ca8083a2-a656-4f22-93cd-60912f3c90ab";
   }];
 
-  system.stateVersion = "18.03"; # Did you read the comment?
+  system.stateVersion = "18.09"; # Did you read the comment?
 
   nix.maxJobs = lib.mkDefault 8;
 }

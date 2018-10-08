@@ -45,14 +45,14 @@
     git
     gnupg
     gptfdisk
-    unstable.gopass
+    gopass
     hdparm
     jnettop
     ncftp
     nix-prefetch-scripts
     neovim
     nvme-cli
-    (unstable.pass.withExtensions (e: [e.pass-otp]))
+    (pass.withExtensions (e: [e.pass-otp]))
     patchelf
     pciutils
     pinentry

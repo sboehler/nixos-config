@@ -20,7 +20,7 @@
     # flashplayer
     # skypeforlinux
     ack
-    unstable.ansible
+    ansible
     arandr
     beancount
     chromium
@@ -52,7 +52,6 @@
     libxml2
     mitscheme
     mu
-    nix-repl
     nodejs-8_x
     notmuch
     offlineimap
@@ -68,7 +67,7 @@
     spotify
     termite
     texlive.combined.scheme-full
-    unstable.exiftool
+    exiftool
     vanilla-dmz
     virtmanager
     virtmanager
@@ -89,7 +88,7 @@
   ]
 
   ++ (with pkgs.haskellPackages; [
-    beans
+    # beans
     cabal-install
     apply-refact
     cabal2nix
@@ -121,9 +120,6 @@
       naturalScrolling = true;
     };
     displayManager = {
-      lightdm = {
-        enable = true;
-      };
       sessionCommands = ''
           xset s 600 0
           xset r rate 440 50
