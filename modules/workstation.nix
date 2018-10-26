@@ -67,6 +67,7 @@
     pandoc
     python3
     protonmail-bridge
+    restic
     rofi
     rubber
     sbcl
