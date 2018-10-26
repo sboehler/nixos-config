@@ -60,6 +60,7 @@
     psmisc
     python
     rclone
+    restic
     samba
     smartmontools
     speedtest-cli
