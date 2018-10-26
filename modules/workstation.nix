@@ -13,6 +13,13 @@
 
       gw = pkgs.callPackage ./gradlew.nix {};
 
+      protonmail-bridge = pkgs.protonmail-bridge.overrideAttrs (oldAttrs: rec {
+        src = pkgs.fetchurl {
+            url = "https://protonmail.com/download/protonmail-bridge_1.1.0-1_amd64.deb";
+            sha256 = "0l29z208krnd3dginc203m4p5dlmnxf08vpmbm9xzlckwmswizkb";
+        };
+      });
+
     };
   };
 
@@ -59,6 +66,7 @@
     pavucontrol
     pandoc
     python3
+    protonmail-bridge
     rofi
     rubber
     sbcl
