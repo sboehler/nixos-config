@@ -59,12 +59,14 @@
     libxml2
     mitscheme
     mu
+    nix-index
     nodejs-8_x
     notmuch
     offlineimap
     openjdk10
     pavucontrol
     pandoc
+    phantomjs
     python3
     protonmail-bridge
     restic
