@@ -21,7 +21,7 @@
 
     kernelModules = [ "kvm-intel" ];
 
-    kernelPackages = pkgs.linuxPackagesFor pkgs.linux_4_17;
+    kernelPackages = pkgs.linuxPackagesFor pkgs.linux_4_18;
 
     initrd = {
       availableKernelModules = [
