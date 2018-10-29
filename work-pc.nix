@@ -16,7 +16,7 @@
   boot = {
     kernelModules = [ "kvm-intel" ];
 
-    kernelPackages = pkgs.linuxPackagesFor pkgs.linux_4_18;
+    # kernelPackages = pkgs.linuxPackagesFor pkgs.linux_4_18;
 
     initrd = {
       availableKernelModules = [
@@ -42,7 +42,7 @@
     set-default-sink alsa_output.usb-Creative_Technology_Ltd_Sound_Blaster_E5_A3060110121-00.analog-stereo
   '';
 
-  networking.hostName = "tw-pc-silvio";
+  networking.hostName = "worky-mcworkface";
 
   services.syncthing = {
     enable = true;

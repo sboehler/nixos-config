@@ -54,6 +54,7 @@
     jetbrains.datagrip
     jetbrains.idea-community
     keepassx2
+    keepassxc
     libreoffice
     libressl
     libxml2
