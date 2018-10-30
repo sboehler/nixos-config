@@ -6,7 +6,7 @@
       serviceConfig = {
         Type = "oneshot";
         ExecStart = "${pkgs.isync}/bin/mbsync -a";
-        ExecStartPost= "${pkgs.mu}/bin/mu index";
+        ExecStartPost= "/home/silvio/.local/bin/mu_index";
       };
     };
     timers = {
