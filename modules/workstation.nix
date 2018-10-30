@@ -71,6 +71,7 @@
     spotify
     termite
     texlive.combined.scheme-full
+    thunderbird
     exiftool
     vanilla-dmz
     virtmanager
