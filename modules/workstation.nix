@@ -156,8 +156,9 @@
 
   services.redshift = {
     enable = true;
-    provider = "geoclue2";
-    extraOptions = ["-v"];
+    provider = "manual";
+    latitude = "47.3673";
+    longitude = "8.55";
   };
 
   services.emacs.enable = true;
