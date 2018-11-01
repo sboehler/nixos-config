@@ -16,80 +16,19 @@
 
   nixpkgs.config = {
     packageOverrides = pkgs: {
-      linux_4_17 = pkgs.linux_4_17.override {
+      linux_4_18 = pkgs.linux_4_18.override {
         extraConfig = ''
-          ACPI_CUSTOM_METHOD m
           B43_SDIO y
-
-          BATTERY_MAX17042 m
-
-          COMMON_CLK y
-
-          INTEL_SOC_PMIC? y
-          INTEL_SOC_PMIC_CHTWC? y
-          INTEL_PMC_IPC m
-          INTEL_BXTWC_PMIC_TMU m
-
-          ACPI y
           PMIC_OPREGION y
-          CHT_WC_PMIC_OPREGION? y
-          XPOWER_PMIC_OPREGION y
-          BXT_WC_PMIC_OPREGION y
-          CHT_DC_TI_PMIC_OPREGION y
-          XPOWER_PMIC_OPREGION y
-
           MATOM y
-
-          PINCTRL_CHERRYVIEW y
-
-          DW_DMAC y
-          DW_DMAC_CORE y
-          DW_DMAC_PCI y
-
-          GPD_POCKET_FAN y
-
-          HSU_DMA y
-
-          I2C y
-          I2C_CHT_WC y
-          I2C_DESIGNWARE_BAYTRAIL? y
-
-          INTEL_CHT_INT33FE m
-          MFD_AXP20X m
-          TYPEC_MUX_PI3USB30532 m
-          #MUX_INTEL_CHT_USB_MUX m
-          # MUX_PI3USB30532 m
-          NVRAM y
+          I2C_DESIGNWARE_BAYTRAIL y
           POWER_RESET y
           PWM y
           PWM_LPSS m
           PWM_LPSS_PCI m
           PWM_LPSS_PLATFORM m
           PWM_SYSFS y
-          RAW_DRIVER y
           RTC_DS1685_SYSFS_REGS y
-          SERIAL_8250_DW y
-          SERIAL_8250_MID y
-          SERIAL_8250_NR_UARTS 32
-          SERIAL_8250_PCI m
-          SERIAL_DEV_BUS y
-          SERIAL_DEV_CTRL_TTYPORT y
-          TOUCHSCREEN_ELAN m
-          TULIP_MMIO y
-          W1_SLAVE_DS2433_CRC y
-          XXHASH m
-
-          INTEL_INT0002_VGPIO m
-          REGULATOR y
-          TYPEC m
-          TYPEC_TCPM m
-          TYPEC_FUSB302 m
-
-          BATTERY_MAX17042 m
-          CHARGER_BQ24190 m
-          # EXTCON m
-          # EXTCON_INTEL m
-          EXTCON_INTEL_CHT_WC m
         '';
       };
     };
@@ -101,7 +40,7 @@
       rmmod goodix
     '';
     powerUpCommands = ''
-      modorobe goodix
+      modprobe goodix
     '';
 
   };
@@ -122,16 +61,12 @@
       "gpd-pocket-fan.speed_on_ac=0"
     ];
     kernelModules = [ "kvm-intel" ];
-    kernelPackages = pkgs.linuxPackagesFor pkgs.linux_4_17;
+    kernelPackages = pkgs.linuxPackagesFor pkgs.linux_4_18;
 
     initrd = {
       kernelModules = [
         "pwm-lpss"
         "pwm-lpss-platform" # for brightness control
-        "g_serial" # be a serial device via OTG
-        "bq24190_charger"
-        "i915"
-        "fusb302"
       ];
       availableKernelModules = [
         "xhci_pci"
@@ -220,17 +155,6 @@
     ];
   };
 
-  hardware.pulseaudio = {
-    extraConfig = ''
-      set-card-profile alsa_card.platform-cht-bsw-rt5645 HiFi
-      set-default-sink alsa_output.platform-cht-bsw-rt5645.HiFi__hw_chtrt5645_0__sink
-      set-sink-port alsa_output.platform-cht-bsw-rt5645.HiFi__hw_chtrt5645_0__sink [Out] Speaker
-    '';
-    daemon.config = {
-      "realtime-scheduling" = "no";
-    };
-  };
-
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/f9c1df0d-5bcf-448b-9684-1b0b6712f5e1";
     fsType = "btrfs";
@@ -252,6 +176,6 @@
     device = "/dev/disk/by-uuid/6c4af545-7c97-4c3e-8015-17d8103430fa";
   }];
 
-  system.stateVersion = "18.03"; # Did you read the comment?
+  system.stateVersion = "18.09"; # Did you read the comment?
   nix.maxJobs = lib.mkDefault 4;
 }
