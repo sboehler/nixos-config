@@ -19,7 +19,18 @@
       linux_4_18 = pkgs.linux_4_18.override {
         extraConfig = ''
           B43_SDIO y
+
           PMIC_OPREGION y
+          CHT_WC_PMIC_OPREGION y
+          ACPI_I2C_OPREGION y
+
+          I2C y
+          I2C_CHT_WC m
+
+          INTEL_SOC_PMIC_CHTWC y
+
+          EXTCON_INTEL_CHT_WC m
+
           MATOM y
           I2C_DESIGNWARE_BAYTRAIL y
           POWER_RESET y
@@ -28,7 +39,6 @@
           PWM_LPSS_PCI m
           PWM_LPSS_PLATFORM m
           PWM_SYSFS y
-          RTC_DS1685_SYSFS_REGS y
         '';
       };
     };
