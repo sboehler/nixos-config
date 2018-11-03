@@ -77,6 +77,7 @@
       kernelModules = [
         "pwm-lpss"
         "pwm-lpss-platform" # for brightness control
+        "i915"
       ];
       availableKernelModules = [
         "xhci_pci"
