@@ -8,6 +8,8 @@
       haskellPackages = pkgs.haskellPackages.override {
         overrides = haskellPackagesNew: haskellPackagesOld: rec {
           beans = haskellPackagesNew.callPackage ./beans.nix {};
+          xmonad = haskellPackagesNew.callPackage ./xmonad.nix {};
+          xmonad-contrib = haskellPackagesNew.callPackage ./xmonad-contrib.nix {};
         };
       };
 
@@ -140,9 +142,10 @@
       default = "xmonad";
       xmonad = {
         enable = true;
-        enableContribAndExtras = true;
+        enableContribAndExtras = false;
         extraPackages = haskellPackages: [
           haskellPackages.hostname
+          haskellPackages.xmonad-contrib
         ];
       };
     };
