@@ -5,7 +5,7 @@
       description = "mbsync";
       serviceConfig = {
         Type = "oneshot";
-        ExecStart = "${pkgs.isync}/bin/mbsync -aV";
+        ExecStart = "${pkgs.isync}/bin/mbsync -a";
       };
     };
     timers = {
