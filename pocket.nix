@@ -7,6 +7,7 @@
       ./modules/networking.nix
       ./modules/wifi.nix
       ./modules/laptop.nix
+      ./modules/mbsyncd.nix
       ./modules/workstation.nix
       ./modules/resolved.nix
       ./modules/base.nix
