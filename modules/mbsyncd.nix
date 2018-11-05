@@ -2,19 +2,18 @@
 {
   systemd.user = {
     services.mbsyncd = {
-      description = "mbsync daemon";
+      description = "mbsync";
       serviceConfig = {
         Type = "oneshot";
         ExecStart = "${pkgs.isync}/bin/mbsync -a";
-        ExecStartPost= "/home/silvio/.local/bin/mu_index";
       };
     };
     timers = {
       mbsyncd = {
         description = "mbsyncd timer";
         timerConfig = {
-          OnBootSec = "2m";
-          OnUnitActiveSec = "5m";
+          OnBootSec = "1m";
+          OnUnitActiveSec = "2m";
           Unit="mbsyncd.service";
         };
         wantedBy = ["timers.target"];
