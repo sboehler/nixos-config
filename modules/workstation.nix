@@ -3,7 +3,7 @@
   nixpkgs.config = {
 
     packageOverrides = pkgs: rec {
-      yarn = pkgs.yarn.override { nodejs = pkgs.nodejs-8_x;  };
+      yarn = pkgs.yarn.override { nodejs = pkgs.nodejs-8_x; };
 
       haskellPackages = pkgs.haskellPackages.override {
         overrides = haskellPackagesNew: haskellPackagesOld: rec {
@@ -14,6 +14,13 @@
       };
 
       gw = pkgs.callPackage ./gradlew.nix {};
+
+      gradle = gradleGen.gradle_latest;
+
+      gradleGen = pkgs.gradleGen.override {
+        jdk = pkgs.openjdk10;
+      };
+
     };
   };
 
