@@ -13,7 +13,7 @@
         description = "mbsyncd timer";
         timerConfig = {
           OnBootSec = "1m";
-          OnUnitActiveSec = "2m";
+          OnUnitActiveSec = "5m";
           Unit="mbsyncd.service";
         };
         wantedBy = ["timers.target"];
