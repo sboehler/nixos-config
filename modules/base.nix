@@ -101,6 +101,7 @@
         ];
       };
       interactiveShellInit = ''
+        export HUSKY_SKIP_INSTALL=true
         export EDITOR="emacsclient -c"
         export PATH=$HOME/.local/bin:$PATH
         export PASSWORD_STORE_X_SELECTION=primary
