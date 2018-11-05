@@ -89,6 +89,7 @@
     wpa_supplicant
     xautolock
     xiccd
+    unstable.haskellPackages.xmobar
     xorg.xbacklight
     xorg.xcursorthemes
     xorg.xdpyinfo
@@ -111,8 +112,6 @@
     # hlint
     hpack
     stylish-haskell
-    xmobar
-
   ]);
 
   virtualisation.libvirtd.enable = true;
