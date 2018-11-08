@@ -68,6 +68,14 @@
     };
   };
 
+  services.syncthing = {
+    enable = true;
+    systemService = true;
+    user = "silvio";
+    group = "users";
+    dataDir = "/mnt/data/sync/sync";
+  };
+
   fileSystems = {
     "/" = {
       device = "/dev/disk/by-uuid/541e5627-a3c2-4b6c-ad0e-f87803eb52af";
