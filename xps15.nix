@@ -9,6 +9,7 @@
       ./modules/buildmachine.nix
       ./modules/laptop.nix
       ./modules/mbsyncd.nix
+      ./modules/syncthing.nix
       ./modules/resolved.nix
       ./modules/workstation.nix
       ./modules/base.nix
