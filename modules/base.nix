@@ -114,7 +114,7 @@
         eval $(${pkgs.coreutils}/bin/dircolors "${./dircolors.ansi-universal}")
 
         if [ $USER = "silvio" ]; then
-          systemctl --user import-environment
+          # systemctl --user import-environment
         fi
       '';
 
