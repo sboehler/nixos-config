@@ -3,7 +3,7 @@
   nixpkgs.config = {
 
     packageOverrides = pkgs: rec {
-      yarn = pkgs.yarn.override { nodejs = pkgs.nodejs-8_x; };
+      yarn = pkgs.yarn.override { nodejs = pkgs.nodejs-10_x; };
 
       haskellPackages = pkgs.haskellPackages.override {
         overrides = haskellPackagesNew: haskellPackagesOld: rec {
@@ -62,7 +62,7 @@
     mitscheme
     mu
     nix-index
-    nodejs-8_x
+    nodejs-10_x
     notmuch
     offlineimap
     openjdk10
