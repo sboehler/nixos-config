@@ -21,6 +21,25 @@
         jdk = pkgs.openjdk10;
       };
 
+      html2text = pkgs.html2text.overrideAttrs (oldAttrs: rec {
+        patches = [
+          ./html2text/100-fix-makefile.patch
+          ./html2text/200-close-files-inside-main-loop.patch
+          ./html2text/400-remove-builtin-http-support.patch
+          ./html2text/500-utf8-support.patch
+          ./html2text/510-disable-backspaces.patch
+          ./html2text/550-skip-numbers-in-html-tag-attributes.patch
+          ./html2text/600-multiple-meta-tags.patch
+          ./html2text/611-recognize-input-encoding.patch
+          ./html2text/630-recode-output-to-locale-charset.patch
+          ./html2text/800-replace-zeroes-with-null.patch
+          ./html2text/810-fix-deprecated-conversion-warnings.patch
+          ./html2text/900-complete-utf8-entities-table.patch
+          ./html2text/950-validate-width-parameter.patch
+          ./html2text/960-fix-utf8-mode-quadratic-runtime.patch
+        ];
+      }
+      );
     };
   };
 
@@ -47,6 +66,7 @@
     gradle
     gthumb
     hplip
+    html2text
     i3lock
     icedtea8_web
     imagemagick7
@@ -90,6 +110,7 @@
     xautolock
     xiccd
     unstable.haskellPackages.xmobar
+    w3m
     xorg.xbacklight
     xorg.xcursorthemes
     xorg.xdpyinfo

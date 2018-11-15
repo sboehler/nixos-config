@@ -1,0 +1,98 @@
+Remove limited built-in http support.
+Index: html2text-1.3.2a/html2text.C
+===================================================================
+--- html2text-1.3.2a.orig/html2text.C	2008-09-20 14:02:03.030954214 +0300
++++ html2text-1.3.2a/html2text.C	2008-09-20 14:03:39.181744957 +0300
+@@ -36,18 +36,20 @@
+ 
+ 
+ #include <iostream>
++#include <fstream>
+ #include <string.h>
+ #include <stdlib.h>
+ 
+ #include "html.h"
+ #include "HTMLControl.h"
+-#include "urlistream.h"
++//#include "urlistream.h"
+ #include "format.h"
+ 
+ #define stringify(x) stringify2(x)
+ #define stringify2(x) #x
+ 
+ /* ------------------------------------------------------------------------- */
++using std::ifstream;
+ 
+ class MyParser : public HTMLControl {
+ 
+@@ -55,7 +57,7 @@
+   enum { PRINT_AS_ASCII, UNPARSE, SYNTAX_CHECK };
+ 
+   MyParser(
+-    urlistream &is_,
++    istream &is_,
+     bool       debug_scanner_,
+     bool       debug_parser_,
+     ostream    &os_,
+@@ -352,15 +354,14 @@
+     }
+ 
+     istream    *isp;
+-    urlistream uis;
++    ifstream     uis;
+ 
+     uis.open(input_url);
+     if (!uis.is_open()) {
+       std::cerr
+-        << "Opening input URL \""
++        << "Cannot open input file \""
+ 	<< input_url
+-        << "\": "
+-        << uis.open_error()
++        << "\"."
+         << std::endl;
+       exit(1);
+     }
+Index: html2text-1.3.2a/HTMLControl.h
+===================================================================
+--- html2text-1.3.2a.orig/HTMLControl.h	2008-09-20 14:01:44.527185508 +0300
++++ html2text-1.3.2a/HTMLControl.h	2008-09-20 14:03:39.181744957 +0300
+@@ -38,7 +38,6 @@
+ /* ------------------------------------------------------------------------- */
+ 
+ #include "HTMLParser.h"
+-#include "urlistream.h"
+ #include <istream>
+ 
+ using std::istream;
+@@ -48,7 +47,7 @@
+ class HTMLControl : public HTMLParser {
+ 
+ public:
+-  HTMLControl(urlistream &is_, bool debug_scanner_, bool debug_parser_) :
++  HTMLControl(istream &is_, bool debug_scanner_, bool debug_parser_) :
+     HTMLParser(),
+     current_line(1),
+     current_column(0),
+@@ -84,7 +83,7 @@
+ 
+   bool debug_scanner;
+ 
+-  urlistream &is;
++  istream &is;
+   int     ungotten_chars[5];
+   int     number_of_ungotten_chars;
+ };
+Index: html2text-1.3.2a/Makefile.in
+===================================================================
+--- html2text-1.3.2a.orig/Makefile.in	2008-09-20 14:01:44.571185514 +0300
++++ html2text-1.3.2a/Makefile.in	2008-09-20 14:03:39.181744957 +0300
+@@ -68,7 +68,7 @@
+ 	@echo '"/usr/local/bin", "/usr/local/man/man1" and "/usr/local/man/man5").';
+ 	@echo
+ 
+-OBJS = html2text.o html.o HTMLControl.o HTMLParser.o Area.o format.o sgml.o table.o urlistream.o Properties.o cmp_nocase.o
++OBJS = html2text.o html.o HTMLControl.o HTMLParser.o Area.o format.o sgml.o table.o Properties.o cmp_nocase.o
+ 
+ html2text : $(OBJS) $(LIBSTDCXX_LIBS)
+ 	$(CXX) $(LDFLAGS) $(OBJS) $(LOADLIBES) $(LDLIBS) -o $@

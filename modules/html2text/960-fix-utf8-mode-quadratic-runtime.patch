@@ -1,0 +1,51 @@
+https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=899105
+
+From: Carson Ip <carsonip715@gmail.com>
+Subject: html2text: fix utf8 mode quadratic runtime
+Message-ID: <152671948871.16832.5616326741980900587.reportbug@carson-desktop>
+Date: Sat, 19 May 2018 16:44:48 +0800
+
+html2text has quadratic runtime under utf8 mode. utf8_aux_count in 
+Area.C is called quadratic number of times due to bad implementation 
+in make_up in format.C.
+
+A 0.05MB html input with -utf8 flag takes 15s to process while with 
+-ascii flag it takes 0.02s. Unfortunately utf8 is the default.
+
+A patch is ready. It brings the runtime back to 0.2s.
+Here is the patch:
+
+--- a/format.C
++++ b/format.C
+@@ -1217,6 +1217,9 @@
+     Line::size_type to = from + 1;
+     int to_from;
+ 
++    Line::size_type last_to = from;
++    int last_utf_len = 0;
++
+     Line::size_type lbp = (Line::size_type) -1; // "Last break position".
+ 
+     /*
+@@ -1244,8 +1247,17 @@
+         to++;
+       }
+ 
+-      if (line.utf_length(from,to) > w && lbp != (Area::size_type) -1) 
++      /*
++       * Since utf_length(a,b) gets length of [a,b)
++       * utf_length(a,b) = utf_length(a,c) + urf_length(c,b)
++       * Cache last_utf_len to avoid quadratic runtime
++       */
++      int utf_len = last_utf_len + line.utf_length(last_to, to);
++      if (utf_len > w && lbp != (Area::size_type) -1)
+                     { to = lbp; break; }
++
++      last_to = to;
++      last_utf_len = utf_len;
+     }
+ 
+     to_from = line.utf_length(from,to);
+
+
+
