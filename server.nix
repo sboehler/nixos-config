@@ -39,6 +39,17 @@
 
   programs.mosh.enable = true;
 
+  services.transmission = {
+    enable = true;
+    settings = {
+      download-dir = "/mnt/data/repos/Media/Downloads";
+      incomplete-dir = "/mnt/data/repos/Media/Downloads/.incomplete";
+      incomplete-dir-enabled = true;
+      rpc-whitelist = "127.0.0.1,192.168.2.*";
+      rpc-host-whitelist = "server";
+    };
+  };
+
   services.samba = {
     enable = true;
     extraConfig = ''
