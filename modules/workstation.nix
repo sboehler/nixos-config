@@ -148,7 +148,7 @@
   services.xserver = {
     enable = true;
     layout = "us(altgr-intl)";
-    xkbOptions = "ctrl:nocaps,compose:ralt,terminate:ctrl_alt_bksp";
+    xkbOptions = "compose:ralt,terminate:ctrl_alt_bksp";
     libinput = {
       enable = true;
       naturalScrolling = true;
@@ -183,10 +183,14 @@
     127.0.0.1	truewealth.test
     127.0.0.1 s3mock
   '';
-
+  services.interception-tools.enable = true;
   services.redshift = {
     enable = true;
     provider = "manual";
+    temperature = {
+      night = 3400;
+      day = 6500;
+    };
     latitude = "47.3673";
     longitude = "8.55";
   };
