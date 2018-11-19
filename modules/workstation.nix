@@ -59,6 +59,7 @@
     firefox
     fdupes
     git-review
+    gitAndTools.gitFull
     gw
     # flashplayer
     gnome3.eog
@@ -118,7 +119,7 @@
     xorg.xkill
     xsel
     xss-lock
-    yarn
+    unstable.yarn
     zbar
     zip
   ]
