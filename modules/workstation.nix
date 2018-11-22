@@ -8,8 +8,6 @@
       haskellPackages = pkgs.haskellPackages.override {
         overrides = haskellPackagesNew: haskellPackagesOld: rec {
           beans = haskellPackagesNew.callPackage ./beans.nix {};
-          xmonad = haskellPackagesNew.callPackage ./xmonad.nix {};
-          xmonad-contrib = haskellPackagesNew.callPackage ./xmonad-contrib.nix {};
         };
       };
 
@@ -18,7 +16,7 @@
       gradle = gradleGen.gradle_latest;
 
       gradleGen = pkgs.gradleGen.override {
-        jdk = pkgs.openjdk10;
+        jdk = pkgs.openjdk11;
       };
 
       html2text = pkgs.html2text.overrideAttrs (oldAttrs: rec {
@@ -43,9 +41,17 @@
     };
   };
 
+  nix.useSandbox = true;
+
+  nixpkgs.config.firefox = {
+    enableAdobeFlash = true;
+    jre = true;
+  };
+
+  programs.browserpass.enable = true;
+
   environment.systemPackages = with pkgs; [
-    # flashplayer
-    # skypeforlinux
+    flashplayer
     ack
     ansible
     arandr
@@ -86,7 +92,7 @@
     nodejs-10_x
     notmuch
     offlineimap
-    openjdk10
+    openjdk11
     pavucontrol
     pandoc
     phantomjs
@@ -103,6 +109,7 @@
     texlive.combined.scheme-full
     thunderbird
     exiftool
+    tabula
     vanilla-dmz
     virtmanager
     virtmanager
@@ -110,7 +117,7 @@
     wpa_supplicant
     xautolock
     xiccd
-    unstable.haskellPackages.xmobar
+    haskellPackages.xmobar
     w3m
     xorg.xbacklight
     xorg.xcursorthemes
@@ -119,7 +126,7 @@
     xorg.xkill
     xsel
     xss-lock
-    unstable.yarn
+    yarn
     zbar
     zip
   ]

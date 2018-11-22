@@ -1,15 +1,7 @@
 { config, pkgs, ... }:
-  let
-    unstableTarball = fetchTarball https://github.com/NixOS/nixpkgs/archive/179b8146e668636fe59ef7663a6c8cd15d00db7e.tar.gz;
-  in
 {
   nixpkgs = {
     config = {
-      packageOverrides = pkgs: {
-        unstable = import unstableTarball {
-          config = config.nixpkgs.config;
-        };
-      };
       allowUnfree = true;
     };
   };
@@ -112,10 +104,6 @@
         bindkey -M emacs '^N' history-substring-search-down
 
         eval $(${pkgs.coreutils}/bin/dircolors "${./dircolors.ansi-universal}")
-
-        if [ $USER = "silvio" ]; then
-          systemctl --user import-environment
-        fi
       '';
 
       shellAliases = {
@@ -127,6 +115,7 @@
       extraConfig = ''
         AddKeysToAgent yes
         '';
+
     };
   };
 

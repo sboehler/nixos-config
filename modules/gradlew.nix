@@ -11,7 +11,7 @@
     docker_compose
     fontconfig # for phantomjs
     freetype # for phantomjs
-    openjdk10
+    openjdk11
     stdenv.cc
     docker
     git
@@ -19,7 +19,7 @@
     zsh
     ]);
   profile = ''
-    export JAVA_HOME=${pkgs.openjdk10.home}
+    export JAVA_HOME=${pkgs.openjdk11.home}
   '';
   runScript = "./gradlew";
   })

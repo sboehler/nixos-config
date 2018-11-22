@@ -49,7 +49,9 @@
     '';
   };
 
-  networking.hostName = "xps15";
+  networking = {
+    hostName = "xps15";
+  };
 
   i18n.consoleFont = "latarcyrheb-sun32";
 
