@@ -39,6 +39,11 @@
 
   programs.mosh.enable = true;
 
+  services.openssh = {
+    kexAlgorithms = ["curve25519-sha256@libssh.org" "diffie-hellman-group-exchange-sha256" "diffie-hellman-group14-sha1"];
+    macs = ["hmac-sha2-512-etm@openssh.com" "hmac-sha2-256-etm@openssh.com" "umac-128-etm@openssh.com" "hmac-sha2-512" "hmac-sha2-256" "umac-128@openssh.com" "hmac-sha1"];
+  };
+
   services.transmission = {
     enable = true;
     settings = {
@@ -46,7 +51,8 @@
       incomplete-dir = "/mnt/data/repos/Media/Downloads/.incomplete";
       incomplete-dir-enabled = true;
       rpc-whitelist = "127.0.0.1,192.168.2.*";
-      rpc-host-whitelist = "server";
+      rpc-host-whitelist = "*";
+      peer-port-random-on-start = true;
     };
   };
 
