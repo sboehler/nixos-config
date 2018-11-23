@@ -19,6 +19,11 @@
         jdk = pkgs.openjdk11;
       };
 
+      hies = (import (builtins.fetchTarball {
+        url = "https://github.com/domenkozar/hie-nix/tarball/master";
+        sha256 = "0hilxgmh5aaxg37cbdwixwnnripvjqxbvi8cjzqrk7rpfafv352q";
+      }) {}).hies;
+
       html2text = pkgs.html2text.overrideAttrs (oldAttrs: rec {
         patches = [
           ./html2text/100-fix-makefile.patch
@@ -39,6 +44,17 @@
       }
       );
     };
+  };
+
+  nix = {
+    binaryCaches = [
+      "https://cache.nixos.org/"
+      "https://hie-nix.cachix.org"
+    ];
+    binaryCachePublicKeys = [
+      "hie-nix.cachix.org-1:EjBSHzF6VmDnzqlldGXbi0RM3HdjfTU3yDRi9Pd0jTY="
+    ];
+    trustedUsers = [ "root" "silvio" ];
   };
 
   nix.useSandbox = true;
