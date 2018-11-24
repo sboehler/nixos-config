@@ -17,7 +17,7 @@
 
   nixpkgs.config = {
     packageOverrides = pkgs: {
-      linux_4_18 = pkgs.linux_4_18.override {
+      linux_4_18 = pkgs.linux_4_19.override {
         extraConfig = ''
           B43_SDIO y
 
