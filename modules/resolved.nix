@@ -1,7 +1,7 @@
 {
   services.resolved = {
     enable = true;
-    dnssec = "false";
+    # dnssec = "false";
     extraConfig = ''
       MulticastDNS=true
     '';
