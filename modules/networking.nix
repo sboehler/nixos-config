@@ -4,14 +4,12 @@
     firewall = {
       enable = true;
       allowPing = true;
-      extraCommands = ''
-        # allow multicast
-        iptables -A nixos-fw -d 224.0.0.0/4 -j nixos-fw-accept
-      '';
+      allowedUDPPorts = [
+        5355 # https://en.wikipedia.org/wiki/Link-Local_Multicast_Name_Resolution
+      ];
     };
   };
   boot.kernel.sysctl = {
     "net.ipv6.conf.default.use_tempaddr" = 2;
-    # "net.ipv4.ip_forward" = 1;
   };
 }
