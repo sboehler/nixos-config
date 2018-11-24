@@ -138,7 +138,6 @@
   services.timesyncd.enable = true;
   services.avahi = {
     enable = true;
-    nssmdns = true;
   };
 
   users = {
