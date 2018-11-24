@@ -5,7 +5,7 @@
     [
        <nixpkgs/nixos/modules/installer/scan/not-detected.nix>
       ./modules/networking.nix
-      # ./modules/resolved.nix
+      ./modules/resolved.nix
       ./modules/workstation.nix
       ./modules/mbsyncd.nix
       ./modules/base.nix
@@ -16,7 +16,7 @@
   boot = {
     kernelModules = [ "kvm-intel" ];
 
-    kernelPackages = pkgs.linuxPackagesFor pkgs.linux_4_18;
+    kernelPackages = pkgs.linuxPackagesFor pkgs.linux_4_19;
 
     initrd = {
       availableKernelModules = [
