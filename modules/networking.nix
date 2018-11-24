@@ -4,9 +4,6 @@
     firewall = {
       enable = true;
       allowPing = true;
-      allowedUDPPorts = [
-        5353  # mDNS
-      ];
       extraCommands = ''
         # allow multicast
         iptables -A nixos-fw -d 224.0.0.0/4 -j nixos-fw-accept
