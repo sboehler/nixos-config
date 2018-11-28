@@ -7,7 +7,9 @@
 
       haskellPackages = pkgs.haskellPackages.override {
         overrides = haskellPackagesNew: haskellPackagesOld: rec {
-          beans = haskellPackagesNew.callPackage ./beans.nix {};
+          beans = let
+            tarball = builtins.fetchTarball "https://github.com/sboehler/beans/tarball/master";
+            in haskellPackagesNew.callPackage (import tarball) {};
         };
       };
 
@@ -148,7 +150,7 @@
   ]
 
   ++ (with pkgs.haskellPackages; [
-    # beans
+    beans
     cabal-install
     apply-refact
     cabal2nix
