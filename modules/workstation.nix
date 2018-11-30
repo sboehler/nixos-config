@@ -69,6 +69,7 @@
   programs.browserpass.enable = true;
 
   environment.systemPackages = with pkgs; [
+    (import ./emacs.nix { inherit pkgs; })
     flashplayer
     ack
     ansible
@@ -129,7 +130,6 @@
     exiftool
     tabula
     vanilla-dmz
-    virtmanager
     virtmanager
     vlc
     wpa_supplicant
@@ -201,6 +201,13 @@
           haskellPackages.xmonad-contrib
         ];
       };
+    };
+  };
+
+  services.tor = {
+    enable = true;
+    client = {
+      enable = true;
     };
   };
 
