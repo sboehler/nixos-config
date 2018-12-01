@@ -9,7 +9,7 @@
         overrides = haskellPackagesNew: haskellPackagesOld: rec {
           beans = let
             tarball = builtins.fetchTarball "https://github.com/sboehler/beans/tarball/master";
-            in haskellPackagesNew.callPackage (import tarball) {};
+          in haskellPackagesNew.callPackage (import tarball) {};
         };
       };
 
@@ -43,8 +43,7 @@
           ./html2text/950-validate-width-parameter.patch
           ./html2text/960-fix-utf8-mode-quadratic-runtime.patch
         ];
-      }
-      );
+      });
     };
   };
 
@@ -147,17 +146,17 @@
     zip
   ]
 
-  ++ (with pkgs.haskellPackages; [
-    beans
-    cabal-install
-    apply-refact
-    cabal2nix
-    # hasktags
-    hindent
-    # hlint
-    hpack
-    stylish-haskell
-  ]);
+    ++ (with pkgs.haskellPackages; [
+      beans
+      cabal-install
+      apply-refact
+      cabal2nix
+      # hasktags
+      hindent
+      # hlint
+      hpack
+      stylish-haskell
+    ]);
 
   virtualisation.libvirtd.enable = true;
 
@@ -179,9 +178,9 @@
     };
     displayManager = {
       sessionCommands = ''
-          xset s 600 0
-          xset r rate 440 50
-          xss-lock -l -- i3lock -n &
+        xset s 600 0
+        xset r rate 440 50
+        xss-lock -l -- i3lock -n &
       '';
     };
     desktopManager = {
