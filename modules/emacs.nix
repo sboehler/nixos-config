@@ -1,50 +1,52 @@
-{ pkgs ? import <nixpkgs> {} }:
+{ pkgs }:
 let
   myEmacs = pkgs.emacs;
   emacsWithPackages = (pkgs.emacsPackagesNgGen myEmacs).emacsWithPackages;
 in
   emacsWithPackages (epkgs: (with epkgs.melpaStablePackages; [
   ]) ++ (with epkgs.melpaPackages; [
-    use-package
-    solarized-theme
-    whole-line-or-region
+    ansible-vault
+    attrap
+    auth-source-pass
+    avy
     company
-    flycheck
-    ivy
     counsel
-    magit
-    neotree
-    git-auto-commit-mode
-    ox-gfm
-    pdf-tools
-    interleave
-    org-noter
-    projectile
     counsel-projectile
     expand-region
-    avy
-    auth-source-pass
-    haskell-mode
-    lsp-ui
-    lsp-mode
-    lsp-haskell
-    attrap
-    hindent
-    nix-mode
-    typescript-mode
-    tide
-    web-mode
-    paredit
-    slime
-    purescript-mode
-    psc-ide
-    yaml-mode
+    flycheck
+    flymd
+    git-auto-commit-mode
     gradle-mode
     groovy-mode
+    haskell-mode
+    hindent
+    interleave
+    ivy
+    lsp-haskell
+    lsp-mode
+    lsp-ui
+    magit
     markdown-mode
-    flymd
-    ansible-vault
+    neotree
+    nix-mode
+    org-noter
+    ox-gfm
+    paredit
+    projectile
+    psc-ide
+    purescript-mode
+    slime
+    solarized-theme
+    tide
+    typescript-mode
+    use-package
+    web-mode
+    whole-line-or-region
+    yaml-mode
   ]) ++ (with epkgs.elpaPackages; [
     csv-mode
+  ]) ++ (with epkgs.orgPackages; [
+    org
   ]) ++ [
+    epkgs.pdf-tools
   ])

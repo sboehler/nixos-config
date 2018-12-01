@@ -69,7 +69,6 @@
   programs.browserpass.enable = true;
 
   environment.systemPackages = with pkgs; [
-    (import ./emacs.nix { inherit pkgs; })
     flashplayer
     ack
     ansible
@@ -79,7 +78,6 @@
     darktable
     dmenu
     docker_compose
-    emacs
     evince
     firefox
     fdupes
@@ -227,8 +225,6 @@
     latitude = "47.3673";
     longitude = "8.55";
   };
-
-  services.emacs.enable = true;
 
   fonts = {
     enableDefaultFonts = true;

@@ -1,4 +1,7 @@
 { config, pkgs, ... }:
+let
+  myEmacs = import ./emacs.nix { inherit pkgs; };
+in
 {
   nixpkgs = {
     config = {
@@ -32,9 +35,9 @@
     ack
     bind
     borgbackup
+    myEmacs
     exfat
     file
-    git
     gnupg
     gptfdisk
     gopass
@@ -94,7 +97,6 @@
       };
       interactiveShellInit = ''
         export HUSKY_SKIP_INSTALL=true
-        export EDITOR="emacsclient -c"
         export PATH=$HOME/.local/bin:$PATH
         export PASSWORD_STORE_X_SELECTION=primary
         export GPG_TTY=$(tty)
@@ -117,6 +119,12 @@
         '';
 
     };
+  };
+
+  services.emacs = {
+    enable = true;
+    defaultEditor = true;
+    package = myEmacs;
   };
 
   virtualisation.docker.enable = true;
