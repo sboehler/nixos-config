@@ -130,6 +130,7 @@
     virtmanager
     vlc
     wpa_supplicant
+    wpa_supplicant_gui
     xautolock
     xiccd
     haskellPackages.xmobar
