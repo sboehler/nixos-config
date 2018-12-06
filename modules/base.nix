@@ -71,6 +71,7 @@ in
     git-annex
     git-annex-remote-b2
     git-annex-remote-rclone
+    gitFull
   ]);
 
   programs = {

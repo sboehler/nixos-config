@@ -81,7 +81,6 @@
     firefox
     fdupes
     git-review
-    gitAndTools.gitFull
     gw
     # flashplayer
     gnome3.eog
