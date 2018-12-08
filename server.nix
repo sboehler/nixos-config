@@ -56,6 +56,10 @@
     };
   };
 
+  networking.firewall = {
+    allowedTCPPorts = [ 139 445 ];
+    allowedUDPPorts = [ 137 138 ];
+  };
   services.samba = {
     enable = true;
     extraConfig = ''
