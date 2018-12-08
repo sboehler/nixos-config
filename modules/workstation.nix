@@ -125,6 +125,7 @@
     thunderbird
     exiftool
     tabula
+    tor-browser-bundle-bin
     vanilla-dmz
     virtmanager
     vlc
