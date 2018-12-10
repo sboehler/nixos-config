@@ -15,7 +15,7 @@
 
       gw = pkgs.callPackage ./gradlew.nix {};
 
-      gradle = gradleGen.gradle_latest;
+      gradle = gradleGen.gradle_4_10;
 
       gradleGen = pkgs.gradleGen.override {
         jdk = pkgs.openjdk11;
