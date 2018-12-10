@@ -20,6 +20,7 @@ in
     groovy-mode
     haskell-mode
     hindent
+    htmlize
     interleave
     ivy
     lsp-haskell
