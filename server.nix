@@ -68,6 +68,7 @@
       netbios name = server
       guest account = nobody
       map to guest = bad user
+      follow symlinks = yes
     '';
     shares = {
       media = {
