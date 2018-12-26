@@ -101,6 +101,7 @@
     libreoffice
     libressl
     libxml2
+    macchanger
     mitscheme
     mu
     nix-index
@@ -112,7 +113,6 @@
     pandoc
     phantomjs
     python3
-    protonmail-bridge
     restic
     rofi
     rubber
