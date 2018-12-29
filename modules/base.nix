@@ -148,6 +148,13 @@ in
   services.timesyncd.enable = true;
   services.avahi = {
     enable = true;
+    nssmdns = true;
+    ipv6 = true;
+    publish = {
+      enable = true;
+      domain = true;
+      addresses = true;
+    };
   };
 
   users = {

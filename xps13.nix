@@ -9,7 +9,6 @@
       ./modules/mbsyncd.nix
       ./modules/buildmachine.nix
       ./modules/laptop.nix
-      ./modules/resolved.nix
       ./modules/workstation.nix
       ./modules/base.nix
       ./modules/efi.nix

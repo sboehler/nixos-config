@@ -8,13 +8,8 @@
     # };
     networkmanager = {
       enable = true;
-      extraConfig = ''
-        [connection]
-        connection.mdns=1
-        connection.llmnr=2
-      '';
     };
-    # enableIPv6 = true;
+    enableIPv6 = true;
     firewall = {
       enable = true;
       allowPing = true;
