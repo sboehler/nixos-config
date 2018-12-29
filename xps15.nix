@@ -55,22 +55,6 @@
 
   i18n.consoleFont = "latarcyrheb-sun32";
 
-  environment.variables = {
-    GDK_SCALE = "2";
-    GDK_DPI_SCALE = "0.5";
-  };
-
-  fonts.fontconfig.dpi = 168;
-  services.xserver = {
-    dpi = 168;
-    displayManager.sessionCommands = ''
-      xrdb -merge "${pkgs.writeText "xrdb.conf" ''
-        Xcursor.theme: Vanilla-DMZ
-        Xcursor.size: 48
-      ''}"
-    '';
-  };
-
   services.transmission = {
     enable = true;
   };

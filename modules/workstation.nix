@@ -181,15 +181,18 @@
       naturalScrolling = true;
     };
     displayManager = {
-      sessionCommands = ''
-        xset s 600 0
-        xset r rate 440 50
-        xss-lock -l -- i3lock -n &
-        systemctl --user import-environment XDG_DATA_DIRS XDG_SESSION_PATH PATH HOME DISPLAY XAUTHORITY
-        systemctl --user start wm.target
-      '';
+      gdm = {
+        enable = true;
+        autoLogin = {
+          enable = true;
+          user = "silvio";
+        };
+      };
     };
     desktopManager = {
+      gnome3 = {
+        enable = true;
+      };
       xterm = {
         enable = false;
       };
@@ -221,16 +224,6 @@
     127.0.0.1 s3mock
   '';
   services.interception-tools.enable = true;
-  services.redshift = {
-    enable = true;
-    provider = "manual";
-    temperature = {
-      night = 3400;
-      day = 6500;
-    };
-    latitude = "47.3673";
-    longitude = "8.55";
-  };
 
   fonts = {
     enableDefaultFonts = true;
@@ -252,58 +245,5 @@
 
   services.colord = {
     enable = true;
-  };
-
-  systemd.user = {
-    targets = {
-      wm = {
-        description = "Window Manager";
-      };
-    };
-    services = {
-
-      status-notifier-watcher = {
-        description = "status-notifier-watcher";
-        serviceConfig = {
-          Type = "simple";
-          ExecStart="${pkgs.haskellPackages.status-notifier-item}/bin/status-notifier-watcher";
-          ExecStop="${pkgs.procps}/bin/pkill status-notifier-watcher";
-        };
-        wantedBy = ["wm.target"];
-      };
-
-      taffybar = {
-        description = "taffybar";
-        unitConfig = {
-          Requires = "status-notifier-watcher.service";
-          After = "status-notifier-watcher.service";
-        };
-        serviceConfig = {
-          Type = "notify";
-          ExecStart="${pkgs.taffybar}/bin/taffybar";
-          ExecStop="${pkgs.procps}/bin/pkill taffybar";
-        };
-        environment = {
-          GDK_SCALE = "1";
-          GDK_DPI_SCALE = "1";
-        };
-        wantedBy = ["wm.target"];
-      };
-
-      wpa_gui = {
-        description = "wpa gui";
-        unitConfig = {
-          Requires = "taffybar.service";
-          After = "taffybar.service";
-        };
-        path = [ "/run/current-system/sw" ];
-        serviceConfig = {
-          Type = "simple";
-          ExecStart="${pkgs.wpa_supplicant_gui}/bin/wpa_gui -t";
-          ExecStop="${pkgs.procps}/bin/pkill wpa_gui";
-        };
-        wantedBy = ["wm.target"];
-      };
-    };
   };
 }

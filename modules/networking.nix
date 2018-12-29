@@ -1,45 +1,20 @@
 {
-  systemd = {
-    network = {
-      enable = true;
-      networks = {
-        wireless = {
-          enable = true;
-          name = "wlp*";
-          networkConfig = {
-            DHCP = "yes";
-            MulticastDNS = "yes";
-            IPv6PrivacyExtensions = "yes";
-          };
-          dhcpConfig = {
-            RouteMetric = 20;
-          };
-
-        };
-        wired = {
-          enable = true;
-          name = "e*";
-          networkConfig = {
-            DHCP = "yes";
-            MulticastDNS = "yes";
-            IPv6PrivacyExtensions = "yes";
-          };
-          dhcpConfig = {
-            RouteMetric = 10;
-          };
-        };
-      };
-    };
-  };
-
   networking = {
-    wireless = {
+    # wireless = {
+    #   enable = true;
+    #   userControlled = {
+    #     enable = true;
+    #   };
+    # };
+    networkmanager = {
       enable = true;
-      userControlled = {
-        enable = true;
-      };
+      extraConfig = ''
+        [connection]
+        connection.mdns=1
+        connection.llmnr=2
+      '';
     };
-    enableIPv6 = true;
+    # enableIPv6 = true;
     firewall = {
       enable = true;
       allowPing = true;
@@ -54,6 +29,6 @@
     };
   };
   boot.kernel.sysctl = {
-    "net.ipv6.conf.default.use_tempaddr" = 2;
+    # "net.ipv6.conf.default.use_tempaddr" = 2;
   };
 }
