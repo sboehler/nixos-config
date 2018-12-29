@@ -19,9 +19,14 @@
   boot = {
     kernelModules = [ "kvm-intel" ];
 
+    kernelPackages = pkgs.linuxPackagesFor pkgs.linux_4_19;
+
     initrd = {
       availableKernelModules = [
+        "intel_agp"
+        "i915"
         "xhci_pci"
+        "ahci"
         "nvme"
         "usb_storage"
         "sd_mod"
@@ -36,7 +41,7 @@
       ];
     };
     extraModprobeConfig = ''
-      options i915 enable_rc6=1 enable_fbc=1
+      options i915 enable_fbc=1 enable_rc6=1 modeset=1
       options iwlwifi power_save=Y
       options iwldvm force_cam=N
     '';
@@ -56,24 +61,7 @@
 
   i18n.consoleFont = "latarcyrheb-sun32";
 
-  fonts.fontconfig.dpi = 168;
-  services.xserver = {
-    dpi = 168;
-    displayManager.sessionCommands = ''
-      xrdb -merge "${pkgs.writeText "xrdb.conf" ''
-        Xcursor.theme: Vanilla-DMZ
-        Xcursor.size: 48
-      ''}"
-    '';
-  };
-
   fileSystems = {
-    "/home/silvio/arch_home" = {
-      device = "/dev/disk/by-uuid/a6bd768c-b7aa-4101-9c05-9506979ff5f9";
-      fsType = "btrfs";
-      options = [ "subvol=@home" "space_cache" "noatime" ];
-    };
-
     "/" = {
       device = "/dev/disk/by-uuid/a6bd768c-b7aa-4101-9c05-9506979ff5f9";
       fsType = "btrfs";

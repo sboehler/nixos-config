@@ -53,6 +53,12 @@
     hostName = "xps15";
   };
 
+  services.tlp = {
+    extraConfig = ''
+      DISK_DEVICES="nvme0n1";
+    '';
+  };
+
   i18n.consoleFont = "latarcyrheb-sun32";
 
   services.transmission = {

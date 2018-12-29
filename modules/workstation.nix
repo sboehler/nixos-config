@@ -147,6 +147,12 @@
     zbar
     zip
   ]
+  ++ (with pkgs.gnomeExtensions; [
+    system-monitor
+    caffeine
+    no-title-bar
+    dash-to-panel
+  ])
 
     ++ (with pkgs.haskellPackages; [
       beans
