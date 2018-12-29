@@ -58,7 +58,7 @@
     trustedUsers = [ "root" "silvio" ];
   };
 
-  nix.useSandbox = true;
+  # nix.useSandbox = true;
 
   nixpkgs.config.firefox = {
     enableAdobeFlash = true;
@@ -82,11 +82,12 @@
     fdupes
     git-review
     gw
-    # flashplayer
+    gnome3.adwaita-icon-theme
     gnome3.eog
     gnome3.nautilus
     gradle
     gthumb
+    hicolor-icon-theme
     hplip
     html2text
     i3lock
@@ -125,6 +126,7 @@
     thunderbird
     exiftool
     tabula
+    taffybar
     tor-browser-bundle-bin
     vanilla-dmz
     virtmanager
@@ -133,7 +135,6 @@
     wpa_supplicant_gui
     xautolock
     xiccd
-    haskellPackages.xmobar
     w3m
     xorg.xbacklight
     xorg.xcursorthemes
@@ -169,6 +170,8 @@
     "vm.swappiness" = 10;
   };
 
+  services.upower.enable = true;
+
   services.xserver = {
     enable = true;
     layout = "us(altgr-intl)";
@@ -182,6 +185,8 @@
         xset s 600 0
         xset r rate 440 50
         xss-lock -l -- i3lock -n &
+        systemctl --user import-environment XDG_DATA_DIRS XDG_SESSION_PATH PATH HOME DISPLAY XAUTHORITY
+        systemctl --user start wm.target
       '';
     };
     desktopManager = {
@@ -194,9 +199,10 @@
       xmonad = {
         enable = true;
         enableContribAndExtras = false;
-        extraPackages = haskellPackages: [
-          haskellPackages.hostname
-          haskellPackages.xmonad-contrib
+        extraPackages = haskellPackages: with haskellPackages; [
+          hostname
+          xmonad-contrib
+          taffybar
         ];
       };
     };
@@ -246,5 +252,58 @@
 
   services.colord = {
     enable = true;
+  };
+
+  systemd.user = {
+    targets = {
+      wm = {
+        description = "Window Manager";
+      };
+    };
+    services = {
+
+      status-notifier-watcher = {
+        description = "status-notifier-watcher";
+        serviceConfig = {
+          Type = "simple";
+          ExecStart="${pkgs.haskellPackages.status-notifier-item}/bin/status-notifier-watcher";
+          ExecStop="${pkgs.procps}/bin/pkill status-notifier-watcher";
+        };
+        wantedBy = ["wm.target"];
+      };
+
+      taffybar = {
+        description = "taffybar";
+        unitConfig = {
+          Requires = "status-notifier-watcher.service";
+          After = "status-notifier-watcher.service";
+        };
+        serviceConfig = {
+          Type = "notify";
+          ExecStart="${pkgs.taffybar}/bin/taffybar";
+          ExecStop="${pkgs.procps}/bin/pkill taffybar";
+        };
+        environment = {
+          GDK_SCALE = "1";
+          GDK_DPI_SCALE = "1";
+        };
+        wantedBy = ["wm.target"];
+      };
+
+      wpa_gui = {
+        description = "wpa gui";
+        unitConfig = {
+          Requires = "taffybar.service";
+          After = "taffybar.service";
+        };
+        path = [ "/run/current-system/sw" ];
+        serviceConfig = {
+          Type = "simple";
+          ExecStart="${pkgs.wpa_supplicant_gui}/bin/wpa_gui -t";
+          ExecStop="${pkgs.procps}/bin/pkill wpa_gui";
+        };
+        wantedBy = ["wm.target"];
+      };
+    };
   };
 }

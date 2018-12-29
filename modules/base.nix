@@ -107,6 +107,7 @@ in
         bindkey -M emacs '^N' history-substring-search-down
 
         eval $(${pkgs.coreutils}/bin/dircolors "${./dircolors.ansi-universal}")
+        systemctl --user import-environment PATH DISPLAY XAUTHORITY HOME GPG_TTY
       '';
 
       shellAliases = {
