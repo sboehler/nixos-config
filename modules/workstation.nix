@@ -82,9 +82,6 @@
     fdupes
     git-review
     gw
-    gnome3.adwaita-icon-theme
-    gnome3.eog
-    gnome3.nautilus
     gradle
     gthumb
     hicolor-icon-theme
