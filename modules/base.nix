@@ -23,6 +23,10 @@ in
     defaultLocale = "en_US.UTF-8";
   };
 
+  boot = {
+    kernelPackages = pkgs.linuxPackagesFor pkgs.linux_4_19;
+  };
+
   hardware = {
     enableAllFirmware = true;
     cpu = {

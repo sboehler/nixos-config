@@ -123,7 +123,6 @@
     thunderbird
     exiftool
     tabula
-    taffybar
     tor-browser-bundle-bin
     vanilla-dmz
     virtmanager
@@ -160,7 +159,7 @@
       hindent
       # hlint
       hpack
-      stylish-haskell
+      # stylish-haskell
     ]);
 
   virtualisation.libvirtd.enable = true;
@@ -198,18 +197,6 @@
       };
       xterm = {
         enable = false;
-      };
-    };
-    windowManager = {
-      default = "xmonad";
-      xmonad = {
-        enable = true;
-        enableContribAndExtras = false;
-        extraPackages = haskellPackages: with haskellPackages; [
-          hostname
-          xmonad-contrib
-          taffybar
-        ];
       };
     };
   };

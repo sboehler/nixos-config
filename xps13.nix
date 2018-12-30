@@ -18,8 +18,6 @@
   boot = {
     kernelModules = [ "kvm-intel" ];
 
-    kernelPackages = pkgs.linuxPackagesFor pkgs.linux_4_19;
-
     initrd = {
       availableKernelModules = [
         "intel_agp"
