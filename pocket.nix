@@ -8,7 +8,6 @@
       ./modules/laptop.nix
       ./modules/mbsyncd.nix
       ./modules/workstation.nix
-      ./modules/resolved.nix
       ./modules/base.nix
       ./modules/efi.nix
       ./modules/broadcom
@@ -16,7 +15,7 @@
 
   nixpkgs.config = {
     packageOverrides = pkgs: {
-      linux_4_18 = pkgs.linux_4_19.override {
+      linux_4_19 = pkgs.linux_4_19.override {
         extraConfig = ''
           B43_SDIO y
 
@@ -71,10 +70,11 @@
       "gpd-pocket-fan.speed_on_ac=0"
     ];
     kernelModules = [ "kvm-intel" ];
-    kernelPackages = pkgs.linuxPackagesFor pkgs.linux_4_18;
+    kernelPackages = pkgs.linuxPackagesFor pkgs.linux_4_19;
 
     initrd = {
       kernelModules = [
+        "intel_agp"
         "pwm-lpss"
         "pwm-lpss-platform" # for brightness control
         "i915"
@@ -99,6 +99,9 @@
         }
       ];
     };
+    extraModprobeConfig = ''
+      options i915 enable_fbc=1 enable_rc6=1 modeset=1
+    '';
   };
 
   networking.hostName = "pocket";
@@ -112,7 +115,7 @@
   };
 
   nix.buildMachines = [{
-    hostName = "xps15";
+    hostName = "xps15.local";
     sshUser = "nixBuild";
     sshKey = "/root/id_rsa.build";
     system = "x86_64-linux";
