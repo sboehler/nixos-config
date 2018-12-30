@@ -185,10 +185,10 @@
     displayManager = {
       gdm = {
         enable = true;
-        autoLogin = {
-          enable = true;
-          user = "silvio";
-        };
+        # autoLogin = {
+        #   enable = true;
+        #   user = "silvio";
+        # };
       };
     };
     desktopManager = {
