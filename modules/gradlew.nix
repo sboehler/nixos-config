@@ -2,7 +2,7 @@
 # allows execution of the gradle wrapper
 # and downloaded node.js binaries
 
-{ pkgs ? import <nixpkgs> {} }:
+{ pkgs }:
 (pkgs.buildFHSUserEnv {
   name = "gw";
   targetPkgs = Pkgs: (with pkgs;
@@ -11,15 +11,17 @@
     docker_compose
     fontconfig # for phantomjs
     freetype # for phantomjs
-    openjdk11
+    openjdk10
+    coreutils
     stdenv.cc
     docker
+    nodejs
     git
     zlib # for phantomjs
     zsh
     ]);
   profile = ''
-    export JAVA_HOME=${pkgs.openjdk11.home}
+    export JAVA_HOME=${pkgs.openjdk10.home}
   '';
-  runScript = "./gradlew";
+  runScript = "zsh";
   })
