@@ -1,11 +1,5 @@
 {
   networking = {
-    # wireless = {
-    #   enable = true;
-    #   userControlled = {
-    #     enable = true;
-    #   };
-    # };
     networkmanager = {
       enable = true;
     };
@@ -22,8 +16,5 @@
         5355 # https://en.wikipedia.org/wiki/Link-Local_Multicast_Name_Resolution
       ];
     };
-  };
-  boot.kernel.sysctl = {
-    # "net.ipv6.conf.default.use_tempaddr" = 2;
   };
 }
