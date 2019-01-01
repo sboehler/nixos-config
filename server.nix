@@ -21,6 +21,13 @@
 
   i18n.consoleFont = "Lat2-Terminus16";
 
+  ssh = {
+    startAgent = true;
+    extraConfig = ''
+      AddKeysToAgent yes
+    '';
+  };
+
   boot = {
     initrd = {
       availableKernelModules = [ "ahci" "ohci_pci" "ehci_pci" "pata_atiixp" "usb_storage" "usbhid" "sd_mod" "radeon" ];
