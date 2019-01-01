@@ -10,25 +10,40 @@
       <nixpkgs/nixos/modules/installer/scan/not-detected.nix>
       ./modules/initrd-ssh.nix
       ./modules/base.nix
-      ./modules/networking.nix
-      ./modules/resolved.nix
       ./modules/bios.nix
     ];
 
   # Use the GRUB 2 boot loader.
   # boot.vesa = true;
-  networking.hostName = "server";
+  networking = {
+    hostName = "server";
+    enableIPv6 = true;
+    interfaces.eth0 = {
+      useDHCP = true;
+    };
+  };
+
+  services.btrfs = {
+    autoScrub = {
+      fileSystems = [ "/mnt/data" ];
+    };
+  };
+
 
   i18n.consoleFont = "Lat2-Terminus16";
 
-  ssh = {
-    startAgent = true;
-    extraConfig = ''
-      AddKeysToAgent yes
-    '';
+  programs = {
+    ssh = {
+      startAgent = true;
+      extraConfig = ''
+        AddKeysToAgent yes
+      '';
+    };
   };
 
   boot = {
+    kernelParams = [ "ip=dhcp"];
+
     initrd = {
       availableKernelModules = [ "ahci" "ohci_pci" "ehci_pci" "pata_atiixp" "usb_storage" "usbhid" "sd_mod" "radeon" ];
       kernelModules = ["tg3"];
@@ -64,9 +79,12 @@
   };
 
   networking.firewall = {
-    allowedTCPPorts = [ 139 445 ];
-    allowedUDPPorts = [ 137 138 ];
+    allowedTCPPorts = [ 139 445 22000 ];
+    allowedUDPPorts = [ 137 138 21027 5353 5355 ];
+    enable = true;
+    allowPing = true;
   };
+
   services.samba = {
     enable = true;
     extraConfig = ''
