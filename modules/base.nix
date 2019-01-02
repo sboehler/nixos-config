@@ -61,6 +61,7 @@ in
     rclone
     restic
     samba
+    silver-searcher
     smartmontools
     speedtest-cli
     stow

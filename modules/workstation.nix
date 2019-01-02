@@ -84,10 +84,8 @@
     gw
     gradle
     gthumb
-    hicolor-icon-theme
     hplip
     html2text
-    i3lock
     icedtea8_web
     imagemagick7
     ispell
@@ -111,12 +109,10 @@
     pandoc
     phantomjs
     python3
-    restic
     rofi
     rubber
     sbcl
     shared_mime_info
-    silver-searcher
     spotify
     termite
     texlive.combined.scheme-full
@@ -127,18 +123,10 @@
     vanilla-dmz
     virtmanager
     vlc
-    wpa_supplicant
-    wpa_supplicant_gui
     xautolock
     xiccd
     w3m
-    xorg.xbacklight
-    xorg.xcursorthemes
-    xorg.xdpyinfo
-    xorg.xev
-    xorg.xkill
     xsel
-    xss-lock
     yarn
     zbar
     zip
