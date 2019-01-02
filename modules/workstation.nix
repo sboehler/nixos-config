@@ -84,6 +84,7 @@
     gw
     gradle
     gthumb
+    gnome3.rhythmbox
     hplip
     html2text
     icedtea8_web
