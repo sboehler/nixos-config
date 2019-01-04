@@ -113,6 +113,7 @@
     python3
     qt5.full
     rofi
+    rofi-launcher
     rubber
     sbcl
     shared_mime_info

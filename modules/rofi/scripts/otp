@@ -1,0 +1,1 @@
+gopass ls --flat | rofi -dmenu -normal-window -matching fuzzy -sort -sort-levenshtein | xargs --no-run-if-empty gopass otp -c
