@@ -29,7 +29,7 @@ in
     magit
     markdown-mode
     neotree
-    nix-mode
+    # nix-mode
     org-noter
     ox-gfm
     paredit

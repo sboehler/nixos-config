@@ -85,6 +85,7 @@
     gradle
     gthumb
     gnome3.rhythmbox
+    gnome3.gnome-boxes
     hplip
     html2text
     icedtea8_web
@@ -110,6 +111,7 @@
     pandoc
     phantomjs
     python3
+    qt5.full
     rofi
     rubber
     sbcl

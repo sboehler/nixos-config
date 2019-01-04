@@ -134,6 +134,8 @@ in
     package = myEmacs;
   };
 
+  systemd.user.services.emacs.environment.SSH_AUTH_SOCK = "%t/keyring/ssh";
+
   virtualisation.docker.enable = true;
 
   services.btrfs = {
