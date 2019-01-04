@@ -30,7 +30,7 @@ in
   };
 
   boot = {
-    kernelPackages = pkgs.linuxPackagesFor pkgs.linux_4_19;
+    kernelPackages = pkgs.linuxPackagesFor pkgs.linux_4_20;
   };
 
   hardware = {
