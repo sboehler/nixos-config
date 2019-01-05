@@ -170,7 +170,9 @@
     "vm.swappiness" = 10;
   };
 
-  services.upower.enable = true;
+  boot.plymouth.enable = true;
+
+  powerManagement.enable = true;
 
   services.xserver = {
     enable = true;
