@@ -5,14 +5,20 @@
     packageOverrides = pkgs: rec {
       yarn = pkgs.yarn.override { nodejs = pkgs.nodejs-10_x; };
 
-      haskellPackages = pkgs.haskellPackages.override {
-        overrides = haskellPackagesNew: haskellPackagesOld: rec {
-          beans = let
-            tarball = builtins.fetchTarball "https://github.com/sboehler/beans/tarball/master";
-          in haskellPackagesNew.callPackage (import tarball) {};
       rofi-launcher = pkgs.callPackage ./rofi {};
+
+      haskell = pkgs.haskell // {
+        packages = pkgs.haskell.packages // {
+          ghc863 = pkgs.haskell.packages.ghc863.override {
+            overrides = self: super: {
+              beans = let
+                tarball = builtins.fetchTarball "https://github.com/sboehler/beans/tarball/master";
+              in self.callPackage (import tarball) {};
+            };
+          };
         };
       };
+      haskellPackages = haskell.packages.ghc863;
 
       gw = pkgs.callPackage ./gradlew.nix {};
 
@@ -143,7 +149,7 @@
   ])
 
     ++ (with pkgs.haskellPackages; [
-      beans
+      # beans
       cabal-install
       apply-refact
       cabal2nix
