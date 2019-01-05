@@ -10,6 +10,7 @@
           beans = let
             tarball = builtins.fetchTarball "https://github.com/sboehler/beans/tarball/master";
           in haskellPackagesNew.callPackage (import tarball) {};
+      rofi-launcher = pkgs.callPackage ./rofi {};
         };
       };
 
