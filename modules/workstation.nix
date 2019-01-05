@@ -109,6 +109,7 @@
     pavucontrol
     pandoc
     phantomjs
+    pinentry_gnome
     python3
     qt5.full
     rofi
