@@ -15,7 +15,7 @@
 
   nixpkgs.config = {
     packageOverrides = pkgs: {
-      linux_4_19 = pkgs.linux_4_19.override {
+      linux_4_20 = pkgs.linux_4_20.override {
         extraConfig = ''
           B43_SDIO y
 
@@ -69,7 +69,6 @@
       "gpd-pocket-fan.speed_on_ac=0"
     ];
     kernelModules = [ "kvm-intel" ];
-    kernelPackages = pkgs.linuxPackagesFor pkgs.linux_4_19;
 
     initrd = {
       kernelModules = [
