@@ -15,12 +15,14 @@ in
     };
   };
 
-  nix.buildCores = 0;
-  nix.autoOptimiseStore = true;
-  nix.nixPath = [
-    "/nix"
-    "nixos-config=/etc/nixos/configuration.nix"
-  ];
+  nix = {
+    buildCores = 0;
+    autoOptimiseStore = true;
+    nixPath = [
+      "/nix"
+      "nixos-config=/etc/nixos/configuration.nix"
+    ];
+  };
 
   time.timeZone = "Europe/Zurich";
 
@@ -86,11 +88,13 @@ in
   ]);
 
   programs = {
+
     gnupg = {
       agent = {
         enable = true;
       };
     };
+
     zsh = {
       enable = true;
       enableCompletion = true;
@@ -101,14 +105,12 @@ in
         plugins = [
           "git"
           "gradle"
-          "nvm"
           "rsync"
           "stack"
           "history-substring-search"
         ];
       };
       interactiveShellInit = ''
-        export HUSKY_SKIP_INSTALL=true
         export PATH=$HOME/.local/bin:$PATH
         export PASSWORD_STORE_X_SELECTION=primary
         export GPG_TTY=$(tty)
@@ -118,19 +120,15 @@ in
         bindkey -M emacs '^N' history-substring-search-down
 
         eval $(${pkgs.coreutils}/bin/dircolors "${./dircolors.ansi-universal}")
-        systemctl --user import-environment PATH DISPLAY XAUTHORITY HOME GPG_TTY
+        # systemctl --user import-environment PATH DISPLAY XAUTHORITY HOME GPG_TTY
       '';
-
-      shellAliases = {
-        vim = "nvim";
-      };
     };
+
     ssh = {
       startAgent = true;
       extraConfig = ''
         AddKeysToAgent yes
         '';
-
     };
   };
 
@@ -159,6 +157,7 @@ in
   services.fstrim.enable = true;
 
   services.timesyncd.enable = true;
+
   services.avahi = {
     enable = true;
     nssmdns = true;
@@ -188,6 +187,10 @@ in
   };
 
   security = {
+    pam = {
+      services.gdm.enableGnomeKeyring = true;
+    };
+
     sudo = {
       enable = true;
       wheelNeedsPassword = false;

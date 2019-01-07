@@ -149,7 +149,7 @@
   ])
 
     ++ (with pkgs.haskellPackages; [
-      # beans
+      beans
       cabal-install
       apply-refact
       cabal2nix
@@ -213,6 +213,7 @@
     127.0.0.1	truewealth.test
     127.0.0.1 s3mock
   '';
+
   services.interception-tools.enable = true;
 
   fonts = {
