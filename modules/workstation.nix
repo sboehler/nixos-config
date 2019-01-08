@@ -176,8 +176,6 @@
 
   services.xserver = {
     enable = true;
-    layout = "us(altgr-intl)";
-    xkbOptions = "compose:ralt,terminate:ctrl_alt_bksp";
     libinput = {
       enable = true;
       naturalScrolling = true;
@@ -195,9 +193,6 @@
       gnome3 = {
         enable = true;
       };
-      xterm = {
-        enable = false;
-      };
     };
   };
 
@@ -213,8 +208,6 @@
     127.0.0.1	truewealth.test
     127.0.0.1 s3mock
   '';
-
-  services.interception-tools.enable = true;
 
   fonts = {
     enableDefaultFonts = true;
