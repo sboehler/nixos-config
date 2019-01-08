@@ -12,6 +12,7 @@ in
     company
     counsel
     counsel-projectile
+    direnv
     expand-region
     flycheck
     flymd

@@ -47,6 +47,7 @@ in
     ack
     bind
     borgbackup
+    direnv
     myEmacs
     exfat
     file
@@ -118,6 +119,8 @@ in
 
         bindkey -M emacs '^P' history-substring-search-up
         bindkey -M emacs '^N' history-substring-search-down
+
+        eval "$(${pkgs.direnv}/bin/direnv hook zsh)"
 
         eval $(${pkgs.coreutils}/bin/dircolors "${./dircolors.ansi-universal}")
         # systemctl --user import-environment PATH DISPLAY XAUTHORITY HOME GPG_TTY
