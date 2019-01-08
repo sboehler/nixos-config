@@ -11,9 +11,14 @@
         packages = pkgs.haskell.packages // {
           ghc863 = pkgs.haskell.packages.ghc863.override {
             overrides = self: super: {
-              beans = let
-                tarball = builtins.fetchTarball "https://github.com/sboehler/beans/tarball/master";
-              in self.callPackage (import tarball) {};
+              beans = self.callPackage (import (
+                pkgs.fetchFromGitHub {
+                  owner = "sboehler";
+                  repo = "beans";
+                  rev = "2fdc275f8c34f703937dcec48692fa775c9d5cd4";
+                  # date = 2019-01-08T00:44:18+01:00;
+                  sha256 = "1hkk4pr54nfgkslpmx1mghychn4n629q6n2gvcn8pzp787hmp737";
+                })) {};
             };
           };
         };
@@ -25,11 +30,6 @@
       gradleGen = pkgs.gradleGen.override {
         jdk = pkgs.openjdk11;
       };
-
-      hies = (import (builtins.fetchTarball {
-        url = "https://github.com/domenkozar/hie-nix/tarball/master";
-        sha256 = "0hilxgmh5aaxg37cbdwixwnnripvjqxbvi8cjzqrk7rpfafv352q";
-      }) {}).hies;
 
       html2text = pkgs.html2text.overrideAttrs (oldAttrs: rec {
         patches = [
