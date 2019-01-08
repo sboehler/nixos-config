@@ -22,6 +22,7 @@ in
     hindent
     htmlize
     interleave
+    nix-update
     ivy
     lsp-haskell
     lsp-mode
