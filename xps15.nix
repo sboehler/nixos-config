@@ -5,6 +5,7 @@
     [
        <nixpkgs/nixos/modules/installer/scan/not-detected.nix>
       ./modules/networking.nix
+      ./modules/firewall.nix
       ./modules/buildmachine.nix
       ./modules/laptop.nix
       ./modules/mbsyncd.nix

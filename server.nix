@@ -9,6 +9,7 @@
     [ # Include the results of the hardware scan.
       <nixpkgs/nixos/modules/installer/scan/not-detected.nix>
       ./modules/initrd-ssh.nix
+      ./modules/firewall.nix
       ./modules/base.nix
       ./modules/bios.nix
     ];
@@ -79,10 +80,8 @@
   };
 
   networking.firewall = {
-    allowedTCPPorts = [ 139 445 22000 ];
-    allowedUDPPorts = [ 137 138 21027 5353 5355 ];
-    enable = true;
-    allowPing = true;
+    allowedTCPPorts = [ 139 445 ];
+    allowedUDPPorts = [ 137 138 ];
   };
 
   services.samba = {
