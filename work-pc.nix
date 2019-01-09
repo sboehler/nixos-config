@@ -76,6 +76,7 @@
         monitorConfig = "Option \"RightOf\" \"DP-1\"";
       }
     ];
+    displayManager.gdm.wayland = false;
   };
 
   systemd.generator-packages = [ pkgs.systemd-cryptsetup-generator ];
