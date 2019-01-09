@@ -169,6 +169,8 @@ in
       enable = true;
       domain = true;
       addresses = true;
+      hinfo = true;
+      workstation = true;
     };
   };
 
