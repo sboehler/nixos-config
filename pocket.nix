@@ -44,6 +44,13 @@
     };
   };
 
+  nix = {
+    binaryCaches = [
+      "ssh://xps15.local"
+    ];
+  };
+
+
   powerManagement = {
     enable = true;
     powerDownCommands = ''
@@ -56,6 +63,7 @@
   };
 
   services.tlp = {
+    enable = true;
     extraConfig = ''
       DISK_DEVICES="mmcblk0"
       DISK_IOSCHED="deadline"
@@ -108,8 +116,6 @@
   i18n.consoleFont = "latarcyrheb-sun32";
 
   environment.variables = {
-    GDK_SCALE = "2";
-    GDK_DPI_SCALE = "0.5";
     MOZ_USE_XINPUT2 = "1";
   };
 
@@ -124,49 +130,38 @@
   }];
   nix.distributedBuilds = true;
 
-  fonts.fontconfig.dpi = 168;
-
-  services.xserver = {
-    dpi = 168;
-    displayManager.sessionCommands = ''
-      xrdb -merge "${pkgs.writeText "xrdb.conf" ''
-        Xcursor.theme: Vanilla-DMZ
-        Xcursor.size: 48
-      ''}"
-    '';
-    videoDrivers = [ "intel" ];
-    # useGlamor = true;
-    xrandrHeads = [
-      {
-        output = "DSI1";
-        primary = true;
-        monitorConfig = ''
-          Option "Rotate" "right"
-        '';
-      }
-    ];
-    deviceSection = ''
-      Option "TearFree" "true"
-    '';
-    inputClassSections = [
-      ''
-        Identifier	  "calibration"
-        MatchProduct	"Goodix Capacitive TouchScreen"
-        Option  	    "TransformationMatrix" "0 1 0 -1 0 1 0 0 1"
-      ''
-      ''
-        Identifier      "GPD trackpoint"
-        MatchProduct    "SINO WEALTH Gaming Keyboard"
-        MatchIsPointer  "on"
-        Driver          "libinput"
-        Option          "ScrollButton" "3"
-        Option          "ScrollMethod" "button"
-        Option          "MiddleEmulation" "True"
-        Option          "AccelSpeed" "1"
-        Option  	      "TransformationMatrix" "3 0 0 0 3 0 0 0 1"
-      ''
-    ];
-  };
+  # services.xserver = {
+  #   xrandrHeads = [
+  #     {
+  #       output = "DSI1";
+  #       primary = true;
+  #       monitorConfig = ''
+  #         Option "Rotate" "right"
+  #       '';
+  #     }
+  #   ];
+  #   deviceSection = ''
+  #     Option "TearFree" "true"
+  #   '';
+  #   inputClassSections = [
+  #     ''
+  #       Identifier	  "calibration"
+  #       MatchProduct	"Goodix Capacitive TouchScreen"
+  #       Option  	    "TransformationMatrix" "0 1 0 -1 0 1 0 0 1"
+  #     ''
+  #     ''
+  #       Identifier      "GPD trackpoint"
+  #       MatchProduct    "SINO WEALTH Gaming Keyboard"
+  #       MatchIsPointer  "on"
+  #       Driver          "libinput"
+  #       Option          "ScrollButton" "3"
+  #       Option          "ScrollMethod" "button"
+  #       Option          "MiddleEmulation" "True"
+  #       Option          "AccelSpeed" "1"
+  #       Option  	      "TransformationMatrix" "3 0 0 0 3 0 0 0 1"
+  #     ''
+  #   ];
+  # };
 
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/f9c1df0d-5bcf-448b-9684-1b0b6712f5e1";
