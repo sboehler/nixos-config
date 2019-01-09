@@ -19,9 +19,9 @@
   networking = {
     hostName = "server";
     enableIPv6 = true;
-    interfaces.eth0 = {
-      useDHCP = true;
-    };
+    interfaces.eth0.useDHCP = true;
+    firewall.allowedTCPPorts = [ 139 445 ];
+    firewall.allowedUDPPorts = [ 137 138 ];
   };
 
   services.btrfs = {
@@ -77,11 +77,6 @@
       rpc-host-whitelist = "*";
       peer-port-random-on-start = true;
     };
-  };
-
-  networking.firewall = {
-    allowedTCPPorts = [ 139 445 ];
-    allowedUDPPorts = [ 137 138 ];
   };
 
   services.samba = {
