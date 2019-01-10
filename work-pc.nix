@@ -38,10 +38,6 @@
     };
   };
 
-  hardware.pulseaudio.extraConfig = ''
-    set-default-sink alsa_output.usb-Creative_Technology_Ltd_Sound_Blaster_E5_A3060110121-00.analog-stereo
-  '';
-
   networking.hostName = "worky-mcworkface";
 
   services.syncthing = {
@@ -55,28 +51,8 @@
     fileSystems = ["/mnt/data"];
   };
 
-  services.postgresql = {
-    enable = true;
-    package = pkgs.postgresql_10;
-  };
-
-  fonts.fontconfig = {
-    dpi = 132;
-  };
-
   services.xserver = {
-    dpi = 132;
     videoDrivers = ["nvidia"];
-    xrandrHeads = [
-      {
-        output = "DP-1";
-        primary = true;
-      }
-      {
-        output = "HDMI-0";
-        monitorConfig = "Option \"RightOf\" \"DP-1\"";
-      }
-    ];
     displayManager.gdm.wayland = false;
   };
 
