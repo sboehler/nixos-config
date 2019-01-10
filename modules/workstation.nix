@@ -178,24 +178,8 @@
 
   services.xserver = {
     enable = true;
-    libinput = {
-      enable = true;
-      naturalScrolling = true;
-    };
-    displayManager = {
-      gdm = {
-        enable = true;
-        # autoLogin = {
-        #   enable = true;
-        #   user = "silvio";
-        # };
-      };
-    };
-    desktopManager = {
-      gnome3 = {
-        enable = true;
-      };
-    };
+    displayManager.gdm.enable = true;
+    desktopManager.gnome3.enable = true;
   };
 
   services.tor = {
