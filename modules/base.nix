@@ -54,7 +54,9 @@ in
     gnupg
     gptfdisk
     gopass
+    htop
     hdparm
+    iotop
     jnettop
     ncftp
     nix-prefetch-scripts
