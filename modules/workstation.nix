@@ -25,9 +25,7 @@
       };
       haskellPackages = haskell.packages.ghc863;
 
-      gw = pkgs.callPackage ./gradlew.nix {
-        pkgs = import (builtins.fetchTarball "https://github.com/NixOS/nixpkgs-channels/tarball/nixos-18.09") {};
-      };
+      gw = pkgs.callPackage ./gradlew.nix {};
 
       gradleGen = pkgs.gradleGen.override {
         jdk = pkgs.openjdk11;
