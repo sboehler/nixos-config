@@ -75,11 +75,13 @@
   environment.systemPackages = with pkgs; [
     flashplayer
     ack
+    adwaita-qt
     ansible
     arandr
     beancount
     chromium
     darktable
+    digikam
     dmenu
     docker_compose
     evince
@@ -118,6 +120,7 @@
     pinentry_gnome
     python3
     qt5.full
+    libsForQt5.qtstyleplugins
     rofi
     rofi-launcher
     rubber
