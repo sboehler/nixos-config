@@ -46,10 +46,10 @@
 
   nix = {
     binaryCaches = [
+      "https://cache.nixos.org"
       "ssh://xps15.local"
     ];
   };
-
 
   powerManagement = {
     enable = true;
@@ -73,6 +73,18 @@
     '';
   };
 
+  services.udev = {
+    extraRules = let
+      script = pkgs.writeShellScriptBin "enable-bluetooth" ''
+        modprobe btusb
+        echo "0000 0000" > /sys/bus/usb/drivers/btusb/new_id
+      '';
+     in
+       ''
+       SUBSYSTEM=="usb", ATTRS{idVendor}=="0000", ATTRS{idProduct}=="0000", RUN+="${script}/bin/enable-bluetooth"
+    '';
+  };
+
   boot = {
     kernelParams = [
       "gpd-pocket-fan.speed_on_ac=0"
@@ -85,6 +97,7 @@
         "pwm-lpss"
         "pwm-lpss-platform" # for brightness control
         "i915"
+        "btusb"
       ];
       availableKernelModules = [
         "xhci_pci"
