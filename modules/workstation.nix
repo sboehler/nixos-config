@@ -121,6 +121,7 @@
     python3
     qt5.full
     libsForQt5.qtstyleplugins
+    libsForQt5.libkipi
     rofi
     rofi-launcher
     rubber
