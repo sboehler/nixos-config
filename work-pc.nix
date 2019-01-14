@@ -32,7 +32,6 @@
         {
           name = "root";
           device = "/dev/disk/by-uuid/1c97e01d-768c-4a5f-a60c-fb80af1d1dd5";
-          preLVM = true;
           allowDiscards = true;
         }
       ];
