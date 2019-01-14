@@ -1,6 +1,8 @@
 {
   services.syncthing = {
     enable = true;
-    systemService = false;
+    user = "silvio";
+    openDefaultPorts = true;
+    dataDir = "/home/silvio";
   };
 }

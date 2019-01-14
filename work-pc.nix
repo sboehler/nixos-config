@@ -6,6 +6,7 @@
        <nixpkgs/nixos/modules/installer/scan/not-detected.nix>
       ./modules/networking.nix
       ./modules/firewall.nix
+      ./modules/syncthing.nix
       ./modules/workstation.nix
       ./modules/mbsyncd.nix
       ./modules/base.nix
@@ -39,11 +40,6 @@
   };
 
   networking.hostName = "worky-mcworkface";
-
-  services.syncthing = {
-    enable = true;
-    systemService = false;
-  };
 
   services.fstrim.interval = "daily";
 
