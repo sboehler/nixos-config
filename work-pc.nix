@@ -30,7 +30,7 @@
       luks.devices = [
         {
           name = "root";
-          device = "/dev/sda2";
+          device = "/dev/disk/by-uuid/1c97e01d-768c-4a5f-a60c-fb80af1d1dd5";
           preLVM = true;
           allowDiscards = true;
         }
@@ -69,34 +69,35 @@
     };
   };
 
-
   fileSystems."/" = {
-    device = "/dev/disk/by-uuid/661bd881-7275-4f5e-80a4-08acdc97c2b3";
+    device = "/dev/disk/by-uuid/ae2bf910-85a4-4fba-928a-bc15619473f6";
     fsType = "btrfs";
-    options = ["subvol=@nixos" "compress=lzo"];
+    options = ["subvol=@root" "compress=lzo"];
   };
 
   fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/FA68-ADEB";
+    device = "/dev/disk/by-uuid/4EE8-0469";
     fsType = "vfat";
   };
 
   fileSystems."/home" = {
-    device = "/dev/disk/by-uuid/661bd881-7275-4f5e-80a4-08acdc97c2b3";
+    device = "/dev/disk/by-uuid/ae2bf910-85a4-4fba-928a-bc15619473f6";
     fsType = "btrfs";
-    options = ["subvol=@nixos_home" "compress=lzo"];
+    options = ["subvol=@home" "compress=lzo"];
   };
 
   fileSystems."/mnt/data" = {
     device = "/dev/mapper/data";
     fsType = "btrfs";
+    options = ["compress=lzo"];
   };
 
-  swapDevices = [{
-    device = "/dev/disk/by-uuid/ca8083a2-a656-4f22-93cd-60912f3c90ab";
-  }];
+ swapDevices = [{
+   device = "/dev/disk/by-id/ata-Samsung_SSD_860_PRO_512GB_S42YNF0K914671W-part2";
+   randomEncryption = true;
+ }];
 
-  system.stateVersion = "18.09"; # Did you read the comment?
+  system.stateVersion = "19.03"; # Did you read the comment?
 
   nix.maxJobs = lib.mkDefault 8;
 }
