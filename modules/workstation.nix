@@ -167,7 +167,7 @@
     "vm.swappiness" = 10;
   };
 
-  boot.plymouth.enable = true;
+  # boot.plymouth.enable = true;
 
   powerManagement.enable = true;
 
