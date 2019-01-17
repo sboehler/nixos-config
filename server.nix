@@ -30,6 +30,12 @@
     };
   };
 
+  services.beesd.filesystems = {
+    data = {
+      spec = ''UUID="8e44dba1-e4b9-4bd7-9c36-f9865f37ff9a"'';
+    };
+  };
+
 
   i18n.consoleFont = "Lat2-Terminus16";
 
