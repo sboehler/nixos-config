@@ -10,6 +10,7 @@ in
     auth-source-pass
     avy
     company
+    company-lsp
     counsel
     counsel-projectile
     direnv
