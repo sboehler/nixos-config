@@ -35,6 +35,7 @@ in
     # nix-mode
     org-noter
     ox-gfm
+    paperless
     paredit
     projectile
     psc-ide
