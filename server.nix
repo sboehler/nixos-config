@@ -31,13 +31,6 @@
     };
   };
 
-  services.beesd.filesystems = {
-    data = {
-      spec = ''UUID="8e44dba1-e4b9-4bd7-9c36-f9865f37ff9a"'';
-    };
-  };
-
-
   i18n.consoleFont = "Lat2-Terminus16";
 
   programs = {
@@ -63,6 +56,12 @@
           allowDiscards = true;
         }
       ];
+      postMountCommands = ''
+        # cryptsetup luksOpen --key-file /mnt-root/root/data_keyfile /dev/disk/by-uuid/af15ec68-4c42-4468-b74f-5c63288d5670 data1
+        # cryptsetup luksOpen --key-file /mnt-root/root/data_keyfile /dev/disk/by-uuid/cb7824f0-2f90-45cc-8584-702fc16f9cd6 data2
+        cryptsetup luksOpen --key-file /mnt-root/root/data_keyfile /dev/disk/by-uuid/73bbc691-046e-43ed-ae1e-360d43168047 data3
+        cryptsetup luksOpen --key-file /mnt-root/root/data_keyfile /dev/disk/by-uuid/aeb9807b-7888-4702-9870-43f838e3aa4a data4
+      '';
     };
     kernelModules = [ "kvm-amd" ];
   };
@@ -137,26 +136,7 @@
     "/mnt/data" = {
       device = "/dev/mapper/data3";
       fsType = "btrfs";
-      options = [
-        "noatime"
-        "x-systemd.requires=/dev/mapper/data3"
-        "x-systemd.requires=/dev/mapper/data4"
-      ];
-    };
-
-  };
-
-  systemd.generator-packages = [ pkgs.systemd-cryptsetup-generator ];
-
-  environment.etc = {
-    "crypttab" = {
-      enable = true;
-      text = ''
-        data1 UUID=af15ec68-4c42-4468-b74f-5c63288d5670 /root/data_keyfile luks
-        data2 UUID=cb7824f0-2f90-45cc-8584-702fc16f9cd6 /root/data_keyfile luks
-        data3 UUID=73bbc691-046e-43ed-ae1e-360d43168047 /root/data_keyfile luks
-        data4 UUID=aeb9807b-7888-4702-9870-43f838e3aa4a /root/data_keyfile luks
-      '';
+      options = [ "compress=lzo" "noatime" ];
     };
   };
 
