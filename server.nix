@@ -10,6 +10,7 @@
       <nixpkgs/nixos/modules/installer/scan/not-detected.nix>
       ./modules/initrd-ssh.nix
       ./modules/firewall.nix
+      ./modules/syncthing.nix
       ./modules/base.nix
       ./modules/bios.nix
     ];
@@ -115,14 +116,6 @@
     };
   };
 
-  services.syncthing = {
-    enable = true;
-    systemService = true;
-    user = "silvio";
-    group = "users";
-    dataDir = "/mnt/data/sync/sync";
-  };
-
   fileSystems = {
     "/" = {
       device = "/dev/disk/by-uuid/541e5627-a3c2-4b6c-ad0e-f87803eb52af";
@@ -173,5 +166,5 @@
 
   nix.maxJobs = lib.mkDefault 2;
   powerManagement.cpuFreqGovernor = "ondemand";
-  system.stateVersion = "18.09"; # Did you read the comment?
+  system.stateVersion = "19.03"; # Did you read the comment?
 }
