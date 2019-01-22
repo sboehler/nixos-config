@@ -47,6 +47,7 @@ in
     typescript-mode
     use-package
     web-mode
+    which-key
     whole-line-or-region
     yaml-mode
   ]) ++ (with epkgs.elpaPackages; [
