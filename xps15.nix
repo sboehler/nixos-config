@@ -63,10 +63,10 @@
     enable = true;
   };
 
-  # hardware.bumblebee = {
-  #   enable = true;
-  #   driver = "nvidia";
-  # };
+  hardware.bumblebee = {
+    enable = true;
+    driver = "nvidia";
+  };
 
   hardware.opengl.enable = true;
   # hardware.opengl.extraPackages = [
