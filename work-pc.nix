@@ -92,7 +92,5 @@
    randomEncryption = true;
  }];
 
-  system.stateVersion = "19.03"; # Did you read the comment?
-
   nix.maxJobs = lib.mkDefault 8;
 }

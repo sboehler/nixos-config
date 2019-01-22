@@ -166,5 +166,4 @@
 
   nix.maxJobs = lib.mkDefault 2;
   powerManagement.cpuFreqGovernor = "ondemand";
-  system.stateVersion = "19.03"; # Did you read the comment?
 }
