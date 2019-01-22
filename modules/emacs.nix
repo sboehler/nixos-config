@@ -33,6 +33,7 @@ in
     markdown-mode
     neotree
     # nix-mode
+    ox-jira
     org-noter
     ox-gfm
     paperless
