@@ -53,17 +53,6 @@
     displayManager.gdm.wayland = false;
   };
 
-  systemd.generator-packages = [ pkgs.systemd-cryptsetup-generator ];
-
-  environment.etc = {
-    "crypttab" = {
-      enable = true;
-      text = ''
-        data UUID=0d043065-e96a-45ec-a43f-2116a9e3070e /root/sdb_key luks
-      '';
-    };
-  };
-
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/ae2bf910-85a4-4fba-928a-bc15619473f6";
     fsType = "btrfs";
@@ -82,6 +71,12 @@
   };
 
   fileSystems."/mnt/data" = {
+    encrypted = {
+      enable = true;
+      blkDev = "/dev/disk/by-uuid/0d043065-e96a-45ec-a43f-2116a9e3070e";
+      keyFile = "/mnt-root/root/sdb_key";
+      label = "data";
+    };
     device = "/dev/mapper/data";
     fsType = "btrfs";
     options = ["compress=lzo"];
