@@ -44,13 +44,6 @@
     };
   };
 
-  nix = {
-    binaryCaches = [
-      "https://cache.nixos.org"
-      "ssh://xps15.local"
-    ];
-  };
-
   powerManagement = {
     enable = true;
     powerDownCommands = ''
