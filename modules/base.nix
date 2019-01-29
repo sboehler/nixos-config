@@ -93,12 +93,6 @@ in
 
   programs = {
 
-    gnupg = {
-      agent = {
-        enable = true;
-      };
-    };
-
     zsh = {
       enable = true;
       enableCompletion = true;
