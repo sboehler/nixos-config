@@ -163,12 +163,6 @@
 
   services.udisks2.enable = true;
 
-  boot.kernel.sysctl = {
-    "vm.swappiness" = 10;
-  };
-
-  # boot.plymouth.enable = true;
-
   powerManagement.enable = true;
 
   services.xserver = {
