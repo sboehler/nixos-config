@@ -185,7 +185,7 @@
   };
 
   networking.extraHosts = ''
-    127.0.0.1	portal.test
+    127.0.0.1	portal.truewealth.test
     127.0.0.1	truewealth.test
     127.0.0.1 s3mock
   '';
