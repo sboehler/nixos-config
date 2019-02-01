@@ -15,7 +15,7 @@
       ./modules/efi.nix
     ];
 
-  hardware.nvidiaOptimus.disable = true;
+  # hardware.nvidiaOptimus.disable = true;
 
   boot = {
     kernelParams = [ "acpi_rev_override=1"];
