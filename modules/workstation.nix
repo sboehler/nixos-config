@@ -85,7 +85,6 @@
     gradle
     gthumb
     gnome3.rhythmbox
-    gnome3.gnome-boxes
     hplip
     html2text
     icedtea8_web
@@ -157,7 +156,7 @@
       # stylish-haskell
     ]);
 
-  virtualisation.libvirtd.enable = true;
+  virtualisation.virtualbox.host.enable = true;
 
   hardware.pulseaudio.enable = true;
 
