@@ -75,6 +75,8 @@
     chromium
     darktable
     digikam
+    dhall
+    dhall-json
     dmenu
     docker_compose
     evince
@@ -104,6 +106,7 @@
     nix-index
     nodejs-10_x
     notmuch
+    nodePackages.node2nix
     offlineimap
     openjdk11
     pavucontrol

@@ -10,7 +10,7 @@ in
     auth-source-pass
     avy
     company
-    company-lsp
+    # company-lsp
     counsel
     counsel-projectile
     direnv
@@ -26,13 +26,14 @@ in
     interleave
     nix-update
     ivy
-    lsp-haskell
-    lsp-mode
-    lsp-ui
+    # use latest from melpa as these are evolving quickly
+    # lsp-haskell
+    # lsp-mode
+    # lsp-ui
+    # nix-mode
     magit
     markdown-mode
     neotree
-    # nix-mode
     ox-jira
     org-noter
     ox-gfm
