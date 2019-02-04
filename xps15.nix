@@ -8,6 +8,7 @@
       ./modules/firewall.nix
       ./modules/buildmachine.nix
       ./modules/laptop.nix
+      ./modules/transmission.nix
       ./modules/mbsyncd.nix
       ./modules/syncthing.nix
       ./modules/workstation.nix
@@ -19,6 +20,8 @@
 
   boot = {
     kernelParams = [ "acpi_rev_override=1"];
+
+    kernelPackages = pkgs.linuxPackagesFor pkgs.linux_4_19;
 
     kernelModules = [ "kvm-intel" ];
 
@@ -58,10 +61,6 @@
   };
 
   i18n.consoleFont = "latarcyrheb-sun32";
-
-  services.transmission = {
-    enable = true;
-  };
 
   hardware.bumblebee = {
     enable = true;

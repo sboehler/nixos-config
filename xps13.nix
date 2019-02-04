@@ -7,6 +7,7 @@
       ./modules/networking.nix
       ./modules/firewall.nix
       ./modules/syncthing.nix
+      ./modules/transmission.nix
       ./modules/mbsyncd.nix
       ./modules/buildmachine.nix
       ./modules/laptop.nix
@@ -49,10 +50,6 @@
     extraConfig = ''
       DISK_DEVICES="nvme0n1";
     '';
-  };
-
-  services.transmission = {
-    enable = true;
   };
 
   networking.hostName = "xps13";
