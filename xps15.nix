@@ -21,8 +21,6 @@
   boot = {
     kernelParams = [ "acpi_rev_override=1"];
 
-    kernelPackages = pkgs.linuxPackagesFor pkgs.linux_4_19;
-
     kernelModules = [ "kvm-intel" ];
 
     initrd = {
@@ -61,6 +59,8 @@
   };
 
   i18n.consoleFont = "latarcyrheb-sun32";
+
+  virtualisation.virtualbox.host.enable = true;
 
   hardware.bumblebee = {
     enable = true;

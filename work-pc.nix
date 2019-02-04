@@ -17,8 +17,6 @@
   boot = {
     kernelModules = [ "kvm-intel" ];
 
-    kernelPackages = pkgs.linuxPackagesFor pkgs.linux_4_19;
-
     initrd = {
       availableKernelModules = [
         "xhci_pci"
