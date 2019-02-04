@@ -4,10 +4,6 @@
     firewall = {
       enable = true;
       allowPing = true;
-      allowedUDPPorts = [
-        5353 # mDNS
-        5355 # https://en.wikipedia.org/wiki/Link-Local_Multicast_Name_Resolution
-      ];
       extraCommands = ''
         # Make UPnP work
         ${pkgs.ipset}/bin/ipset create -exist upnp hash:ip,port timeout 3

@@ -38,8 +38,6 @@
 
   networking.hostName = "worky-mcworkface";
 
-  services.fstrim.interval = "daily";
-
   virtualisation.virtualbox.host.enable = true;
 
   services.btrfs.autoScrub = {
