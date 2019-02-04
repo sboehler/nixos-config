@@ -4,16 +4,16 @@
   imports =
     [
        <nixpkgs/nixos/modules/installer/scan/not-detected.nix>
-      ./modules/networking.nix
-      ./modules/firewall.nix
-      ./modules/buildmachine.nix
-      ./modules/laptop.nix
-      ./modules/transmission.nix
-      ./modules/mbsyncd.nix
-      ./modules/syncthing.nix
-      ./modules/workstation.nix
       ./modules/base.nix
+      ./modules/buildmachine.nix
       ./modules/efi.nix
+      ./modules/firewall.nix
+      ./modules/laptop.nix
+      ./modules/mbsyncd.nix
+      ./modules/networking.nix
+      ./modules/syncthing.nix
+      ./modules/transmission.nix
+      ./modules/workstation.nix
     ];
 
   hardware.nvidiaOptimus.disable = true;

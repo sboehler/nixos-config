@@ -124,7 +124,9 @@
     shared_mime_info
     spotify
     termite
-    texlive.combined.scheme-full
+    (texlive.combine {
+      inherit (texlive) scheme-medium moderncv cmbright;
+    })
     thunderbird
     exiftool
     tabula
