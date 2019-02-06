@@ -5,12 +5,17 @@ let
 in
   emacsWithPackages (epkgs: (with epkgs.melpaStablePackages; [
   ]) ++ (with epkgs.melpaPackages; [
+    # company-lsp
+    # lsp-haskell
+    # lsp-mode
+    # lsp-ui
+    # nix-mode
+    # use latest from melpa as these are evolving quickly
     ansible-vault
     attrap
     auth-source-pass
     avy
     company
-    # company-lsp
     counsel
     counsel-projectile
     direnv
@@ -18,25 +23,22 @@ in
     flycheck
     flymd
     git-auto-commit-mode
+    god-mode
     gradle-mode
     groovy-mode
     haskell-mode
     hindent
     htmlize
     interleave
-    nix-update
     ivy
-    # use latest from melpa as these are evolving quickly
-    # lsp-haskell
-    # lsp-mode
-    # lsp-ui
-    # nix-mode
+    ivy-hydra
     magit
     markdown-mode
     neotree
-    ox-jira
+    nix-update
     org-noter
     ox-gfm
+    ox-jira
     paperless
     paredit
     projectile
