@@ -49,9 +49,11 @@
     binaryCaches = [
       "https://cache.nixos.org/"
       "https://hie-nix.cachix.org"
+      "https://nixcache.reflex-frp.org"
     ];
     binaryCachePublicKeys = [
       "hie-nix.cachix.org-1:EjBSHzF6VmDnzqlldGXbi0RM3HdjfTU3yDRi9Pd0jTY="
+      "ryantrinkle.com-1:JJiAKaRv9mWgpVAz8dwewnZe0AzzEAzPkagE9SP5NWI="
     ];
     trustedUsers = [ "root" "silvio" ];
   };

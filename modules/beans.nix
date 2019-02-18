@@ -9,8 +9,8 @@ mkDerivation {
   version = "0.0.4.0";
   src = fetchgit {
     url = "https://github.com/sboehler/beans";
-    sha256 = "1dmkk9qcwacfy192hy1inm1vf4za6g7jr1f1pkay2sfwjicybsny";
-    rev = "0466d13b79ece6ec6ad1859ea8ff0a32d5c16430";
+    sha256 = "0gs1qgrifymnws8acy8kbjni5rafllbp0n8mzw4il5vg1af6hkbh";
+    rev = "3ac9b8ce9817209063a0e1da688bdfab22e05021";
     fetchSubmodules = true;
   };
   isLibrary = true;
