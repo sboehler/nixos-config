@@ -12,6 +12,8 @@
           ghc863 = pkgs.haskell.packages.ghc863.override {
             overrides = self: super: {
               beans = self.callPackage ./beans.nix {};
+              dhall = self.callPackage ./dhall.nix {};
+              dhall-json = self.callPackage ./dhall-json.nix {};
             };
           };
         };
