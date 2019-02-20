@@ -16,6 +16,8 @@
     stdenv.cc
     docker
     nodejs
+    dhall
+    dhall-json
     git
     zlib # for phantomjs
     zsh
