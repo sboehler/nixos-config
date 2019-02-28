@@ -68,13 +68,20 @@
   };
 
   hardware.opengl.enable = true;
-  # hardware.opengl.extraPackages = [
-  #   pkgs.vaapiIntel
-  #   pkgs.libvdpau-va-gl
-  #   pkgs.vaapiVdpau
-  #   pkgs.intel-ocl
-  #   # pkgs.linuxPackages.nvidia_x11.out
-  # ];
+  hardware.opengl.extraPackages = [
+    pkgs.vaapiIntel
+    pkgs.libvdpau-va-gl
+    pkgs.vaapiVdpau
+    pkgs.intel-ocl
+    # pkgs.linuxPackages.nvidia_x11.out
+  ];
+
+  services.postgresql = {
+    enable = true;
+    package = pkgs.postgresql_11;
+  };
+
+
 
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/270eb045-3b47-4cc4-b8a2-07ec6eb5bada";

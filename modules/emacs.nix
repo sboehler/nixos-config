@@ -19,6 +19,12 @@ in
     counsel
     counsel-projectile
     direnv
+    dired-subtree
+    dired-avfs
+    dired-ranger
+    dired-collapse
+    dired-narrow
+    dired-open
     expand-region
     flycheck
     flymd
@@ -55,6 +61,7 @@ in
     yaml-mode
   ]) ++ (with epkgs.elpaPackages; [
     csv-mode
+    orgalist
   ]) ++ (with epkgs.orgPackages; [
     org
   ]) ++ [
