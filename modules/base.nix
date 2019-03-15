@@ -32,9 +32,7 @@ in
   };
 
   boot = {
-    kernelPackages = if config.virtualisation.virtualbox.host.enable
-                       then pkgs.linuxPackagesFor pkgs.linux_4_19
-                       else pkgs.linuxPackagesFor pkgs.linux_4_20;
+    kernelPackages = pkgs.linuxPackagesFor pkgs.linux_4_20;
   };
 
   hardware = {
