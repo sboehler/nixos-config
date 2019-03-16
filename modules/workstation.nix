@@ -84,7 +84,8 @@
     dmenu
     docker_compose
     evince
-    firefox
+    # firefox
+    firefox-wayland
     fdupes
     git-review
     gw
