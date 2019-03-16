@@ -78,6 +78,8 @@
     '';
   };
 
+  services.btrfs.autoScrub.interval = "yearly";
+
   boot = {
     kernelParams = [
       "gpd-pocket-fan.speed_on_ac=0"
