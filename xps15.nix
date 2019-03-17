@@ -12,6 +12,7 @@
       ./modules/mbsyncd.nix
       ./modules/networking.nix
       ./modules/syncthing.nix
+      ./modules/virtualbox.nix
       ./modules/transmission.nix
       ./modules/workstation.nix
     ];

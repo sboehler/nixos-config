@@ -166,8 +166,6 @@
       # stylish-haskell
     ]);
 
-  virtualisation.virtualbox.host.enable = true;
-
   hardware.pulseaudio.enable = true;
 
   services.udisks2.enable = true;
