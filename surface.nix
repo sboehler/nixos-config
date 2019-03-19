@@ -14,15 +14,29 @@
       ./modules/workstation.nix
     ];
 
+  nixpkgs.config = {
+    packageOverrides = pkgs: rec {
+      bluez2 = pkgs.bluez.overrideAttrs(attrs: {
+        configureFlage = attrs.configureFlags ++ ["--enable-deprecated"];
+        doCheck = false;
+        priority = 1;
+      });
+    };
+  };
+
+
+
   environment.variables = {
     MOZ_USE_XINPUT2 = "1";
   };
 
-  hardware.enableAllFirmware = true;
-  hardware.firmware = [
-    (pkgs.callPackage ./modules/surface-wifi.nix {})
-  ];
-  hardware.sensor.iio.enable = true;
+  hardware = {
+    enableAllFirmware = true;
+    firmware = [
+      (pkgs.callPackage ./modules/surface-wifi.nix {})
+    ];
+    sensor.iio.enable = true;
+  };
 
   boot = {
     kernelParams = [ "mem_sleep_default=deep"];
@@ -42,6 +56,8 @@
     };
     extraModprobeConfig = ''
       options i915 enable_fbc=1 enable_rc6=1 modeset=1
+      options snd_hda_intel power_save=1
+      options snd_ac97_codec power_save=1
       options iwlwifi power_save=Y
       options iwldvm force_cam=N
       options ath10k_core skip_otp=yto
@@ -49,9 +65,12 @@
   };
 
   environment.systemPackages = with pkgs; [
-    onboard
-  ];
+  (bluez.overrideAttrs (attrs: {
+    name = "bluez-compat";
+    configureFlags = [ "--enable-deprecated" ] ++ attrs.configureFlags;
+    }))
 
+  ];
 
   services.tlp = {
     extraConfig = ''
@@ -62,6 +81,7 @@
   networking.hostName = "surface";
 
   # i18n.consoleFont = "latarcyrheb-sun32";
+  # services.xserver.displayManager.gdm.wayland = false;
 
   fileSystems = {
     "/" = {
@@ -85,7 +105,4 @@
   swapDevices =
     [ { device = "/dev/disk/by-uuid/961cdeb1-dd60-457c-b587-5310c8a10118"; }
     ];
-
-  nix.maxJobs = lib.mkDefault 2;
-  powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
 }

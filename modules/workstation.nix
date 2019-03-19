@@ -1,4 +1,7 @@
 { pkgs, config, ... }:
+let
+  myEmacs = import ./emacs.nix { inherit pkgs; };
+in
 {
   nixpkgs.config = {
 
@@ -9,7 +12,7 @@
 
       haskell = pkgs.haskell // {
         packages = pkgs.haskell.packages // {
-          ghc863 = pkgs.haskell.packages.ghc863.override {
+          ghc864 = pkgs.haskell.packages.ghc864.override {
             overrides = self: super: {
               beans = self.callPackage ./beans.nix {};
               dhall = self.callPackage ./dhall.nix {};
@@ -18,7 +21,7 @@
           };
         };
       };
-      haskellPackages = haskell.packages.ghc863;
+      haskellPackages = haskell.packages.ghc864;
 
       gw = pkgs.callPackage ./gradlew.nix {};
 
@@ -83,15 +86,19 @@
     dhall-json
     dmenu
     docker_compose
+    myEmacs
     evince
     # firefox
-    firefox-wayland
+    (if config.services.xserver.displayManager.gdm.wayland
+      then firefox-wayland
+      else firefox)
     fdupes
     git-review
     gw
     gradle
     gthumb
     gnome3.rhythmbox
+    gnome3.polari
     hplip
     html2text
     icedtea8_web
@@ -177,6 +184,15 @@
     displayManager.gdm.enable = true;
     desktopManager.gnome3.enable = true;
   };
+
+  services.emacs = {
+    install = true;
+    enable = true;
+    defaultEditor = true;
+    package = myEmacs;
+  };
+
+  systemd.user.services.emacs.environment.SSH_AUTH_SOCK = "%t/keyring/ssh";
 
   services.tor = {
     enable = true;

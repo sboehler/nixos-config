@@ -1,6 +1,5 @@
 { config, pkgs, ... }:
 let
-  myEmacs = import ./emacs.nix { inherit pkgs; };
   # stable = import (pkgs.fetchFromGitHub {
   #   owner = "NixOS";
   #   repo = "nixpkgs-channels";
@@ -48,7 +47,6 @@ in
     bind
     borgbackup
     direnv
-    myEmacs
     exfat
     file
     gnupg
@@ -132,14 +130,6 @@ in
     };
   };
 
-  services.emacs = {
-    enable = true;
-    defaultEditor = true;
-    package = myEmacs;
-  };
-
-  systemd.user.services.emacs.environment.SSH_AUTH_SOCK = "%t/keyring/ssh";
-
   virtualisation.docker.enable = true;
 
   services.btrfs = {
@@ -193,6 +183,9 @@ in
   security = {
     pam = {
       services.gdm.enableGnomeKeyring = true;
+      services.passwd = {
+        enableGnomeKeyring = true;
+      };
     };
 
     sudo = {
