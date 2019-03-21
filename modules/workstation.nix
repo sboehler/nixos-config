@@ -84,6 +84,7 @@ in
     digikam
     dhall
     dhall-json
+    direnv
     dmenu
     docker_compose
     myEmacs
@@ -104,6 +105,7 @@ in
     gst-plugins-base
     gst-plugins-good
     gst-plugins-ugly
+    gnome3.geary
     hplip
     html2text
     icedtea8_web
