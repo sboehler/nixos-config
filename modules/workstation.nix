@@ -98,7 +98,12 @@ in
     gradle
     gthumb
     gnome3.rhythmbox
+    gnome-podcasts
     gnome3.polari
+    gst-plugins-bad
+    gst-plugins-base
+    gst-plugins-good
+    gst-plugins-ugly
     hplip
     html2text
     icedtea8_web
