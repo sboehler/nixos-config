@@ -3,7 +3,7 @@
 Top-level files correspond to the different machines. I check out this repository in my local home directory and symlink /etc/nixos/connfiguration.nix to these files:
 
 - pocket.nix: GPD Pocket Laptop
-- surface.nix: Microsoft Surface Go (8G/128G version)
+- surface.nix: Microsoft Surface Go (8G/128G version), see [writeup](https://www.reddit.com/r/SurfaceLinux/comments/b31xxd/nixos_on_the_surface_go/)
 - xps13.nix: Dell XPS13 9350 Laptop
 - xps15.nix: Dell XPS15 9560 Laptop
 - work-pc.nix: My office PC, some no-name machine with Core i7 and nVidia graphics
