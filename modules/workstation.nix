@@ -79,7 +79,6 @@ in
     ack
     adwaita-qt
     ansible
-    arandr
     beancount
     chromium
     darktable
@@ -87,7 +86,6 @@ in
     dhall
     dhall-json
     direnv
-    dmenu
     docker_compose
     myEmacs
     evince
@@ -100,7 +98,6 @@ in
     gw
     gradle
     gthumb
-    gnome3.rhythmbox
     gnome-podcasts
     gnome3.polari
     gst-plugins-bad
@@ -116,29 +113,23 @@ in
     isync
     jetbrains.datagrip
     jetbrains.idea-community
-    keepassx2
-    keepassxc
     libreoffice
     libressl
     libxml2
     macchanger
     manpages
-    mitscheme
     mu
     nix-index
     nodejs-10_x
-    notmuch
     nodePackages.node2nix
-    offlineimap
     openjdk11
     pavucontrol
     pandoc
-    phantomjs
     pinentry_gnome
     python3
-    qt5.full
-    libsForQt5.qtstyleplugins
-    libsForQt5.libkipi
+    # qt5.full
+    # libsForQt5.qtstyleplugins
+    # libsForQt5.libkipi
     rofi
     rofi-launcher
     rubber
@@ -154,14 +145,10 @@ in
     tabula
     # tor-browser-bundle-bin
     vanilla-dmz
-    virtmanager
     vlc
-    xautolock
     xiccd
     w3m
-    xsel
     yarn
-    zbar
     zip
   ]
   ++ (with pkgs.gnomeExtensions; [
