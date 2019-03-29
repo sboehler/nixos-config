@@ -75,8 +75,6 @@ in
   programs.browserpass.enable = true;
 
   environment.systemPackages = with pkgs; [
-    # flashplayer
-    ack
     adwaita-qt
     ansible
     beancount
