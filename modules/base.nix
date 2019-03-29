@@ -31,7 +31,7 @@ in
   };
 
   boot = {
-    kernelPackages = pkgs.linuxPackagesFor pkgs.linux_4_20;
+    kernelPackages = pkgs.linuxPackagesFor pkgs.linux_5_0;
   };
 
   hardware = {
@@ -194,5 +194,5 @@ in
     };
   };
 
-  system.stateVersion = "19.03";
+  system.stateVersion = "19.09";
 }

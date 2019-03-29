@@ -70,6 +70,8 @@ in
     jre = true;
   };
 
+  documentation.dev.enable = true;
+
   programs.browserpass.enable = true;
 
   environment.systemPackages = with pkgs; [
@@ -120,6 +122,7 @@ in
     libressl
     libxml2
     macchanger
+    manpages
     mitscheme
     mu
     nix-index
@@ -149,7 +152,7 @@ in
     thunderbird
     exiftool
     tabula
-    tor-browser-bundle-bin
+    # tor-browser-bundle-bin
     vanilla-dmz
     virtmanager
     vlc
