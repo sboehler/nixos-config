@@ -42,6 +42,8 @@ in
     };
   };
 
+  environment.pathsToLink = [ "/share/zsh" ];
+
   environment.systemPackages = with pkgs; [
     ack
     bind
@@ -90,43 +92,8 @@ in
   ]);
 
   programs = {
-
     zsh = {
       enable = true;
-      enableCompletion = true;
-      ohMyZsh = {
-        enable = true;
-        custom = "${./zsh-custom}";
-        theme = "silvio";
-        plugins = [
-          "git"
-          "gradle"
-          "rsync"
-          "stack"
-          "history-substring-search"
-        ];
-      };
-      interactiveShellInit = ''
-        export PATH=$HOME/.local/bin:$PATH
-        export PASSWORD_STORE_X_SELECTION=primary
-        export GPG_TTY=$(tty)
-        HYPHEN_INSENSITIVE="true"
-
-        bindkey -M emacs '^P' history-substring-search-up
-        bindkey -M emacs '^N' history-substring-search-down
-
-        eval "$(${pkgs.direnv}/bin/direnv hook zsh)"
-
-        eval $(${pkgs.coreutils}/bin/dircolors "${./dircolors.ansi-universal}")
-        # systemctl --user import-environment PATH DISPLAY XAUTHORITY HOME GPG_TTY
-      '';
-    };
-
-    ssh = {
-      startAgent = true;
-      extraConfig = ''
-        AddKeysToAgent yes
-        '';
     };
   };
 

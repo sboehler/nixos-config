@@ -15,6 +15,7 @@
       ./modules/virtualbox.nix
       ./modules/transmission.nix
       ./modules/workstation.nix
+      ./modules/home-manager
     ];
 
   hardware.nvidiaOptimus.disable = true;
