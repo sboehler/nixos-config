@@ -1,4 +1,4 @@
-{ pkgs, ...}
+{ pkgs, config, ...}
 : {
   imports = [
     <home-manager/nixos>
@@ -10,7 +10,9 @@
     programs.git = {
       enable = true;
       userName  = "Silvio Böhler";
-      userEmail = "sboehler@noreply.users.github.com";
+      userEmail = (if config.networking.hostName == "worky-mcworkface"
+        then "silvio.boehler@truewealth.ch"
+        else "sboehler@noreply.users.github.com");
     };
     home.packages = [
       pkgs.fortune
