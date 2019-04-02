@@ -12,11 +12,12 @@
       ./modules/base.nix
       ./modules/efi.nix
       ./modules/broadcom
+      ./modules/home-manager
     ];
 
   nixpkgs.config = {
     packageOverrides = pkgs: {
-      linux_4_20 = pkgs.linux_4_20.override {
+      linux_5_0 = pkgs.linux_5_0.override {
         extraConfig = ''
           B43_SDIO y
 
