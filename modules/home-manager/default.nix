@@ -35,6 +35,7 @@
           maximize-vertically = ["<Super><Shift>semicolon"];
           toggle-maximized = ["<Super>semicolon"];
           minimize = [""];
+          maximize = [""];
 
           switch-to-workspace-up = ["<Super>h"];
           switch-to-workspace-down = ["<Super>l"];
