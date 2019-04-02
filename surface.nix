@@ -12,7 +12,8 @@
       ./modules/networking.nix
       ./modules/syncthing.nix
       ./modules/workstation.nix
-    ];
+      ./modules/home-manager
+     ];
 
   nixpkgs.config = {
     packageOverrides = pkgs: rec {
@@ -24,7 +25,16 @@
     };
   };
 
-
+  nix.buildMachines = [{
+    hostName = "xps15.local";
+    sshUser = "nixBuild";
+    sshKey = "/root/id_rsa.build";
+    system = "x86_64-linux";
+    speedFactor = 4;
+    supportedFeatures = [ "big-parallel" ];
+    maxJobs = 4;
+  }];
+  nix.distributedBuilds = true;
 
   environment.variables = {
     MOZ_USE_XINPUT2 = "1";
