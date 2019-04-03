@@ -1,7 +1,4 @@
 { pkgs, config, ... }:
-let
-  myEmacs = import ./emacs.nix { inherit pkgs; };
-in
 {
   nixpkgs.config = {
 
@@ -85,7 +82,7 @@ in
     dhall-json
     direnv
     docker_compose
-    myEmacs
+    emacs
     evince
     # firefox
     (if config.services.xserver.displayManager.gdm.wayland
@@ -185,7 +182,6 @@ in
     install = true;
     enable = true;
     defaultEditor = true;
-    package = myEmacs;
   };
 
   systemd.user.services.emacs.environment.SSH_AUTH_SOCK = "%t/keyring/ssh";

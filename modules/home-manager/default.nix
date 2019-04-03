@@ -12,7 +12,7 @@
       userName  = "Silvio Böhler";
       userEmail = (if config.networking.hostName == "worky-mcworkface"
         then "silvio.boehler@truewealth.ch"
-        else"sboehler@noreply.users.github.com";
+        else "sboehler@noreply.users.github.com");
       extraConfig = {
         merge = {
           conflictstyle = "diff3";
@@ -78,7 +78,6 @@
         theme = "silvio";
         plugins = [
           "git"
-          "gradle"
           "rsync"
           "stack"
           "history-substring-search"
