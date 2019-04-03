@@ -24,6 +24,8 @@
     ]);
   profile = ''
     export JAVA_HOME=${pkgs.openjdk11.home}
+    export ORG_GRADLE_PROJECT_load=true
+    export ORG_GRADLE_PROJECT_noUi=true
   '';
   runScript = "zsh";
   })

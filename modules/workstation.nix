@@ -116,6 +116,7 @@ in
     libxml2
     macchanger
     manpages
+    meld
     mu
     nix-index
     nodejs-10_x
