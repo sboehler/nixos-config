@@ -58,6 +58,7 @@ in
     hdparm
     iotop
     jnettop
+    gnumake
     ncftp
     nix-prefetch-scripts
     neovim
