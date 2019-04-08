@@ -11,10 +11,10 @@
 }:
 mkDerivation {
   pname = "dhall";
-  version = "1.20.1";
-  sha256 = "e077e8f4945484db4e35e8ae422e9eabac1b155972602f0404d818e3e185bcdc";
-  revision = "2";
-  editedCabalFile = "0629z8lc97rapfcqcgvxwp9x4x3xqpzrly8m0nsn0dds7400jxrk";
+  version = "1.21.0";
+  sha256 = "9b22cc6f7694ef2f5d5d6fa66727044622b9905b2a9da0cdf376c75ad3b9df0e";
+  revision = "1";
+  editedCabalFile = "0ap1490jks9hmwf73vlrj7bsfrf4m5yvgqxx3ix57w23ia5gy662";
   isLibrary = true;
   isExecutable = true;
   libraryHaskellDepends = [
@@ -29,9 +29,9 @@ mkDerivation {
   ];
   executableHaskellDepends = [ base ];
   testHaskellDepends = [
-    base containers deepseq directory doctest filepath mockery
-    prettyprinter QuickCheck quickcheck-instances serialise tasty
-    tasty-hunit tasty-quickcheck text transformers vector
+    base bytestring cborg containers deepseq directory doctest filepath
+    mockery prettyprinter QuickCheck quickcheck-instances serialise
+    tasty tasty-hunit tasty-quickcheck text transformers vector
   ];
   benchmarkHaskellDepends = [
     base bytestring containers criterion directory serialise text
