@@ -92,8 +92,8 @@
     git-review
     gw
     gradle
-    gthumb
-    gnome-podcasts
+    # gthumb
+    # gnome-podcasts
     gnome3.polari
     gst-plugins-bad
     gst-plugins-base

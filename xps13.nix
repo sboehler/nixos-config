@@ -13,6 +13,7 @@
       ./modules/syncthing.nix
       ./modules/transmission.nix
       ./modules/workstation.nix
+      ./modules/home-manager
     ];
 
 
