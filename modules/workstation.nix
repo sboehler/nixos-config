@@ -100,6 +100,7 @@
     gst-plugins-good
     gst-plugins-ugly
     gnome3.geary
+    gnumake
     hplip
     html2text
     icedtea8_web
