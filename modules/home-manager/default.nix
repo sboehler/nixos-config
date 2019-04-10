@@ -42,11 +42,12 @@
           toggle-maximized = ["<Super>semicolon"];
           minimize = [""];
           maximize = [""];
+          unmaximize = [""];
 
-          switch-to-workspace-up = ["<Super>h"];
-          switch-to-workspace-down = ["<Super>l"];
-          move-to-workspace-up = ["<Super><Shift>h"];
-          move-to-workspace-down = ["<Super><Shift>l"];
+          switch-to-workspace-up = ["<Super>l"];
+          switch-to-workspace-down = ["<Super>h"];
+          move-to-workspace-up = ["<Super><Shift>l"];
+          move-to-workspace-down = ["<Super><Shift>h"];
           move-to-monitor-right = ["<Super><Shift>k"];
           move-to-monitor-left = ["<Super><Shift>j"];
 
