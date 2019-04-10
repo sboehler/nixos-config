@@ -11,6 +11,7 @@
       ./modules/networking.nix
       ./modules/syncthing.nix
       ./modules/workstation.nix
+      ./modules/home-manager
     ];
 
 
