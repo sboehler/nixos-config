@@ -35,8 +35,14 @@
 
         "org/gnome/desktop/wm/keybindings" = {
           always-on-top = ["<Super>t"];
-          cycle-windows = ["<Super>j"];
-          cycle-windows-backward = ["<Super>k"];
+          # cycle-windows = ["<Super>j"];
+          # cycle-windows-backward = ["<Super>k"];
+          switch-windows = ["<Super>k"];
+          switch-windows-backward = ["<Super>j"];
+          switch-applications = ["<Super>period"];
+          switch-applications-backward = ["<Super>comma"];
+          cycle-group = ["<Super><Shift>period"];
+          cycle-group-backward = ["<Super><Shift>comma"];
 
           maximize-vertically = ["<Super><Shift>semicolon"];
           toggle-maximized = ["<Super>semicolon"];

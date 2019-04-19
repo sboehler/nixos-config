@@ -135,7 +135,7 @@
     spotify
     termite
     (texlive.combine {
-      inherit (texlive) scheme-medium moderncv cmbright;
+      inherit (texlive) scheme-medium moderncv cmbright wrapfig capt-of;
     })
     thunderbird
     exiftool
@@ -149,9 +149,9 @@
     zip
   ]
   ++ (with pkgs.gnomeExtensions; [
-    system-monitor
+    # system-monitor
     caffeine
-    no-title-bar
+    # no-title-bar
     dash-to-panel
   ])
 
