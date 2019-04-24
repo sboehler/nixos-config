@@ -134,6 +134,7 @@
     shared_mime_info
     spotify
     termite
+    tilix
     (texlive.combine {
       inherit (texlive) scheme-medium moderncv cmbright wrapfig capt-of;
     })
