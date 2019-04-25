@@ -113,6 +113,10 @@
           unfunction preexec
           PS1='$ '
         fi
+
+        if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
+          source ${pkgs.vte}/etc/profile.d/vte.sh
+        fi
       '';
     };
   };
