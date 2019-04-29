@@ -79,8 +79,11 @@
     download-dir = "/mnt/data/repos/Media/Downloads";
     incomplete-dir = "/mnt/data/repos/Media/Downloads/.incomplete";
     incomplete-dir-enabled = true;
-    rpc-whitelist = "127.0.0.1,192.168.2.*";
+    rpc-whitelist = "*";
+    rpc-whitelist-enabled = true;
     rpc-host-whitelist = "*";
+    rpc-host-whitelist-enabled = true;
+    peer-port-random-on-start = true;
   };
 
   services.samba = {
