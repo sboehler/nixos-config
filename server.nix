@@ -14,6 +14,7 @@
       ./modules/transmission.nix
       ./modules/base.nix
       ./modules/bios.nix
+      ./modules/home-manager
     ];
 
   # Use the GRUB 2 boot loader.
@@ -22,7 +23,7 @@
     hostName = "server";
     enableIPv6 = true;
     interfaces.eth0.useDHCP = true;
-    firewall.allowedTCPPorts = [ 139 445 ];
+    firewall.allowedTCPPorts = [ 139 445 9091 ];
     firewall.allowedUDPPorts = [ 137 138 ];
   };
 
