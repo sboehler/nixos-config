@@ -16,3 +16,5 @@ Implementation details:
 - Lots of ideas for the GPD Pocket were inspired by [this repository](https://github.com/andir/nixos-gpd-pocket), in particular regarding the kernel options.
 - The GPD Pocket requires a custom kernel configuration. It is setup to remotely build expensive stuff on the XPS 15.
 - Instead of using channels directly I have the nixpkgs repository checked out as /nix/nixpkgs (usually tracking stable). [This article](https://matrix.ai/blog/intro-to-nix-channels-and-reproducible-nixos-environment/) was very helpful when I set everything up.
+
+NOTE THAT THIS IS MY PERSONAL CONFIG, SO WHEN ADOPTING PARTS OF IT MAKE SURE TO UNDERSTAND WHAT YOU ARE DOING. IN PARTICULAR, DO NOT USE MY PUBLIC SSH KEY FOR ROOT AND USER ACCESS.
