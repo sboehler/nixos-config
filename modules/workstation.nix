@@ -92,7 +92,7 @@
     git-review
     gw
     gradle
-    # gthumb
+    gthumb
     # gnome-podcasts
     gnome3.polari
     gst-plugins-bad
@@ -127,6 +127,7 @@
     # qt5.full
     # libsForQt5.qtstyleplugins
     # libsForQt5.libkipi
+    racket
     rofi
     rofi-launcher
     rubber
