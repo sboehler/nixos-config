@@ -9,16 +9,16 @@
 
       haskell = pkgs.haskell // {
         packages = pkgs.haskell.packages // {
-          ghc864 = pkgs.haskell.packages.ghc864.override {
+          ghc865 = pkgs.haskell.packages.ghc865.override {
             overrides = self: super: {
               beans = self.callPackage ./beans.nix {};
-              dhall = self.callPackage ./dhall.nix {};
-              dhall-json = self.callPackage ./dhall-json.nix {};
+              # dhall = self.callPackage ./dhall.nix {};
+              # dhall-json = self.callPackage ./dhall-json.nix {};
             };
           };
         };
       };
-      haskellPackages = haskell.packages.ghc864;
+      haskellPackages = haskell.packages.ghc865;
 
       gw = pkgs.callPackage ./gradlew.nix {};
 
