@@ -17,9 +17,8 @@
       ./modules/home-manager
     ];
 
-  # Use the GRUB 2 boot loader.
-  # boot.vesa = true;
   networking = {
+    usePredictableInterfaceNames = false;
     hostName = "server";
     enableIPv6 = true;
     interfaces.eth0.useDHCP = true;

@@ -20,7 +20,9 @@
 
   networking = {
     hostName = "nuc";
+    usePredictableInterfaceNames = false;
     interfaces.eth0.useDHCP = true;
+    enableIPv6 = true;
     wireless = {
       enable = true;
       userControlled = true;
@@ -85,7 +87,7 @@
     extraConfig = ''
       workgroup = WORKGROUP
       server string = server
-      netbios name = server
+      netbios name = nuc
       guest account = nobody
       map to guest = bad user
       follow symlinks = yes
