@@ -20,12 +20,6 @@
       };
       haskellPackages = haskell.packages.ghc865;
 
-      gw = pkgs.callPackage ./gradlew.nix {};
-
-      gradleGen = pkgs.gradleGen.override {
-        jdk = pkgs.openjdk11;
-      };
-
       html2text = pkgs.html2text.overrideAttrs (oldAttrs: rec {
         patches = [
           ./html2text/100-fix-makefile.patch
@@ -119,7 +113,6 @@
     nix-index
     nodejs-10_x
     nodePackages.node2nix
-    openjdk11
     pavucontrol
     pandoc
     pinentry_gnome
