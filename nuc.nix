@@ -12,7 +12,7 @@
       ./modules/firewall.nix
       ./modules/syncthing.nix
       # ./modules/networking.nix
-      # ./modules/transmission.nix
+      ./modules/transmission.nix
       ./modules/base.nix
       ./modules/efi.nix
       ./modules/home-manager
@@ -71,16 +71,14 @@
     macs = ["hmac-sha2-512-etm@openssh.com" "hmac-sha2-256-etm@openssh.com" "umac-128-etm@openssh.com" "hmac-sha2-512" "hmac-sha2-256" "umac-128@openssh.com" "hmac-sha1"];
   };
 
-  # services.transmission.settings = {
-  #   download-dir = "/mnt/data/repos/Media/Downloads";
-  #   incomplete-dir = "/mnt/data/repos/Media/Downloads/.incomplete";
-  #   incomplete-dir-enabled = true;
-  #   rpc-whitelist = "*";
-  #   rpc-whitelist-enabled = true;
-  #   rpc-host-whitelist = "*";
-  #   rpc-host-whitelist-enabled = true;
-  #   peer-port-random-on-start = true;
-  # };
+  services.transmission.settings = {
+    incomplete-dir-enabled = true;
+    rpc-whitelist = "*";
+    rpc-whitelist-enabled = true;
+    rpc-host-whitelist = "*";
+    rpc-host-whitelist-enabled = true;
+    peer-port-random-on-start = true;
+  };
 
   services.samba = {
     enable = true;
