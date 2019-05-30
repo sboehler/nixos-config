@@ -84,7 +84,6 @@
       else firefox)
     fdupes
     git-review
-    gw
     gradle
     gthumb
     # gnome-podcasts
