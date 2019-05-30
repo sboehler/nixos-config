@@ -21,7 +21,7 @@
   networking = {
     hostName = "nuc";
     usePredictableInterfaceNames = false;
-    interfaces.eth0.useDHCP = true;
+    useDHCP = true;
     enableIPv6 = true;
     wireless = {
       enable = true;
@@ -127,6 +127,12 @@
   fileSystems."/boot" =
     { device = "/dev/disk/by-uuid/572B-2537";
       fsType = "vfat";
+    };
+
+  fileSystems."/mnt/data" =
+    { device = "/dev/disk/by-uuid/e6cd25e3-2b6c-483c-8b61-48d2456704a9";
+      fsType = "btrfs";
+      options = [ "subvol=@data" ];
     };
 
   swapDevices =
