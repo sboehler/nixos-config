@@ -14,6 +14,7 @@
       # ./modules/networking.nix
       ./modules/transmission.nix
       ./modules/base.nix
+      ./modules/nuc-backup.nix
       ./modules/efi.nix
       ./modules/home-manager
     ];
