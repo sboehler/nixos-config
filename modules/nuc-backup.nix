@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
   services.restic.backups = {
-    b2_data_backup = {
+    repos-b2 = {
       passwordFile = "/home/silvio/secrets/restic-b2-data";
       s3CredentialsFile = "/home/silvio/secrets/restic-b2-data-credentials";
       user = "silvio";
@@ -14,5 +14,21 @@
         OnCalendar = "hourly";
       };
     };
+
+    repos-disk = {
+      passwordFile = "/home/silvio/secrets/restic-b2-data";
+      user = "silvio";
+      paths = ["/mnt/data/repos"];
+      repository = "/mnt/backup/restic-repos";
+      extraBackupArgs = [ "--exclude=/mnt/data/repos/Media"
+                          "--verbose" ];
+      timerConfig = {
+        OnCalendar = "*-*-* 05:00:00";
+      };
+    };
+  };
+
+  systemd.timers.restic-backups-repos-disk.unitConfig = {
+    ConditionPathIsMountPoint="/mnt/backup";
   };
 }
