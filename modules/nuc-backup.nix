@@ -1,6 +1,19 @@
 { pkgs, ... }:
 {
   services.restic.backups = {
+    maildir-b2 = {
+      passwordFile = "/home/silvio/secrets/restic-b2-data";
+      s3CredentialsFile = "/home/silvio/secrets/restic-b2-data-credentials";
+      user = "silvio";
+      paths = ["/home/silvio/mbsync"];
+      repository = "b2:restic-smb:maildir";
+      extraOptions = ["b2.connections=25"];
+      extraBackupArgs = [ "--verbose" ];
+      timerConfig = {
+        OnCalendar = "hourly";
+      };
+    };
+
     repos-b2 = {
       passwordFile = "/home/silvio/secrets/restic-b2-data";
       s3CredentialsFile = "/home/silvio/secrets/restic-b2-data-credentials";

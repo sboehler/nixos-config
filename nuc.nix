@@ -11,7 +11,7 @@
       ./modules/initrd-ssh.nix
       ./modules/firewall.nix
       ./modules/syncthing.nix
-      # ./modules/networking.nix
+      ./modules/mbsyncd.nix
       ./modules/transmission.nix
       ./modules/base.nix
       ./modules/nuc-backup.nix
