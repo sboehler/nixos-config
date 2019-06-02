@@ -21,6 +21,7 @@
 
   networking = {
     hostName = "nuc";
+    hostId = "e110e344";
     usePredictableInterfaceNames = false;
     useDHCP = true;
     enableIPv6 = true;
