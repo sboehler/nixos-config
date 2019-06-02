@@ -39,11 +39,6 @@
     };
   };
 
-  services.zfs = {
-    autoScrub.enable = true;
-    autoSnapshot.enable = true;
-  };
-
   i18n.consoleFont = "latarcyrheb-sun32";
 
   programs = {

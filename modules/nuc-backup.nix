@@ -32,7 +32,7 @@
       passwordFile = "/home/silvio/secrets/restic-b2-data";
       user = "silvio";
       paths = ["/mnt/data/repos"];
-      repository = "/mnt/backup/restic-repos";
+      repository = "/mnt/backup/@restic-repos";
       extraBackupArgs = [ "--exclude=/mnt/data/repos/Media"
                           "--verbose" ];
       timerConfig = {
