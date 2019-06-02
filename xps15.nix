@@ -52,6 +52,7 @@
 
   networking = {
     hostName = "xps15";
+    hostId = "1e9f9fca";
   };
 
   services.tlp = {

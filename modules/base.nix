@@ -29,7 +29,12 @@ in
   };
 
   boot = {
-    kernelPackages = pkgs.linuxPackagesFor pkgs.linux_5_0;
+    kernelPackages = pkgs.linuxPackagesFor pkgs.linux_5_1;
+    supportedFilesystems = [ "zfs" ];
+    zfs.enableUnstable = true;
+    extraModprobeConfig = ''
+      options usb-storage quirks=152d:0578:u
+    '';
   };
 
   hardware = {
