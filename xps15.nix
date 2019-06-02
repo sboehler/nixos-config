@@ -21,7 +21,8 @@
   hardware.nvidiaOptimus.disable = true;
 
   boot = {
-    kernelParams = [ "acpi_rev_override=1"];
+    kernelParams = [ "acpi_rev_override=1"
+                     "pcie_aspm=off" ];
 
     kernelModules = [ "kvm-intel" ];
 
