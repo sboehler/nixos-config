@@ -30,11 +30,11 @@ in
 
   boot = {
     kernelPackages = pkgs.linuxPackagesFor pkgs.linux_5_1;
-    kernelParams = [ "usb-storage.quirks=\"152d:0578:u\"" ];
+    kernelParams = [ "usb-storage.quirks=\"152d:0578:u,0dc4:0210:u\"" ];
     supportedFilesystems = [ "zfs" ];
     zfs.enableUnstable = true;
     extraModprobeConfig = ''
-      options usb-storage quirks=152d:0578:u
+      options usb-storage quirks=152d:0578:u,0dc4:0210:u
     '';
   };
 
