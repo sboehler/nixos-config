@@ -28,7 +28,7 @@
     };
   };
 
-  systemd.timers.restic-backups-repos-disk.unitConfig = {
+  systemd.services.restic-backups-repos-disk.unitConfig = {
     ConditionPathIsMountPoint="/mnt/backup";
   };
 }
