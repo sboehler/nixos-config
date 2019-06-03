@@ -33,12 +33,6 @@
     firewall.allowedUDPPorts = [ 137 138 ];
   };
 
-  services.btrfs = {
-    autoScrub = {
-      fileSystems = [ "/mnt/data" ];
-    };
-  };
-
   i18n.consoleFont = "latarcyrheb-sun32";
 
   programs = {
@@ -51,8 +45,6 @@
   };
 
   boot = {
-    # kernelParams = [ "ip=:::::enp0s25:dhcp::"];
-
     initrd = {
       availableKernelModules = [ "e1000e" "xhci_pci" "ehci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" ];
       luks.devices = [
