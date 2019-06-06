@@ -129,7 +129,10 @@
     };
 
   swapDevices =
-    [ { device = "/dev/disk/by-uuid/06019a74-dd06-4ef6-87a2-308016edacdf"; }
+    [ {
+      device = "/dev/disk/by-id/ata-Samsung_SSD_860_QVO_4TB_S4CXNF0M310137V-part2";
+      randomEncryption = true;
+    }
     ];
 
   nix.maxJobs = lib.mkDefault 2;
