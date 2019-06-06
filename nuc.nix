@@ -17,6 +17,7 @@
       ./modules/nuc-backup.nix
       ./modules/efi.nix
       ./modules/home-manager
+      ./modules/wireguard-server.nix
     ];
 
   networking = {
