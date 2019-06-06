@@ -1,5 +1,12 @@
 { pkgs, config, ... }:
-{
+let
+  manyLinuxFile =
+    pkgs.writeTextDir "_manylinux.py"
+      ''
+        print("in _manylinux.py")
+        manylinux1_compatible = True
+      '';
+in {
   nixpkgs.config = {
 
     packageOverrides = pkgs: rec {
@@ -13,37 +20,77 @@
     };
 
     gw = pkgs.callPackage ({ pkgs }:
+
        (pkgs.buildFHSUserEnv {
          name = "gw";
-         targetPkgs = Pkgs: (with pkgs;
+         targetPkgs = pkgs: (with pkgs;
          [
-           stdenv.cc.cc.lib
+           coreutils
+           dhall
+           dhall-json
+           docker
            docker_compose
            fontconfig # for phantomjs
            freetype # for phantomjs
-           openjdk12
-           coreutils
-           stdenv.cc
-           docker
-           nodejs
-           dhall
-           dhall-json
+           freetype.dev
+           gfortran
            git
+           libpng
+           libpng.dev
+           nodejs
+           openjdk12
+           pkg-config
+           python3
+           stdenv.cc
+           stdenv.cc.cc.lib
+           subversion
            zlib # for phantomjs
+
+           # python / scipy stack deps
+           python3
+           pipenv
+           which
+           gcc
+           binutils
+           freetype
+           freetype.dev
+           gfortran
+           pkgconfig
+           libpng
+           libpng.dev
+           zlib
+           suitesparse
+           blas
+           liblapack
+
+           # All the C libraries that a manylinux_1 wheel might depend on:
+           ncurses
+           xorg.libX11
+           xorg.libXext
+           xorg.libXrender
+           xorg.libICE
+           xorg.libSM
+           glib
+
            zsh
+
            ]);
          profile = ''
            export JAVA_HOME=${pkgs.openjdk12.home}
            export ORG_GRADLE_PROJECT_load=true
            export ORG_GRADLE_PROJECT_noUi=true
+
+           # enable python wheels
+           export PYTHONPATH=${manyLinuxFile.out}:/usr/lib/python3.7/site-packages
          '';
-         runScript = "zsh";
+         runScript = "$SHELL";
          })) {};
      };
   };
 
   environment.systemPackages = with pkgs; [
-    pkgs.openjdk12
+    gw
+    openjdk12
   ];
 
 }
