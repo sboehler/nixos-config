@@ -100,8 +100,7 @@
     imagemagick7
     ispell
     isync
-    jetbrains.datagrip
-    jetbrains.idea-community
+    jetbrains.idea-ultimate
     libreoffice
     libressl
     libxml2
