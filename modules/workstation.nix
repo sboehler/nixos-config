@@ -113,7 +113,6 @@
     nodePackages.node2nix
     pavucontrol
     pandoc
-    pinentry_gnome
     python3
     # qt5.full
     # libsForQt5.qtstyleplugins

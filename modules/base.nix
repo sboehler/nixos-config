@@ -68,7 +68,6 @@ in
     (pass.withExtensions (e: [e.pass-otp]))
     patchelf
     pciutils
-    pinentry
     powertop
     psmisc
     python

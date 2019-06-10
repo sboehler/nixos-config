@@ -18,7 +18,8 @@
       ./modules/home-manager
     ];
 
-  hardware.nvidiaOptimus.disable = true;
+  # hardware.nvidiaOptimus.enable = true;
+  time.hardwareClockInLocalTime = true;
 
   boot = {
     kernelParams = [ "acpi_rev_override=1"
@@ -38,8 +39,7 @@
       luks.devices = [
         {
           name = "root";
-          device = "/dev/nvme0n1p2";
-          preLVM = true;
+          device = "/dev/disk/by-uuid/5ab08dff-ce9b-4b1e-ad34-168f36fde4c8";
           allowDiscards = true;
         }
       ];
@@ -88,25 +88,21 @@
 
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/270eb045-3b47-4cc4-b8a2-07ec6eb5bada";
+    { device = "/dev/disk/by-uuid/fbed58ae-791d-4523-ab90-6a30c9471a15";
       fsType = "btrfs";
       options = [ "subvol=@nixos" ];
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/1AB0-19EF";
+    { device = "/dev/disk/by-uuid/9E4C-49CF";
       fsType = "vfat";
     };
 
   fileSystems."/home" =
-    { device = "/dev/disk/by-uuid/270eb045-3b47-4cc4-b8a2-07ec6eb5bada";
+    { device = "/dev/disk/by-uuid/fbed58ae-791d-4523-ab90-6a30c9471a15";
       fsType = "btrfs";
-      options = [ "subvol=@nixos-home" ];
+      options = [ "subvol=@home" ];
     };
-
-  swapDevices = [{
-    device = "/dev/disk/by-uuid/901a64b3-d8dc-4745-b3d7-cfca564b7c9c";
-  }];
 
   nix.maxJobs = lib.mkDefault 8;
 }
