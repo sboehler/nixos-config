@@ -134,6 +134,7 @@
     sbcl
     shared_mime_info
     spotify
+    stack
     termite
     tilix
     (texlive.combine {
