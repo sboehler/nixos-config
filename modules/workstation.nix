@@ -41,6 +41,10 @@
     };
   };
 
+  services.logind.extraConfig = ''
+    HandlePowerKey="suspend"
+  '';
+
   nix = {
     binaryCaches = [
       "https://cache.nixos.org/"
@@ -64,24 +68,29 @@
   documentation.dev.enable = true;
 
   programs.browserpass.enable = true;
+  hardware.brightnessctl.enable = true;
+
 
   environment.systemPackages = with pkgs; [
     adwaita-qt
     ansible
     beancount
+    brightnessctl
     chromium
+    compton
     darktable
     digikam
     dhall
     dhall-json
     direnv
     docker_compose
+    dunst
     emacs
     evince
-    # firefox
-    (if config.services.xserver.displayManager.gdm.wayland
-      then firefox-wayland
-      else firefox)
+    firefox
+    # (if config.services.xserver.displayManager.gdm.wayland
+    #   then firefox-wayland
+    #   else firefox)
     fdupes
     git-review
     gradle
@@ -113,6 +122,7 @@
     nodePackages.node2nix
     pavucontrol
     pandoc
+    pinentry_emacs
     python3
     # qt5.full
     # libsForQt5.qtstyleplugins
@@ -138,6 +148,7 @@
     xiccd
     w3m
     yarn
+    xss-lock
     zip
   ]
   ++ (with pkgs.gnomeExtensions; [
@@ -167,8 +178,41 @@
 
   services.xserver = {
     enable = true;
-    displayManager.gdm.enable = true;
     desktopManager.gnome3.enable = true;
+    desktopManager.xterm.enable = false;
+
+    layout = "us(altgr-intl)";
+    xkbModel = "pc104";
+    xkbOptions = "ctrl:swapcaps,compose:ralt,terminate:ctrl_alt_bksp";
+    libinput = {
+      enable = true;
+      naturalScrolling = true;
+    };
+    displayManager = {
+      gdm.enable = true;
+      sessionCommands = ''
+        xset s 600 0
+        xset r rate 440 50
+      '';
+    };
+    windowManager.i3 = {
+      extraSessionCommands = ''
+        export GDK_SCALE=2
+        export GDK_DPI_SCALE=0.5
+        systemctl --user import-environment DISPLAY
+        systemctl --user restart emacs.service &
+        ${pkgs.xorg.xrandr}/bin/xrandr --dpi 200 --output eDP-1
+      '';
+      enable = true;
+      package = pkgs.i3;
+      extraPackages = with pkgs; [
+        dmenu
+        rofi
+        networkmanagerapplet
+        blueman
+        i3status
+        i3lock ];
+    };
   };
 
   services.emacs = {
