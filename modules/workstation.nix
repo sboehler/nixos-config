@@ -44,6 +44,10 @@
   services.logind.extraConfig = ''
     HandlePowerKey="suspend"
   '';
+  services.geoclue2.enable = true;
+  services.localtime.enable = true;
+  services.redshift.enable = true;
+  services.redshift.provider = "geoclue2";
 
   nix = {
     binaryCaches = [
