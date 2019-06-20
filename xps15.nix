@@ -51,6 +51,16 @@
     '';
   };
 
+  services.xserver.displayManager.sessionCommands = ''
+      ${pkgs.xorg.xrandr}/bin/xrandr --dpi 192
+  '';
+
+  environment.variables = {
+    GDK_SCALE = "2";
+    GDK_DPI_SCALE = "0.5";
+  };
+
+
   networking = {
     hostName = "xps15";
     hostId = "1e9f9fca";

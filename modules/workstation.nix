@@ -71,6 +71,8 @@
   programs.browserpass.enable = true;
   hardware.brightnessctl.enable = true;
 
+  programs.ssh.startAgent = true;
+  programs.gnupg.agent.enable = true;
 
   environment.systemPackages = with pkgs; [
     adwaita-qt
@@ -89,20 +91,18 @@
     emacs
     evince
     firefox
-    # (if config.services.xserver.displayManager.gdm.wayland
-    #   then firefox-wayland
-    #   else firefox)
     fdupes
     git-review
     gradle
     gthumb
     # gnome-podcasts
     gnome3.polari
+    gnome3.nautilus
+    gnome3.geary
     gst-plugins-bad
     gst-plugins-base
     gst-plugins-good
     gst-plugins-ugly
-    gnome3.geary
     gnumake
     hplip
     html2text
@@ -124,6 +124,7 @@
     pavucontrol
     pandoc
     pinentry_emacs
+    playerctl
     python3
     # qt5.full
     # libsForQt5.qtstyleplugins
@@ -174,13 +175,24 @@
 
   hardware.pulseaudio.enable = true;
 
+  services.actkbd = {
+      enable = true;
+      bindings = [
+        { keys = [ 224 ]; events = [ "key" ]; command = "${pkgs.brightnessctl}/bin/brightnessctl set 5%-"; }
+        { keys = [ 225 ]; events = [ "key" ]; command = "${pkgs.brightnessctl}/bin/brightnessctl set +5%"; }
+      ];
+    };
+
+
   services.udisks2.enable = true;
+  services.gnome3.gvfs.enable = true;
+  services.gnome3.gnome-disks.enable = true;
 
   powerManagement.enable = true;
 
   services.xserver = {
     enable = true;
-    desktopManager.gnome3.enable = true;
+    # desktopManager.gnome3.enable = true;
     desktopManager.xterm.enable = false;
 
     layout = "us(altgr-intl)";
@@ -191,19 +203,16 @@
       naturalScrolling = true;
     };
     displayManager = {
-      gdm.enable = true;
+      # gdm.enable = true;
       sessionCommands = ''
         xset s 600 0
         xset r rate 440 50
+        systemctl --user import-environment DISPLAY SSH_AUTH_SOCK
       '';
     };
     windowManager.i3 = {
       extraSessionCommands = ''
-        export GDK_SCALE=2
-        export GDK_DPI_SCALE=0.5
-        systemctl --user import-environment DISPLAY
         systemctl --user restart emacs.service &
-        ${pkgs.xorg.xrandr}/bin/xrandr --dpi 200 --output eDP-1
       '';
       enable = true;
       package = pkgs.i3;
@@ -223,8 +232,6 @@
     defaultEditor = true;
   };
 
-  systemd.user.services.emacs.environment.SSH_AUTH_SOCK = "%t/keyring/ssh";
-
   services.tor = {
     enable = true;
     client = {
@@ -239,6 +246,7 @@
   '';
 
   fonts = {
+    fontconfig.ultimate.enable = true;
     enableDefaultFonts = true;
     fonts = with pkgs; [
       corefonts
