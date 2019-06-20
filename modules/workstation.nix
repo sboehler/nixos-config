@@ -139,7 +139,6 @@
     spotify
     stack
     termite
-    tilix
     (texlive.combine {
       inherit (texlive) scheme-medium moderncv cmbright wrapfig capt-of;
     })
