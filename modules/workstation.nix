@@ -124,7 +124,7 @@
     nodePackages.node2nix
     pavucontrol
     pandoc
-    pinentry_emacs
+    pinentry
     playerctl
     python3
     # qt5.full
