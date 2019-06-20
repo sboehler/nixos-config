@@ -99,6 +99,7 @@
     gnome3.polari
     gnome3.nautilus
     gnome3.geary
+    gnome3.gnome-terminal
     gst-plugins-bad
     gst-plugins-base
     gst-plugins-good
