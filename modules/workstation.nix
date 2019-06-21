@@ -97,6 +97,8 @@
     gthumb
     # gnome-podcasts
     gnome3.polari
+    gnome3.adwaita-icon-theme
+    hicolor-icon-theme
     gnome3.nautilus
     gnome3.geary
     gnome3.gnome-terminal

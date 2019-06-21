@@ -56,6 +56,21 @@
 
   i18n.consoleFont = "latarcyrheb-sun32";
 
+  services.xserver = {
+    dpi = 192;
+    displayManager.sessionCommands = ''
+      xrdb -merge "${pkgs.writeText "xrdb.conf" ''
+        Xcursor.theme: Adwaita
+        Xcursor.size: 64
+      ''}"
+    '';
+  };
+
+  environment.variables = {
+    GDK_SCALE = "2";
+    GDK_DPI_SCALE = "0.5";
+  };
+
   fileSystems = {
     "/" = {
       device = "/dev/disk/by-uuid/a6bd768c-b7aa-4101-9c05-9506979ff5f9";
