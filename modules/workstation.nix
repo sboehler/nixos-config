@@ -77,6 +77,7 @@
   environment.systemPackages = with pkgs; [
     adwaita-qt
     ansible
+    arandr
     beancount
     brightnessctl
     chromium
@@ -232,9 +233,12 @@
         networkmanagerapplet
         blueman
         i3status
+        i3status-rust
         i3lock ];
     };
   };
+
+  hardware.bluetooth.enable = true;
 
   services.emacs = {
     install = true;
@@ -260,10 +264,13 @@
     enableDefaultFonts = true;
     fonts = with pkgs; [
       corefonts
+      emojione
       dejavu_fonts
       source-code-pro
       google-fonts
+      font-awesome
       liberation_ttf
+      nerdfonts
       carlito
       inconsolata
     ];

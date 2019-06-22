@@ -32,7 +32,7 @@ in
     kernelPackages = pkgs.linuxPackagesFor pkgs.linux_5_1;
     kernelParams = [ "usb-storage.quirks=152d:0578:u,0dc4:0210:u" ];
     extraModprobeConfig = ''
-      options usb-storage quirks="152d:0578:u,0dc4:0210:u"
+      options usb-storage quirks=152d:0578:u,0dc4:0210:u
     '';
   };
 

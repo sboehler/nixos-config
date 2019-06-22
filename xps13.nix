@@ -18,6 +18,11 @@
 
 
   boot = {
+    kernelParams = [ "i915.enable_fbc=1"
+                     "i915.enable_rc6=1"
+                   ];
+
+
     kernelModules = [ "kvm-intel" ];
 
     initrd = {
@@ -40,7 +45,6 @@
       ];
     };
     extraModprobeConfig = ''
-      options i915 enable_fbc=1 enable_rc6=1 modeset=1
       options iwlwifi power_save=Y
       options iwldvm force_cam=N
     '';
@@ -61,7 +65,7 @@
     displayManager.sessionCommands = ''
       xrdb -merge "${pkgs.writeText "xrdb.conf" ''
         Xcursor.theme: Adwaita
-        Xcursor.size: 64
+        Xcursor.size: 48
       ''}"
     '';
   };
