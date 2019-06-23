@@ -270,7 +270,7 @@
       google-fonts
       font-awesome
       liberation_ttf
-      nerdfonts
+      # nerdfonts
       carlito
       inconsolata
     ];
