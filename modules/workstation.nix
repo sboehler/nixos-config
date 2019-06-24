@@ -260,7 +260,7 @@
   '';
 
   fonts = {
-    fontconfig.ultimate.enable = true;
+    # fontconfig.ultimate.enable = true;
     enableDefaultFonts = true;
     fonts = with pkgs; [
       corefonts
