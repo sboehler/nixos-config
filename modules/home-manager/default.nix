@@ -35,8 +35,46 @@
       };
     };
 
-    home.packages = [
-    ];
+    home.sessionVariables = {
+      EDITOR = "${pkgs.emacs}/bin/emacsclient -c";
+      TERMINAL = "${pkgs.alacritty}/bin/alacritty";
+    };
+
+    programs.alacritty = {
+      enable = true;
+      settings = {
+        colors = {
+          primary = {
+            background = "0xffffff";
+            foreground = "0x111111";
+          };
+
+          # Normal colors
+          normal = {
+            black=   "0x2e2e2e";
+            red=     "0xeb4129";
+            green=   "0xabe047";
+            yellow=  "0xf6c744";
+            blue=    "0x47a0f3";
+            magenta= "0x7b5cb0";
+            cyan=    "0x64dbed";
+            white=   "0xe5e9f0";
+          };
+
+          # Bright colors
+          bright = {
+            black = "0x565656";
+            red = "0xec5357";
+            green =   "0xc0e17d";
+            yellow =  "0xf9da6a";
+            blue =    "0x49a4f8";
+            magenta = "0xa47de9";
+            cyan =    "0x99faf2";
+            white =   "0xffffff";
+          };
+        };
+      };
+    };
 
     programs.zsh = {
       enable = true;
@@ -52,7 +90,11 @@
           "history-substring-search"
         ];
       };
+      shellAliases = {
+        e = "emacsclient -c";
+      };
       initExtra = ''
+        export TERMINAL=${pkgs.alacritty}/bin/alacritty
         export PATH=$HOME/.local/bin:$PATH
         export PASSWORD_STORE_X_SELECTION=primary
         # export GPG_TTY=$(tty)

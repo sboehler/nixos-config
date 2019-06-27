@@ -76,6 +76,7 @@
 
   environment.systemPackages = with pkgs; [
     adwaita-qt
+    alacritty
     ansible
     arandr
     beancount
@@ -102,7 +103,8 @@
     hicolor-icon-theme
     gnome3.nautilus
     gnome3.geary
-    gnome3.gnome-terminal
+    gnome3.gnome-screenshot
+    # gnome3.gnome-terminal
     gst-plugins-bad
     gst-plugins-base
     gst-plugins-good
@@ -141,7 +143,6 @@
     shared_mime_info
     spotify
     stack
-    termite
     (texlive.combine {
       inherit (texlive) scheme-medium moderncv cmbright wrapfig capt-of;
     })
@@ -157,13 +158,6 @@
     xss-lock
     zip
   ]
-  ++ (with pkgs.gnomeExtensions; [
-    # system-monitor
-    caffeine
-    # no-title-bar
-    dash-to-panel
-  ])
-
     ++ (with pkgs.haskellPackages; [
       beans
       cabal-install

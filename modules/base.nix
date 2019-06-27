@@ -102,6 +102,8 @@ in
 
   virtualisation.docker.enable = true;
 
+  services.localtime.enable = true;
+
   services.btrfs = {
     autoScrub = {
       enable = true;
