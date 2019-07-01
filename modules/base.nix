@@ -94,12 +94,6 @@ in
     gitFull
   ]);
 
-  programs = {
-    zsh = {
-      enable = true;
-    };
-  };
-
   virtualisation.docker.enable = true;
 
   services.localtime.enable = true;
