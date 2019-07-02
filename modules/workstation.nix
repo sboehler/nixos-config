@@ -150,6 +150,7 @@
     exiftool
     tabula
     # tor-browser-bundle-bin
+    udiskie
     vanilla-dmz
     vlc
     xiccd
