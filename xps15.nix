@@ -18,9 +18,6 @@
       ./modules/home-manager
     ];
 
-  # hardware.nvidiaOptimus.enable = true;
-  time.hardwareClockInLocalTime = true;
-
   boot = {
     kernelParams = [ "acpi_rev_override=1"
                      "pcie_aspm=off" ];
