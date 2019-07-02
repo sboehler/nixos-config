@@ -2,6 +2,7 @@
 : {
   imports = [
     <home-manager/nixos>
+    ./i3status-rust.nix
   ];
 
   home-manager.users.silvio = {
@@ -81,6 +82,79 @@
       };
     };
 
+    services.screen-locker = {
+      enable = true;
+      lockCmd = "${pkgs.i3lock}/bin/i3lock -n -c 000000";
+      xssLockExtraOptions = ["-l"];
+    };
+
+    services.compton = {
+      enable = true;
+      fade = true;
+      fadeSteps = ["0.08" "0.08"];
+    };
+
+    services.network-manager-applet.enable = true;
+    services.blueman-applet.enable = true;
+    services.dunst = {
+      enable = true;
+      iconTheme = {
+        package = pkgs.gnome3.adwaita-icon-theme;
+        name = "Adwaita";
+      };
+      settings = {
+        global = {
+          geometry = "500x5-40+40";
+          font = "DejaVu Sans 8";
+          markup = "full";
+          format = "<b>%s</b>\n%b";
+          icon_position = "left";
+          transparency = 25;
+          background = "#222222";
+          foreground = "#888888";
+          timeout = 3;
+          padding = 16;
+          frame_width = 0;
+          frame_color = "#aaaaaa";
+          word_wrap = true;
+          stack_duplicates = true;
+          show_indicators = false;
+        };
+        shortcuts = {
+          close = "ctrl+space";
+          close_all = "ctrl+shift+space";
+          history = "ctrl+grave";
+          context = "ctrl+shift+period";
+        };
+        urgency_low = {
+          background = "#222222";
+          foreground = "#888888";
+          timeout = 5;
+        };
+        urgency_normal = {
+          background = "#285577";
+          foreground = "#ffffff";
+          timeout = 5;
+        };
+        urgency_critical = {
+          background = "#900000";
+          foreground = "#ffffff";
+          frame_color = "#ff0000";
+        };
+      };
+    };
+
+    services.udiskie = {
+      enable = true;
+      automount = true;
+      tray = "always";
+    };
+
+    services.emacs.enable = true;
+
+    programs.emacs = {
+      enable = true;
+    };
 
     xsession = {
       enable = true;
@@ -117,12 +191,35 @@
           "${modifier}+Shift+minus" = "move scratchpad";
           "${modifier}+minus" = "scratchpad show";
 
-          "${modifier}+Shift+Control+l" = "loginctl lock-session";
+          "${modifier}+Shift+Control+l" = "exec loginctl lock-session";
+          "${modifier}+Shift+e" = "exit";
 
-"${modifier}+p" = ''exec "${pkgs.gopass}/bin/gopass ls --flat | ${pkgs.rofi}/bin/rofi -dmenu -p \\"Select password\\" | ${pkgs.findutils}/bin/xargs --no-run-if-empty gopass show -c"'';
-"${modifier}+o" = ''exec "${pkgs.gopass}/bin/gopass ls --flat | ${pkgs.rofi}/bin/rofi -dmenu -p \\"Select OTP\\" | ${pkgs.findutils}/bin/xargs --no-run-if-empty gopass otp -c"'';
 
+          "${modifier}+p" = "exec ${pkgs.gopass}/bin/gopass ls --flat | ${pkgs.rofi}/bin/rofi -dmenu -p 'Select password' | ${pkgs.findutils}/bin/xargs --no-run-if-empty gopass show -c";
+          "${modifier}+o" = "exec ${pkgs.gopass}/bin/gopass ls --flat | ${pkgs.rofi}/bin/rofi -dmenu -p 'Select OTP' | ${pkgs.findutils}/bin/xargs --no-run-if-empty gopass otp -c";
+
+          "XF86AudioRaiseVolume" = "exec --no-startup-id ${pkgs.pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ +1.5% && killall -SIGUSR1 i3status";
+          "XF86AudioLowerVolume" = "exec --no-startup-id ${pkgs.pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ -1.5% && killall -SIGUSR1 i3status";
+          "XF86AudioMute" = "exec --no-startup-id ${pkgs.pulseaudio}/bin/pactl set-sink-mute @DEFAULT_SINK@ toggle";
+
+          "XF86AudioPlay" = "exec ${pkgs.playerctl}/bin/playerctl play-pause";
+          "XF86AudioPause" = "exec ${pkgs.playerctl}/bin/playerctl pause";
+          "XF86AudioNext" = "exec ${pkgs.playerctl}/bin/playerctl next";
+          "XF86AudioPrev" = "exec ${pkgs.playerctl}/bin/playerctl previous";
+          "${modifier}+Print" = "exec ${pkgs.gnome3.gnome-screenshot}/bin/gnome-screenshot -i";
         };
+
+        modes = lib.mkOptionDefault {
+          resize = {
+            "j" = "resize shrink width 10 px or 10 ppt";
+            "k" = "resize grow height 10 px or 10 ppt";
+            "l" = "resize shrink height 10 px or 10 ppt";
+            "semicolon" = "resize grow width 10 px or 10 ppt";
+            "${modifier}+r" = "mode default";
+          };
+        };
+
+
         bars = [
           {
             statusCommand = "${pkgs.i3status-rust}/bin/i3status-rs ~/.config/i3/status.toml";

@@ -237,11 +237,7 @@
 
   hardware.bluetooth.enable = true;
 
-  # services.emacs = {
-  #   install = true;
-  #   enable = true;
-  #   defaultEditor = true;
-  # };
+  services.emacs.install = true;
 
   services.tor = {
     enable = true;
