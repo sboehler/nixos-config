@@ -88,6 +88,8 @@
       };
     };
 
+    services.xsuspender.enable = true;
+    services.pasystray.enable = true;
     services.redshift = {
       enable = true;
       provider = "geoclue2";
