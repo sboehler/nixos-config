@@ -1,10 +1,11 @@
-{ pkgs, config, ...}
+{ pkgs, config, lib, ...}
 : {
   imports = [
     <home-manager/nixos>
   ];
 
   home-manager.users.silvio = {
+
     programs.git = {
       enable = true;
       userName  = "Silvio Böhler";
@@ -78,6 +79,85 @@
           };
         };
       };
+    };
+
+
+    xsession = {
+      enable = true;
+      windowManager.i3.enable = true;
+      windowManager.i3.config = rec {
+        modifier = "Mod4";
+        keybindings = lib.mkOptionDefault {
+          "${modifier}+d" = ''exec --no-startup-id "${pkgs.rofi}/bin/rofi -combi-modi window,drun -show combi -modi combi,run"'';
+          "XF86Search" = ''exec --no-startup-id "${pkgs.rofi}/bin/rofi -combi-modi window,drun -show combi -modi combi,run"'';
+
+          "${modifier}+j" = "focus left";
+          "${modifier}+k" = "focus down";
+          "${modifier}+l" = "focus up";
+          "${modifier}+semicolon" = "focus right";
+
+          "${modifier}+Left" = "move workspace to output left";
+          "${modifier}+Down" = "move workspace to output down";
+          "${modifier}+Up" = "move workspace to output up";
+          "${modifier}+Right" = "move workspace to output right";
+
+          "${modifier}+Shift+j" = "move left 40px";
+          "${modifier}+Shift+k" = "move down 40px";
+          "${modifier}+Shift+l" = "move up 40px";
+          "${modifier}+Shift+semicolon" = "move right 40px";
+
+          "${modifier}+Shift+Left" = "move container to output left";
+          "${modifier}+Shift+Down" = "move container to output down";
+          "${modifier}+Shift+Up" = "move container to output up";
+          "${modifier}+Shift+Right" = "move container to output right";
+
+          "${modifier}+a" = "focus parent";
+          "${modifier}+q" = "focus child";
+
+          "${modifier}+Shift+minus" = "move scratchpad";
+          "${modifier}+minus" = "scratchpad show";
+
+          "${modifier}+Shift+Control+l" = "loginctl lock-session";
+
+"${modifier}+p" = ''exec "${pkgs.gopass}/bin/gopass ls --flat | ${pkgs.rofi}/bin/rofi -dmenu -p \\"Select password\\" | ${pkgs.findutils}/bin/xargs --no-run-if-empty gopass show -c"'';
+"${modifier}+o" = ''exec "${pkgs.gopass}/bin/gopass ls --flat | ${pkgs.rofi}/bin/rofi -dmenu -p \\"Select OTP\\" | ${pkgs.findutils}/bin/xargs --no-run-if-empty gopass otp -c"'';
+
+        };
+        bars = [
+          {
+            statusCommand = "${pkgs.i3status-rust}/bin/i3status-rs ~/.config/i3/status.toml";
+            fonts = ["DejaVu Sans Mono" "FontAwesome5Free 10"];
+            colors = {
+              separator = "#666666";
+              background = "#222222";
+              statusline = "#dddddd";
+              focusedWorkspace = {
+                border = "#0088CC";
+                background = "#0088CC";
+                text = "#ffffff";
+              };
+              activeWorkspace = {
+                border = "#333333";
+                background = "#333333";
+                text = "#ffffff";
+              };
+              inactiveWorkspace = {
+                border = "#333333";
+                background = "#333333";
+                text = "#888888";
+              };
+              urgentWorkspace = {
+                border = "#2f343a";
+                background = "#900000";
+                text = "#ffffff";
+              };
+            };
+          }
+        ];
+      };
+      windowManager.i3.extraConfig = ''
+          focus_wrapping no
+        '';
     };
 
     programs.zsh = {
