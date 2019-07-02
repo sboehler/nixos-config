@@ -12,7 +12,6 @@ let
     block = "music"
     buttons = ["play", "next"]
 
-
     [[block]]
     block = "memory"
     display_type = "memory"
@@ -52,7 +51,7 @@ in
   {
     home-manager.users.silvio = {
       home.packages = [pkgs.i3status-rust];
-      xdg.configFile."i3/i3status.toml" = {
+      xdg.configFile."i3/status.toml" = {
         source = configFile;
       };
     };
