@@ -205,6 +205,8 @@
 
   services.emacs.install = true;
 
+  services.dbus.packages = [ pkgs.gnome3.dconf ];
+
   services.tor = {
     enable = true;
     client = {

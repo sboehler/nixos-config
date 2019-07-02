@@ -7,6 +7,22 @@
 
   home-manager.users.silvio = {
 
+    gtk = {
+      enable = true;
+      theme = {
+        package = pkgs.gnome3.gnome-themes-standard;
+        name = "Adwaita";
+      };
+      font = {
+        package = pkgs.dejavu_fonts;
+        name = "DejaVu Sans 10";
+      };
+      iconTheme = {
+        package = pkgs.gnome3.adwaita-icon-theme;
+        name = "Adwaita";
+      };
+    };
+
     home.keyboard = {
       layout = "us(altgr-intl)";
       model = "pc104";
