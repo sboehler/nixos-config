@@ -7,6 +7,12 @@
 
   home-manager.users.silvio = {
 
+    home.keyboard = {
+      layout = "us(altgr-intl)";
+      model = "pc104";
+      options = ["ctrl:swapcaps" "compose:ralt" "terminate:ctrl_alt_bksp"];
+    };
+
     programs.git = {
       enable = true;
       userName  = "Silvio Böhler";
@@ -80,6 +86,12 @@
           };
         };
       };
+    };
+
+    services.redshift = {
+      enable = true;
+      provider = "geoclue2";
+      tray = true;
     };
 
     services.screen-locker = {

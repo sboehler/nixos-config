@@ -43,8 +43,6 @@
 
   services.geoclue2.enable = true;
   services.localtime.enable = true;
-  services.redshift.enable = true;
-  services.redshift.provider = "geoclue2";
 
   nix = {
     binaryCaches = [
@@ -197,42 +195,10 @@
 
   services.xserver = {
     enable = true;
-    # # desktopManager.gnome3.enable = true;
-    # desktopManager.xterm.enable = false;
-
-    layout = "us(altgr-intl)";
-    xkbModel = "pc104";
-    xkbOptions = "ctrl:swapcaps,compose:ralt,terminate:ctrl_alt_bksp";
-    # layout = "us(altgr-intl)";
-    # xkbModel = "pc104";
-    # xkbOptions = "ctrl:swapcaps,compose:ralt,terminate:ctrl_alt_bksp";
     libinput = {
       enable = true;
       naturalScrolling = true;
     };
-    # displayManager = {
-    #   # gdm.enable = true;
-    #   sessionCommands = ''
-    #     xset s 600 0
-    #     xset r rate 440 50
-    #     systemctl --user import-environment DISPLAY SSH_AUTH_SOCK
-    #   '';
-    # };
-    # windowManager.i3 = {
-    #   extraSessionCommands = ''
-    #     systemctl --user restart emacs.service &
-    #   '';
-    #   enable = true;
-    #   package = pkgs.i3;
-    #   extraPackages = with pkgs; [
-    #     dmenu
-    #     rofi
-    #     networkmanagerapplet
-    #     blueman
-    #     i3status
-    #     i3status-rust
-    #     i3lock ];
-    # };
   };
 
   hardware.bluetooth.enable = true;
@@ -253,7 +219,6 @@
   '';
 
   fonts = {
-    # fontconfig.ultimate.enable = true;
     enableDefaultFonts = true;
     fonts = with pkgs; [
       corefonts
