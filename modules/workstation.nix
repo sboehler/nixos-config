@@ -5,8 +5,6 @@
     packageOverrides = pkgs: rec {
       yarn = pkgs.yarn.override { nodejs = pkgs.nodejs-10_x; };
 
-      rofi-launcher = pkgs.callPackage ./rofi {};
-
       haskell = pkgs.haskell // {
         packages = pkgs.haskell.packages // {
           ghc865 = pkgs.haskell.packages.ghc865.override {
@@ -18,6 +16,7 @@
           };
         };
       };
+
       haskellPackages = haskell.packages.ghc865;
 
       html2text = pkgs.html2text.overrideAttrs (oldAttrs: rec {
@@ -70,7 +69,6 @@
   hardware.brightnessctl.enable = true;
 
   programs.ssh.startAgent = true;
-  programs.gnupg.agent.enable = true;
 
   environment.systemPackages = with pkgs; [
     adwaita-qt
@@ -134,8 +132,6 @@
     # libsForQt5.qtstyleplugins
     # libsForQt5.libkipi
     racket
-    rofi
-    rofi-launcher
     rubber
     sbcl
     shared_mime_info
@@ -198,6 +194,7 @@
     libinput = {
       enable = true;
       naturalScrolling = true;
+      clickMethod = "clickfinger";
     };
   };
 

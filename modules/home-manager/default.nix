@@ -182,9 +182,7 @@
 
     services.emacs.enable = true;
 
-    programs.emacs = {
-      enable = true;
-    };
+    programs.emacs.enable = true;
 
     xsession = {
       enable = true;
@@ -287,13 +285,16 @@
         '';
     };
 
+    services.gpg-agent = {
+      enable = true;
+    };
+
     programs.zsh = {
       enable = true;
       enableCompletion = true;
       oh-my-zsh = {
         enable = true;
-        custom = "${./zsh-custom}";
-        theme = "silvio";
+        theme = "avit";
         plugins = [
           "git"
           "rsync"
@@ -308,7 +309,6 @@
         export TERMINAL=${pkgs.alacritty}/bin/alacritty
         export PATH=$HOME/.local/bin:$PATH
         export PASSWORD_STORE_X_SELECTION=primary
-        # export GPG_TTY=$(tty)
         HYPHEN_INSENSITIVE="true"
 
         bindkey -M emacs '^P' history-substring-search-up

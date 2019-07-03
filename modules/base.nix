@@ -149,13 +149,6 @@ in
   };
 
   security = {
-  #   pam = {
-      # services.gdm.enableGnomeKeyring = true;
-      # services.passwd = {
-      #   enableGnomeKeyring = true;
-      # };
-    # };
-
     sudo = {
       enable = true;
       wheelNeedsPassword = false;
