@@ -1,12 +1,5 @@
 { config, pkgs, ... }:
-let
-  # stable = import (pkgs.fetchFromGitHub {
-  #   owner = "NixOS";
-  #   repo = "nixpkgs-channels";
-  #   rev = "9d608a6f592144b5ec0b486c90abb135a4b265eb";
-  #   sha256 = "03brvnpqxiihif73agsjlwvy5dq0jkfi2jh4grp4rv5cdkal449k";
-  # }) {};
-in
+
 {
   nixpkgs = {
     config = {
