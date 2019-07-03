@@ -3,7 +3,7 @@
 {
   imports =
     [
-       <nixpkgs/nixos/modules/installer/scan/not-detected.nix>
+      <nixpkgs/nixos/modules/installer/scan/not-detected.nix>
       ./modules/base.nix
       ./modules/efi.nix
       ./modules/firewall.nix
@@ -13,7 +13,7 @@
       ./modules/syncthing.nix
       ./modules/workstation.nix
       ./modules/home-manager
-     ];
+    ];
 
   nixpkgs.config = {
     packageOverrides = pkgs: rec {
@@ -75,9 +75,9 @@
   };
 
   environment.systemPackages = with pkgs; [
-  (bluez.overrideAttrs (attrs: {
-    name = "bluez-compat";
-    configureFlags = [ "--enable-deprecated" ] ++ attrs.configureFlags;
+    (bluez.overrideAttrs (attrs: {
+      name = "bluez-compat";
+      configureFlags = [ "--enable-deprecated" ] ++ attrs.configureFlags;
     }))
 
   ];
@@ -112,7 +112,7 @@
     };
   };
 
-  swapDevices =
-    [ { device = "/dev/disk/by-uuid/961cdeb1-dd60-457c-b587-5310c8a10118"; }
-    ];
+  swapDevices = [
+    { device = "/dev/disk/by-uuid/961cdeb1-dd60-457c-b587-5310c8a10118"; }
+  ];
 }

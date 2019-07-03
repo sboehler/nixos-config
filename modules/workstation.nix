@@ -5,8 +5,6 @@
     packageOverrides = pkgs: rec {
       yarn = pkgs.yarn.override { nodejs = pkgs.nodejs-10_x; };
 
-      rofi-launcher = pkgs.callPackage ./rofi {};
-
       haskell = pkgs.haskell // {
         packages = pkgs.haskell.packages // {
           ghc865 = pkgs.haskell.packages.ghc865.override {
@@ -18,9 +16,10 @@
           };
         };
       };
+
       haskellPackages = haskell.packages.ghc865;
 
-      html2text = pkgs.html2text.overrideAttrs (oldAttrs: rec {
+      html2text = pkgs.html2text.overrideAttrs (_: rec {
         patches = [
           ./html2text/100-fix-makefile.patch
           ./html2text/200-close-files-inside-main-loop.patch
@@ -43,8 +42,6 @@
 
   services.geoclue2.enable = true;
   services.localtime.enable = true;
-  services.redshift.enable = true;
-  services.redshift.provider = "geoclue2";
 
   nix = {
     binaryCaches = [
@@ -72,7 +69,6 @@
   hardware.brightnessctl.enable = true;
 
   programs.ssh.startAgent = true;
-  programs.gnupg.agent.enable = true;
 
   environment.systemPackages = with pkgs; [
     adwaita-qt
@@ -137,8 +133,6 @@
     # libsForQt5.qtstyleplugins
     # libsForQt5.libkipi
     racket
-    rofi
-    rofi-launcher
     rubber
     sbcl
     shared_mime_info
@@ -160,35 +154,35 @@
     xss-lock
     zip
   ]
-    ++ (with pkgs.haskellPackages; [
-      beans
-      cabal-install
-      apply-refact
-      cabal2nix
-      # hasktags
-      hindent
-      # hlint
-      hpack
-      # stylish-haskell
-    ]);
+  ++ (with pkgs.haskellPackages; [
+    beans
+    cabal-install
+    apply-refact
+    cabal2nix
+    # hasktags
+    hindent
+    # hlint
+    hpack
+    # stylish-haskell
+  ]);
 
   hardware.pulseaudio.enable = true;
 
   services.actkbd = {
-      enable = true;
-      bindings = [
-        {
-          keys = [ 224 ];
-          events = [ "key" ];
-          command = "${pkgs.brightnessctl}/bin/brightnessctl set 5%- -n 1";
-        }
-        {
-          keys = [ 225 ];
-          events = [ "key" ];
-          command = "${pkgs.brightnessctl}/bin/brightnessctl set +5%";
-        }
-      ];
-    };
+    enable = true;
+    bindings = [
+      {
+        keys = [ 224 ];
+        events = [ "key" ];
+        command = "${pkgs.brightnessctl}/bin/brightnessctl set 5%- -n 1";
+      }
+      {
+        keys = [ 225 ];
+        events = [ "key" ];
+        command = "${pkgs.brightnessctl}/bin/brightnessctl set +5%";
+      }
+    ];
+  };
 
 
   services.udisks2.enable = true;
@@ -199,48 +193,21 @@
 
   services.xserver = {
     enable = true;
-    # desktopManager.gnome3.enable = true;
-    desktopManager.xterm.enable = false;
-
-    layout = "us(altgr-intl)";
-    xkbModel = "pc104";
-    xkbOptions = "ctrl:swapcaps,compose:ralt,terminate:ctrl_alt_bksp";
     libinput = {
       enable = true;
       naturalScrolling = true;
-    };
-    displayManager = {
-      # gdm.enable = true;
-      sessionCommands = ''
-        xset s 600 0
-        xset r rate 440 50
-        systemctl --user import-environment DISPLAY SSH_AUTH_SOCK
-      '';
-    };
-    windowManager.i3 = {
-      extraSessionCommands = ''
-        systemctl --user restart emacs.service &
-      '';
-      enable = true;
-      package = pkgs.i3;
-      extraPackages = with pkgs; [
-        dmenu
-        rofi
-        networkmanagerapplet
-        blueman
-        i3status
-        i3status-rust
-        i3lock ];
+      clickMethod = "clickfinger";
     };
   };
 
   hardware.bluetooth.enable = true;
 
-  services.emacs = {
-    install = true;
-    enable = true;
-    defaultEditor = true;
-  };
+  services.emacs.install = true;
+
+  services.dbus.packages = [
+    pkgs.gnome3.dconf
+    pkgs.blueman
+  ];
 
   services.tor = {
     enable = true;
@@ -256,7 +223,6 @@
   '';
 
   fonts = {
-    # fontconfig.ultimate.enable = true;
     enableDefaultFonts = true;
     fonts = with pkgs; [
       corefonts

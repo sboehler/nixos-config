@@ -73,8 +73,8 @@
         modprobe btusb
         echo "0000 0000" > /sys/bus/usb/drivers/btusb/new_id
       '';
-     in
-       ''
+    in
+      ''
        SUBSYSTEM=="usb", ATTRS{idVendor}=="0000", ATTRS{idProduct}=="0000", RUN+="${script}/bin/enable-bluetooth"
     '';
   };
@@ -107,13 +107,12 @@
         "sdhci_acpi"
         "rtsx_pci_sdmmc"
       ];
-      luks.devices = [
-        {
-          name = "root";
-          device = "/dev/mmcblk0p2";
-          preLVM = true;
-        }
-      ];
+      luks.devices = [{
+        name = "root";
+        device = "/dev/mmcblk0p2";
+        preLVM = true;
+      }
+                     ];
     };
     extraModprobeConfig = ''
       options i915 enable_fbc=1 enable_rc6=1 modeset=1
@@ -189,9 +188,9 @@
     options = [ "subvol=@home" ];
   };
 
-  swapDevices = [{
-    device = "/dev/disk/by-uuid/6c4af545-7c97-4c3e-8015-17d8103430fa";
-  }];
+  swapDevices = [
+    { device = "/dev/disk/by-uuid/6c4af545-7c97-4c3e-8015-17d8103430fa"; }
+  ];
 
   nix.maxJobs = lib.mkDefault 4;
 }
