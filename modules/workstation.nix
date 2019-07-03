@@ -205,7 +205,10 @@
 
   services.emacs.install = true;
 
-  services.dbus.packages = [ pkgs.gnome3.dconf ];
+  services.dbus.packages = [
+    pkgs.gnome3.dconf
+    pkgs.blueman
+  ];
 
   services.tor = {
     enable = true;
