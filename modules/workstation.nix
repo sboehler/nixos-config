@@ -19,7 +19,7 @@
 
       haskellPackages = haskell.packages.ghc865;
 
-      html2text = pkgs.html2text.overrideAttrs (oldAttrs: rec {
+      html2text = pkgs.html2text.overrideAttrs (_: rec {
         patches = [
           ./html2text/100-fix-makefile.patch
           ./html2text/200-close-files-inside-main-loop.patch
@@ -152,35 +152,35 @@
     xss-lock
     zip
   ]
-    ++ (with pkgs.haskellPackages; [
-      beans
-      cabal-install
-      apply-refact
-      cabal2nix
-      # hasktags
-      hindent
-      # hlint
-      hpack
-      # stylish-haskell
-    ]);
+  ++ (with pkgs.haskellPackages; [
+    beans
+    cabal-install
+    apply-refact
+    cabal2nix
+    # hasktags
+    hindent
+    # hlint
+    hpack
+    # stylish-haskell
+  ]);
 
   hardware.pulseaudio.enable = true;
 
   services.actkbd = {
-      enable = true;
-      bindings = [
-        {
-          keys = [ 224 ];
-          events = [ "key" ];
-          command = "${pkgs.brightnessctl}/bin/brightnessctl set 5%- -n 1";
-        }
-        {
-          keys = [ 225 ];
-          events = [ "key" ];
-          command = "${pkgs.brightnessctl}/bin/brightnessctl set +5%";
-        }
-      ];
-    };
+    enable = true;
+    bindings = [
+      {
+        keys = [ 224 ];
+        events = [ "key" ];
+        command = "${pkgs.brightnessctl}/bin/brightnessctl set 5%- -n 1";
+      }
+      {
+        keys = [ 225 ];
+        events = [ "key" ];
+        command = "${pkgs.brightnessctl}/bin/brightnessctl set +5%";
+      }
+    ];
+  };
 
 
   services.udisks2.enable = true;
