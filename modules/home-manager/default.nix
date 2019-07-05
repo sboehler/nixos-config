@@ -151,10 +151,10 @@
           show_indicators = false;
         };
         shortcuts = {
-          close = "ctrl+space";
-          close_all = "ctrl+shift+space";
-          history = "ctrl+grave";
-          context = "ctrl+shift+period";
+          close = "mod4+slash";
+          close_all = "mod4+shift+slash";
+          history = "mod4+grave";
+          # context = "ctrl+shift+period";
         };
         urgency_low = {
           background = "#222222";
