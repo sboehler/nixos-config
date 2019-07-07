@@ -126,7 +126,7 @@
     pavucontrol
     pandoc
     pinentry
-    postgresql
+    postgresql_11
     playerctl
     python3
     # qt5.full
