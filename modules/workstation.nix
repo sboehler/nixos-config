@@ -86,7 +86,6 @@
     dhall-json
     direnv
     docker_compose
-    dunst
     emacs
     evince
     firefox
