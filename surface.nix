@@ -36,10 +36,6 @@
   }];
   nix.distributedBuilds = true;
 
-  environment.variables = {
-    MOZ_USE_XINPUT2 = "1";
-  };
-
   hardware = {
     enableAllFirmware = true;
     firmware = [
@@ -72,6 +68,14 @@
       options iwldvm force_cam=N
       options ath10k_core skip_otp=yto
     '';
+  };
+
+  services.xserver.displayManager.sessionCommands = ''
+      ${pkgs.xorg.xrandr}/bin/xrandr --dpi 144
+  '';
+
+  environment.variables = {
+    MOZ_USE_XINPUT2 = "1";
   };
 
   environment.systemPackages = with pkgs; [
