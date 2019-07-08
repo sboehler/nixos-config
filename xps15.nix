@@ -12,7 +12,7 @@
       ./modules/mbsyncd.nix
       ./modules/networking.nix
       ./modules/syncthing.nix
-      ./modules/virtualbox.nix
+      # ./modules/virtualbox.nix
       ./modules/transmission.nix
       ./modules/workstation.nix
       ./modules/home-manager
@@ -76,8 +76,6 @@
   };
 
   i18n.consoleFont = "latarcyrheb-sun32";
-
-  virtualisation.virtualbox.host.enable = true;
 
   hardware.bumblebee = {
     enable = true;
