@@ -23,6 +23,8 @@ let
 
     [[block]]
     block = "battery"
+    driver = "upower"
+    device = "DisplayDevice"
     interval = 10
     format = "{percentage}% {time}"
 

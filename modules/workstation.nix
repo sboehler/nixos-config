@@ -42,6 +42,7 @@
 
   services.geoclue2.enable = true;
   services.localtime.enable = true;
+  services.upower.enable = true;
 
   nix = {
     binaryCaches = [
