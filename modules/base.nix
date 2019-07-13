@@ -94,7 +94,7 @@
 
   virtualisation.docker.enable = true;
 
-  services.localtime.enable = true;
+  time.timeZone = "Europe/Zurich";
 
   services.geoclue2.enable = true;
 
