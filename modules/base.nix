@@ -125,9 +125,9 @@
   };
 
   users = {
-    defaultUserShell = pkgs.zsh;
     extraUsers = {
       silvio = {
+        shell = pkgs.zsh;
         home = "/home/silvio";
         description = "Silvio Böhler";
         isNormalUser = true;
