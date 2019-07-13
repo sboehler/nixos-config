@@ -18,6 +18,9 @@
       ./modules/home-manager
     ];
 
+  battery = true;
+  backlight = true;
+
   boot = {
     kernelParams = [ "acpi_rev_override=1"
                      "pcie_aspm=off"
