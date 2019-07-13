@@ -155,7 +155,7 @@
     zip
   ]
   ++ (with pkgs.haskellPackages; [
-    beans
+    # beans
     cabal-install
     apply-refact
     cabal2nix
