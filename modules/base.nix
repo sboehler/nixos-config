@@ -1,6 +1,11 @@
 { config, pkgs, ... }:
 
 {
+  imports = [
+    <home-manager/nixos>
+    ./home-manager/base.nix
+  ];
+
   nixpkgs = {
     config = {
       allowUnfree = true;

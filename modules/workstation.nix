@@ -1,5 +1,10 @@
 { pkgs, config, ... }:
 {
+  imports = [
+    <home-manager/nixos>
+    ./home-manager/workstation.nix
+  ];
+
   nixpkgs.config = {
 
     packageOverrides = pkgs: rec {
