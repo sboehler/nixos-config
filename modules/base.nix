@@ -96,6 +96,8 @@
 
   services.localtime.enable = true;
 
+  services.geoclue2.enable = true;
+
   services.btrfs = {
     autoScrub = {
       enable = true;
