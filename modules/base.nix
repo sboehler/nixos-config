@@ -105,8 +105,8 @@
     };
   };
 
-  programs.gnupg.agent.enable = true;
-  programs.ssh.startAgent = true;
+  # programs.gnupg.agent.enable = true;
+  # programs.ssh.startAgent = true;
   services.fwupd.enable = true;
 
   services.openssh = {
@@ -132,7 +132,7 @@
   };
 
   users = {
-    extraUsers = {
+    users = {
       silvio = {
         shell = pkgs.zsh;
         home = "/home/silvio";
