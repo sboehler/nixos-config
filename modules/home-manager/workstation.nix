@@ -249,9 +249,8 @@
           focus_wrapping no
         '';
     };
+    programs.zsh.initExtra = ''
+      export TERMINAL=${pkgs.alacritty}/bin/alacritty
+    '';
   };
-
-  programs.zsh.initExtra = ''
-    export TERMINAL=${pkgs.alacritty}/bin/alacritty
-  '';
 }
