@@ -16,7 +16,6 @@
       ./modules/base.nix
       ./modules/nuc-backup.nix
       ./modules/efi.nix
-      ./modules/home-manager
       ./modules/wireguard-server.nix
     ];
 
@@ -101,6 +100,12 @@
         "guest ok" = "yes";
         "force user" = "silvio";
         "force group" = "users";
+      };
+      lightroom = {
+        path = "/mnt/data/lightroom";
+        browseable = "yes";
+        "valid users" = "silvio";
+        "read only" = "no";
       };
     };
   };

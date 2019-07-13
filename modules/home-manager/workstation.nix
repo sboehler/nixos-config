@@ -250,4 +250,8 @@
         '';
     };
   };
+
+  programs.zsh.initExtra = ''
+    export TERMINAL=${pkgs.alacritty}/bin/alacritty
+  '';
 }
