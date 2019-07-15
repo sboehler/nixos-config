@@ -3,7 +3,7 @@
 {
   imports =
     [
-       <nixpkgs/nixos/modules/installer/scan/not-detected.nix>
+      <nixpkgs/nixos/modules/installer/scan/not-detected.nix>
       ./modules/base.nix
       ./modules/efi.nix
       ./modules/firewall.nix
@@ -30,8 +30,8 @@
 
     initrd = {
       availableKernelModules = [
-        "intel_agp"
-        "i915"
+        # "intel_agp"
+        # "i915"
         "xhci_pci"
         "ahci"
         "nvme"
