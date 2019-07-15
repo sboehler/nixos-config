@@ -14,12 +14,11 @@
         then "silvio.boehler@truewealth.ch"
         else "sboehler@noreply.users.github.com");
       extraConfig = {
-        merge = {
-          conflictstyle = "diff3";
-        };
-        pull = {
-          rebase = true;
-        };
+        merge.conflictstyle = "diff3";
+        pull.rebase = true;
+        rebase.autosquash = true;
+        rebase.autostash = true;
+        color.ui = true;
       };
       aliases = {
         unstage = "reset HEAD --";
