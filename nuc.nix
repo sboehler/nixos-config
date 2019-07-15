@@ -133,6 +133,22 @@
       options = [ "subvol=@data" ];
     };
 
+  systemd.generator-packages = [ pkgs.systemd-cryptsetup-generator ];
+  environment.etc = {
+    "crypttab" = {
+      enable = true;
+      text = ''
+       backup UUID=b4c624a8-97f4-418b-a6df-43ca5922b40f /root/keyfile_backup noauto
+      '';
+    };
+  };
+
+  fileSystems."/mnt/backup" =
+    { device = "/dev/mapper/backup";
+      fsType = "btrfs";
+      options = ["nofail" "x-systemd.device-timeout=1ms"];
+    };
+
   swapDevices =
     [ {
       device = "/dev/disk/by-id/ata-Samsung_SSD_860_QVO_4TB_S4CXNF0M310137V-part2";

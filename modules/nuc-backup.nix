@@ -10,7 +10,7 @@
       extraOptions = ["b2.connections=25"];
       extraBackupArgs = [ "--verbose" ];
       timerConfig = {
-        OnCalendar = "hourly";
+        OnCalendar = "daily";
       };
     };
 
@@ -24,7 +24,7 @@
       extraBackupArgs = [ "--exclude=/mnt/data/repos/Media"
                           "--verbose" ];
       timerConfig = {
-        OnCalendar = "hourly";
+        OnCalendar = "*-*-* 03:00:00";
       };
     };
 
@@ -36,12 +36,14 @@
       extraBackupArgs = [ "--exclude=/mnt/data/repos/Media"
                           "--verbose" ];
       timerConfig = {
-        OnCalendar = "*-*-* 05:00:00";
+        OnCalendar = "*-*-* 05:00:00"; #
       };
     };
   };
 
   systemd.services.restic-backups-repos-disk.unitConfig = {
-    ConditionPathIsMountPoint="/mnt/backup";
+    # ConditionPathIsMountPoint="/mnt/backup";
+    After="mnt-backup.mount";
+    Requires="mnt-backup.mount";
   };
 }
