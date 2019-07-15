@@ -17,6 +17,9 @@
         merge = {
           conflictstyle = "diff3";
         };
+        pull = {
+          rebase = true;
+        };
       };
       aliases = {
         unstage = "reset HEAD --";
