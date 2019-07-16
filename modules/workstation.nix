@@ -1,4 +1,7 @@
 { pkgs, config, ... }:
+let
+  sources = import ../nix/sources.nix;
+in
 {
   imports = [
     <home-manager/nixos>
@@ -9,6 +12,9 @@
 
     packageOverrides = pkgs: rec {
       yarn = pkgs.yarn.override { nodejs = pkgs.nodejs-10_x; };
+
+      niv = (import sources.niv {}).niv;
+      lorri = (import sources.lorri {});
 
       haskell = pkgs.haskell // {
         packages = pkgs.haskell.packages // {
@@ -119,11 +125,14 @@
     libreoffice
     libressl
     libxml2
+    lorri
     macchanger
     manpages
     meld
     mu
     nix-index
+    # (import sources.niv {}).niv
+    niv
     nodejs-10_x
     nodePackages.node2nix
     pavucontrol

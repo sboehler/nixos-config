@@ -33,6 +33,10 @@
       TERMINAL = "${pkgs.alacritty}/bin/alacritty";
     };
 
+    programs.direnv = {
+      enable = true;
+    };
+
     programs.alacritty = {
       enable = true;
       settings = {
