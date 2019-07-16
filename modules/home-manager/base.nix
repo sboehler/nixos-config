@@ -77,7 +77,6 @@
         bindkey -M emacs '^P' history-substring-search-up
         bindkey -M emacs '^N' history-substring-search-down
 
-        eval "$(${pkgs.direnv}/bin/direnv hook zsh)"
         eval $(${pkgs.coreutils}/bin/dircolors "${./dircolors.ansi-universal}")
 
         # Fix tramp:
