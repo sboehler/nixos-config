@@ -74,7 +74,9 @@
     };
 
     services.xsuspender.enable = true;
+
     services.pasystray.enable = true;
+
     services.redshift = {
       enable = true;
       provider = "geoclue2";
@@ -94,7 +96,9 @@
     };
 
     services.network-manager-applet.enable = true;
+
     services.blueman-applet.enable = true;
+
     services.dunst = {
       enable = true;
       iconTheme = {
@@ -187,7 +191,6 @@
           "${modifier}+Shift+Control+l" = "exec loginctl lock-session";
           "${modifier}+Shift+e" = "exit";
 
-
           "${modifier}+p" = "exec ${pkgs.gopass}/bin/gopass ls --flat | ${pkgs.rofi}/bin/rofi -dmenu -p 'Select password' | ${pkgs.findutils}/bin/xargs --no-run-if-empty gopass show -c";
           "${modifier}+o" = "exec ${pkgs.gopass}/bin/gopass ls --flat | ${pkgs.rofi}/bin/rofi -dmenu -p 'Select OTP' | ${pkgs.findutils}/bin/xargs --no-run-if-empty gopass otp -c";
 
@@ -211,7 +214,6 @@
             "${modifier}+r" = "mode default";
           };
         };
-
 
         bars = [
           {
