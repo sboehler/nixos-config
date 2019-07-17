@@ -35,6 +35,9 @@
   }];
   nix.distributedBuilds = true;
 
+  battery = true;
+  backlight = true;
+
   hardware = {
     enableAllFirmware = true;
     firmware = [

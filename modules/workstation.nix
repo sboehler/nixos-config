@@ -163,6 +163,7 @@ in
     xiccd
     w3m
     yarn
+    xautolock
     xss-lock
     zip
   ]
