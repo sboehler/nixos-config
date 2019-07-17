@@ -12,7 +12,6 @@
       ./modules/networking.nix
       ./modules/syncthing.nix
       ./modules/workstation.nix
-      ./modules/home-manager
     ];
 
   nixpkgs.config = {
@@ -45,7 +44,13 @@
   };
 
   boot = {
-    kernelParams = [ "mem_sleep_default=deep"];
+    kernelParams = [ "mem_sleep_default=deep"
+                     "i915.enable_fbc=1"
+                     "i915.enable_rc6=1"
+                     "i915.fastboot=1"
+                     "i915.disable_power_well=0"
+                     "i915.enable_psr=1"
+                   ];
 
     kernelModules = [ "kvm-intel" ];
 
