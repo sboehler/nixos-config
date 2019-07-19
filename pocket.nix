@@ -12,7 +12,6 @@
       ./modules/base.nix
       ./modules/efi.nix
       ./modules/broadcom
-      ./modules/home-manager
     ];
 
   nixpkgs.config = {
