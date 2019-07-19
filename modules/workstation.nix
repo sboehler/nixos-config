@@ -5,7 +5,7 @@ in
 {
   imports = [
     <home-manager/nixos>
-    ./home-manager/workstation.nix
+    ../home/workstation.nix
   ];
 
   nixpkgs.config = {

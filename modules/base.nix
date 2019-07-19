@@ -3,7 +3,7 @@
 {
   imports = [
     <home-manager/nixos>
-    ./home-manager/base.nix
+    ../home/base.nix
   ];
 
   nixpkgs = {
