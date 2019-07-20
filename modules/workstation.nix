@@ -56,7 +56,7 @@ in
   nix = {
     binaryCaches = [
       "https://cache.nixos.org/"
-      "https://hie-nix.cachix.org"
+      "https://all-hies.cachix.org"
       "https://nixcache.reflex-frp.org"
     ];
     binaryCachePublicKeys = [
