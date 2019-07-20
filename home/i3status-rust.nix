@@ -14,6 +14,15 @@ let
     buttons = ["play", "next"]
 
     [[block]]
+    block = "disk_space"
+    path = "/"
+    alias = "/"
+    info_type = "available"
+    unit = "GB"
+    interval = 20
+    show_percentage = true
+
+    [[block]]
     block = "memory"
     display_type = "memory"
     format_mem = "{Mug}G/{MTg}G"
