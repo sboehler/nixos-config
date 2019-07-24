@@ -37,6 +37,17 @@
       enable = true;
     };
 
+    programs.firefox = {
+      enable = true;
+      profiles = {
+        silvio = {
+          userChrome = ''
+          #TabsToolbar { visibility: collapse !important; }
+          '';
+        };
+      };
+    };
+
     programs.alacritty = {
       enable = true;
       settings = {
