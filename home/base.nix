@@ -69,7 +69,6 @@
         e = "emacsclient -c";
       };
       initExtra = ''
-        export TERMINAL=${pkgs.alacritty}/bin/alacritty
         export PATH=$HOME/.local/bin:$PATH
         export PASSWORD_STORE_X_SELECTION=primary
         HYPHEN_INSENSITIVE="true"

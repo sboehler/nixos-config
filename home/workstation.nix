@@ -30,7 +30,7 @@
     };
 
     home.sessionVariables = {
-      TERMINAL = "${pkgs.alacritty}/bin/alacritty";
+      TERMINAL = "${pkgs.gnome3.gnome-terminal}/bin/gnome-terminal";
     };
 
     programs.direnv = {
@@ -255,8 +255,5 @@
           focus_wrapping no
         '';
     };
-    programs.zsh.initExtra = ''
-      export TERMINAL=${pkgs.alacritty}/bin/alacritty
-    '';
   };
 }

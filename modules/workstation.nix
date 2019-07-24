@@ -82,7 +82,6 @@ in
 
   environment.systemPackages = with pkgs; [
     adwaita-qt
-    alacritty
     ansible
     arandr
     beancount
@@ -105,6 +104,7 @@ in
     # gnome-podcasts
     gnome3.polari
     gnome3.adwaita-icon-theme
+    gnome3.gnome-terminal
     hicolor-icon-theme
     gnome3.nautilus
     gnome3.geary
