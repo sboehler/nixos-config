@@ -78,8 +78,6 @@ in
   programs.browserpass.enable = true;
   hardware.brightnessctl.enable = true;
 
-  programs.ssh.startAgent = true;
-
   environment.systemPackages = with pkgs; [
     adwaita-qt
     ansible
