@@ -131,7 +131,7 @@
           close = "mod4+slash";
           close_all = "mod4+shift+slash";
           history = "mod4+grave";
-          # context = "ctrl+shift+period";
+          context = "mod4+shift+grave";
         };
         urgency_low = {
           background = "#222222";
