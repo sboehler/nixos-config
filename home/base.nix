@@ -50,6 +50,7 @@
     services.gpg-agent = {
       enable = true;
       enableSshSupport = true;
+      defaultCacheTtlSsh = 3600;
     };
 
     programs.zsh = {
