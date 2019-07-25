@@ -26,16 +26,12 @@
         ls = ''log --graph --decorate --pretty=format:\"%C(yellow)%h%C(red)%d %C(reset)%s %C(blue)[%cn]\"'';
         cp = "cherry-pick";
         sh = "show --word-diff";
-        st = "status -s";
-        cl = "clone";
-        ec = "commit -am \"empty\"";
         ci = "commit";
-        co = "checkout";
-        br = "branch";
         dc = "diff --cached";
         wd = "diff --word-diff";
         ll = ''log --pretty=format:\"%h%C(reset)%C(red) %d %C(bold green)%s%C(reset)%Cblue [%cn] %C(green) %ad\" --decorate --numstat --date=iso'';
         nc = ''commit -a --allow-empty-message -m \"\"'';
+        cr = ''commit -C HEAD@{1}'';
       };
     };
 
