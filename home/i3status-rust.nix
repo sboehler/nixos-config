@@ -46,7 +46,7 @@ let
   ''
     [[block]]
     block = "sound"
-    on_click = "${pkgs.pavucontrol}/bin/pavucontrol"
+    on_click = "${pkgs.pulseaudio}/bin/pactl set-sink-mute @DEFAULT_SINK@ toggle"
     ''
   +
   (if enableBacklight then ''
