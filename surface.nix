@@ -97,6 +97,9 @@
   services.tlp = {
     extraConfig = ''
       DISK_DEVICES="nvme0n1";
+
+      WIFI_PWR_ON_AC=off
+      WIFI_PWR_ON_BAT=off
     '';
   };
 
