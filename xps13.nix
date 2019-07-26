@@ -15,6 +15,8 @@
       ./modules/workstation.nix
     ];
 
+  backlight = true;
+  battery = true;
 
   boot = {
     kernelParams = [ "i915.enable_fbc=1"
