@@ -48,42 +48,15 @@
       };
     };
 
-    programs.alacritty = {
+    programs.gnome-terminal = {
       enable = true;
-      settings = {
-        font = {
-          normal.family = "Source Code Pro";
-          size = 8;
-        };
-        colors = {
-          primary = {
-            background = "0xffffff";
-            foreground = "0x111111";
-          };
-
-          # Normal colors
-          normal = {
-            black = "0x2e2e2e";
-            red = "0xeb4129";
-            green = "0xabe047";
-            yellow = "0xf6c744";
-            blue = "0x47a0f3";
-            magenta = "0x7b5cb0";
-            cyan = "0x64dbed";
-            white = "0xe5e9f0";
-          };
-
-          # Bright colors
-          bright = {
-            black = "0x565656";
-            red = "0xec5357";
-            green = "0xc0e17d";
-            yellow = "0xf9da6a";
-            blue = "0x49a4f8";
-            magenta = "0xa47de9";
-            cyan = "0x99faf2";
-            white = "0xffffff";
-          };
+      showMenubar = false;
+      profile = {
+        profile = {
+          default = true;
+          visibleName = "silvio";
+          font = "Source Code Pro";
+          allowBold = true;
         };
       };
     };
