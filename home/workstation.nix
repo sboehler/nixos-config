@@ -207,6 +207,7 @@
           {
             statusCommand = "${pkgs.i3status-rust}/bin/i3status-rs ~/.config/i3/status.toml";
             fonts = ["DejaVu Sans Mono" "FontAwesome5Free 10"];
+            position = "top";
             colors = {
               separator = "#666666";
               background = "#222222";
@@ -237,6 +238,8 @@
       };
       windowManager.i3.extraConfig = ''
           focus_wrapping no
+          bindsym --release button2 kill
+          bindsym button3 floating toggle
         '';
     };
   };
