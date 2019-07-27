@@ -15,6 +15,7 @@
       ./modules/virtualbox.nix
       ./modules/transmission.nix
       ./modules/workstation.nix
+      ./modules/twjava
     ];
 
   battery = true;
