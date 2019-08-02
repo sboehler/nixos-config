@@ -114,6 +114,15 @@
     passwordAuthentication = false;
   };
 
+  programs.ssh = {
+    startAgent = true;
+    extraConfig = ''
+        AddKeysToAgent yes
+      '';
+  };
+
+
+
   services.fstrim.enable = true;
 
   services.timesyncd.enable = true;

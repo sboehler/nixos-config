@@ -43,11 +43,7 @@
 
     programs.emacs.enable = true;
 
-    services.gpg-agent = {
-      enable = true;
-      enableSshSupport = true;
-      defaultCacheTtlSsh = 3600;
-    };
+    services.gpg-agent.enable = true;
 
     programs.zsh = {
       enable = true;
