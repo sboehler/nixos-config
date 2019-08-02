@@ -173,6 +173,9 @@
           "${modifier}+a" = "focus parent";
           "${modifier}+q" = "focus child";
 
+          "${modifier}+u" = "workspace prev_on_output";
+          "${modifier}+i" = "workspace next_on_output";
+
           "${modifier}+Shift+minus" = "move scratchpad";
           "${modifier}+minus" = "scratchpad show";
 
