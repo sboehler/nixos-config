@@ -18,7 +18,7 @@ let
     else "amd64";
 
   major = "12";
-  update = ".0.1";
+  update = ".0.2";
   build = "ga";
   repover = "jdk-${major}${update}-${build}";
 
@@ -27,7 +27,7 @@ let
 
     src = fetchurl {
       url = "http://hg.openjdk.java.net/jdk-updates/jdk${major}u/archive/${repover}.tar.gz";
-      sha256 = "644a2e5686405b38a90ac0a59e16f555369c655a4d85bf3f392fcc0ad3920b71";
+      sha256 = "1ndlxmikyy298z7lqpr1bd0zxq7yx6xidj8y3c8mw9m9fy64h9c7";
     };
 
     nativeBuildInputs = [ pkgconfig ];
