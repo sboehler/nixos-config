@@ -72,6 +72,7 @@
         Xcursor.size: 48
       ''}"
     '';
+    videoDrivers = [ "intel" ];
   };
 
   environment.variables = {
