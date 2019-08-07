@@ -146,6 +146,7 @@
       windowManager.i3.enable = true;
       windowManager.i3.config = rec {
         modifier = "Mod4";
+        fonts = ["DejaVu Sans Mono" "FontAwesome5Free 10"];
         keybindings = lib.mkOptionDefault {
           "${modifier}+d" = ''exec --no-startup-id "${pkgs.rofi}/bin/rofi -combi-modi window,drun -show combi -modi combi,run"'';
           "XF86Search" = ''exec --no-startup-id "${pkgs.rofi}/bin/rofi -combi-modi window,drun -show combi -modi combi,run"'';
@@ -243,6 +244,7 @@
           focus_wrapping no
           bindsym --release button2 kill
           bindsym button3 floating toggle
+          client.unfocused        #333333 #222222 #eeeeee #292d2e   #222222
         '';
     };
   };
