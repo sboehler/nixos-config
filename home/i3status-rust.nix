@@ -59,8 +59,8 @@ let
     block = "toggle"
     text = "Inhibit"
     command_state = "${pkgs.xorg.xset}/bin/xset q | grep Disabled"
-    command_on = "${pkgs.xorg.xset}/bin/xset s off -dpms"
-    command_off = "${pkgs.xorg.xset}/bin/xset s default +dpms"
+    command_on = "${pkgs.xorg.xset}/bin/xset s off -dpms && ${pkgs.xautolock}/bin/xautolock -disable"
+    command_off = "${pkgs.xorg.xset}/bin/xset s default +dpms && ${pkgs.xautolock}/bin/xautolock -enable"
     interval = 5
 
     [[block]]
