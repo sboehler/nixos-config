@@ -10,10 +10,6 @@ in {
   nixpkgs.config = {
 
     packageOverrides = pkgs: rec {
-      openjdk12 = pkgs.callPackage ./java12.nix {
-        inherit (pkgs.gnome2) GConf gnome_vfs;
-        bootjdk = pkgs.openjdk11;
-      };
 
       gradleGen = pkgs.gradleGen.override {
         jdk = pkgs.openjdk12;
