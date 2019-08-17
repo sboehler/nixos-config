@@ -241,7 +241,11 @@ in
       dejavu_fonts
       source-code-pro
       google-fonts
+      noto-fonts
+      noto-fonts-emoji
+      noto-fonts-extra
       font-awesome
+      symbola
       liberation_ttf
       # nerdfonts
       carlito
