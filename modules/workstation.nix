@@ -234,22 +234,29 @@ in
   '';
 
   fonts = {
-    enableDefaultFonts = true;
+    enableDefaultFonts = false;
     fonts = with pkgs; [
+      # nerdfonts
+      carlito
       corefonts
-      emojione
       dejavu_fonts
-      source-code-pro
+      emojione
+      font-awesome
+      freefont_ttf
       google-fonts
+      gyre-fonts # TrueType substitutes for standard PostScript fonts
+      inconsolata
+      liberation_ttf
       noto-fonts
       noto-fonts-emoji
       noto-fonts-extra
-      font-awesome
+      source-code-pro
       symbola
-      liberation_ttf
-      # nerdfonts
-      carlito
-      inconsolata
+      xorg.fontbh100dpi
+      xorg.fontbhlucidatypewriter100dpi
+      xorg.fontbhlucidatypewriter75dpi
+      xorg.fontcursormisc
+      xorg.fontmiscmisc
     ];
   };
 
