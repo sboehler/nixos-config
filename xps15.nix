@@ -15,6 +15,7 @@
       ./modules/virtualbox.nix
       ./modules/transmission.nix
       ./modules/workstation.nix
+      ./modules/lightroom-backup.nix
       ./modules/twjava
     ];
 
@@ -111,6 +112,13 @@
     { device = "/dev/disk/by-uuid/9E4C-49CF";
       fsType = "vfat";
     };
+
+  fileSystems."/mnt/pictures-backup" =
+    { device = "/dev/disk/by-id/ata-ST2000LM003_HN-M201RAD_S321J9BG101631-part2";
+      fsType = "ntfs";
+      options = ["nofail" "x-systemd.device-timeout=1ms"];
+    };
+
 
   fileSystems."/home" =
     { device = "/dev/disk/by-uuid/fbed58ae-791d-4523-ab90-6a30c9471a15";
