@@ -11,7 +11,8 @@ let
 
     [[block]]
     block = "music"
-    buttons = ["play", "next"]
+    max_width = 0
+    buttons = ["prev", "play", "next"]
 
     [[block]]
     block = "disk_space"
