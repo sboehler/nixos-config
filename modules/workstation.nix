@@ -197,8 +197,8 @@ in
 
 
   services.udisks2.enable = true;
-  services.gnome3.gvfs.enable = true;
-  services.gnome3.gnome-disks.enable = true;
+  services.gvfs.enable = true;
+  programs.gnome-disks.enable = true;
 
   powerManagement.enable = true;
 
