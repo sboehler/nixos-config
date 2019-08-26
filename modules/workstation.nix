@@ -21,8 +21,6 @@ in
           ghc865 = pkgs.haskell.packages.ghc865.override {
             overrides = self: super: {
               beans = self.callPackage ./beans.nix {};
-              # dhall = self.callPackage ./dhall.nix {};
-              # dhall-json = self.callPackage ./dhall-json.nix {};
             };
           };
         };
@@ -70,7 +68,6 @@ in
 
   nixpkgs.config.firefox = {
     enableAdobeFlash = true;
-    jre = true;
   };
 
   documentation.dev.enable = true;
@@ -89,7 +86,7 @@ in
     darktable
     digikam
     dhall
-    dhall-json
+    # dhall-json
     direnv
     docker_compose
     emacs

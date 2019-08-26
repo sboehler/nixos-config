@@ -22,7 +22,7 @@ in {
           targetPkgs = pkgs: (with pkgs; [
             coreutils
             dhall
-            dhall-json
+            # dhall-json
             docker
             docker_compose
             fontconfig # for phantomjs
