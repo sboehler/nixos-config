@@ -210,6 +210,7 @@
           app = {
             "f" = "exec ${pkgs.firefox}/bin/firefox; mode default";
             "e" = "exec ${pkgs.emacs}/bin/emacsclient -c; mode default";
+            "a" = "exec ${pkgs.arandr}/bin/arandr; mode default";
             "${modifier}+apostrophe" = "mode default";
             "Escape" = "mode default";
             "Return" = "mode default";
