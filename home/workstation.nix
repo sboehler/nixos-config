@@ -183,6 +183,8 @@
           "${modifier}+Shift+Control+l" = "exec loginctl lock-session";
           "${modifier}+Shift+e" = "exit";
 
+          "${modifier}+apostrophe" = "mode app";
+
           "${modifier}+p" = "exec ${pkgs.gopass}/bin/gopass ls --flat | ${pkgs.rofi}/bin/rofi -dmenu -p 'Select password' | ${pkgs.findutils}/bin/xargs --no-run-if-empty gopass show -c";
           "${modifier}+o" = "exec ${pkgs.gopass}/bin/gopass ls --flat | ${pkgs.rofi}/bin/rofi -dmenu -p 'Select OTP' | ${pkgs.findutils}/bin/xargs --no-run-if-empty gopass otp -c";
 
@@ -204,6 +206,13 @@
             "l" = "resize shrink height 10 px or 10 ppt";
             "semicolon" = "resize grow width 10 px or 10 ppt";
             "${modifier}+r" = "mode default";
+          };
+          app = {
+            "f" = "exec ${pkgs.firefox}/bin/firefox; mode default";
+            "e" = "exec ${pkgs.emacs}/bin/emacsclient -c; mode default";
+            "${modifier}+apostrophe" = "mode default";
+            "Escape" = "mode default";
+            "Return" = "mode default";
           };
         };
 
