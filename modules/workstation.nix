@@ -79,7 +79,7 @@ in
     adwaita-qt
     ansible
     arandr
-    beancount
+    # beancount
     brightnessctl
     chromium
     compton
