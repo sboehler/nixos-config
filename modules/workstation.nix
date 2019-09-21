@@ -56,10 +56,12 @@ in
       "https://cache.nixos.org/"
       "https://all-hies.cachix.org"
       "https://nixcache.reflex-frp.org"
+      "https://hercules-ci.cachix.org"
     ];
     binaryCachePublicKeys = [
       "hie-nix.cachix.org-1:EjBSHzF6VmDnzqlldGXbi0RM3HdjfTU3yDRi9Pd0jTY="
       "ryantrinkle.com-1:JJiAKaRv9mWgpVAz8dwewnZe0AzzEAzPkagE9SP5NWI="
+      "hercules-ci.cachix.org-1:ZZeDl9Va+xe9j+KqdzoBZMFJHVQ42Uu/c/1/KMC5Lw0="
     ];
     trustedUsers = [ "root" "silvio" ];
   };
@@ -201,6 +203,7 @@ in
 
   services.xserver = {
     enable = true;
+    desktopManager.xterm.enable = true;
     libinput = {
       enable = true;
       naturalScrolling = true;
