@@ -48,6 +48,9 @@ in
 
   hardware.brightnessctl.enable = true;
 
+  powerManagement.enable = true;
+  services.upower.enable = true;
+
   environment.systemPackages = with pkgs; [
     ansible
     arandr
