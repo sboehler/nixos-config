@@ -28,11 +28,7 @@
   };
 
   boot = {
-    kernelPackages = pkgs.linuxPackagesFor pkgs.linux_5_2;
-    kernelParams = [ "usb-storage.quirks=152d:0578:u,0dc4:0210:u" ];
-    extraModprobeConfig = ''
-      options usb-storage quirks=152d:0578:u,0dc4:0210:u
-    '';
+    kernelPackages = pkgs.linuxPackagesFor pkgs.linux_4_19;
   };
 
   hardware = {
@@ -56,7 +52,6 @@
     gptfdisk
     gopass
     htop
-    hdparm
     iotop
     jnettop
     gnumake
@@ -64,11 +59,9 @@
     nix-prefetch-scripts
     neovim
     nvme-cli
-    (pass.withExtensions (e: [e.pass-otp]))
     patchelf
     pciutils
     pinentry
-    powertop
     psmisc
     python
     rclone
@@ -97,18 +90,7 @@
 
   time.timeZone = "Europe/Zurich";
 
-  services.geoclue2.enable = true;
-
-  services.btrfs = {
-    autoScrub = {
-      enable = true;
-      fileSystems = [ "/" ];
-    };
-  };
-
   programs.zsh.enable = true;
-
-  services.fwupd.enable = true;
 
   services.openssh = {
     enable = true;
@@ -121,10 +103,6 @@
         AddKeysToAgent yes
       '';
   };
-
-
-
-  services.fstrim.enable = true;
 
   services.timesyncd.enable = true;
 
@@ -141,22 +119,6 @@
     };
   };
 
-  users = {
-    users = {
-      silvio = {
-        shell = pkgs.zsh;
-        home = "/home/silvio";
-        description = "Silvio Böhler";
-        isNormalUser = true;
-        extraGroups = ["wheel" "docker" "libvirtd" "audio" "video" "transmission" "networkmanager" "cdrom"];
-        uid = 1000;
-        openssh.authorizedKeys.keys = ["ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDFqXLmL2FVGAkSlndgqaEDx0teA6Ai1wLu21KSdcBnV6XldetAHZ8AAeodgEqIYD/sO69xCm9Kwa3DbktdMO28MO6A7poQ4jvDVHray7mpsm3z5xgc1HAadjNUBvlPjPBbCvZkhcI2/MSvVknl5uFXeH58AqaIq6Ump4gIC27Mj9vLMuw7S5MoR6vJgxKK/h52yuKXs8bisBvrHYngBgxA0wpg/v3G04iplPtTtyIY3uqkgPv3VfMSEyOuZ+TLujFg36FxU5I7Ok0Bjf8f+/OdE41MYYUH1VPIHFtxNs8MPCcz2Sv0baxEhAiEBpnWsQx8mBhxmQ/cK4Ih2EOLqPKR"];
-      };
-      root = {
-        openssh.authorizedKeys.keys = ["ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDFqXLmL2FVGAkSlndgqaEDx0teA6Ai1wLu21KSdcBnV6XldetAHZ8AAeodgEqIYD/sO69xCm9Kwa3DbktdMO28MO6A7poQ4jvDVHray7mpsm3z5xgc1HAadjNUBvlPjPBbCvZkhcI2/MSvVknl5uFXeH58AqaIq6Ump4gIC27Mj9vLMuw7S5MoR6vJgxKK/h52yuKXs8bisBvrHYngBgxA0wpg/v3G04iplPtTtyIY3uqkgPv3VfMSEyOuZ+TLujFg36FxU5I7Ok0Bjf8f+/OdE41MYYUH1VPIHFtxNs8MPCcz2Sv0baxEhAiEBpnWsQx8mBhxmQ/cK4Ih2EOLqPKR silvio"];
-      };
-    };
-  };
 
   security = {
     sudo = {
