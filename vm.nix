@@ -9,7 +9,6 @@
       ./modules/base-minimal.nix
       ./modules/firewall.nix
       ./modules/networking.nix
-      ./modules/syncthing.nix
       ./modules/workstation-light.nix
     ];
 
