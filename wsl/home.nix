@@ -11,7 +11,11 @@
   home.packages = [
     pkgs.htop
     pkgs.fortune
+    pkgs.source-code-pro
+    pkgs.silver-searcher
   ];
+
+  fonts.fontconfig.enable = true;
 
   programs.git = {
     enable = true;
@@ -38,5 +42,11 @@
       nc = ''commit -a --allow-empty-message -m \"\"'';
       cr = ''commit -C HEAD@{1}'';
     };
+  };
+
+  programs.direnv.enable = true;
+
+  xresources.properties = {
+    "Xft.dpi" = 192;
   };
 }
