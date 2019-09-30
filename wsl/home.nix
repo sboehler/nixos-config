@@ -13,6 +13,7 @@
     pkgs.fortune
     pkgs.source-code-pro
     pkgs.silver-searcher
+    pkgs.pinentry
   ];
 
   fonts.fontconfig.enable = true;
@@ -47,6 +48,29 @@
   programs.direnv.enable = true;
 
   xresources.properties = {
-    "Xft.dpi" = 192;
+    "Xft.dpi" = 144;
+  };
+
+  programs.zsh = {
+    enable = true;
+    enableCompletion = true;
+    oh-my-zsh = {
+      enable = true;
+      plugins = [
+        "history-substring-search"
+      ];
+    };
+    initExtra = ''
+        HYPHEN_INSENSITIVE="true"
+        bindkey -M emacs '^P' history-substring-search-up
+        bindkey -M emacs '^N' history-substring-search-down
+      '';
+  };
+
+  services.gpg-agent = {
+    enable = true;
+    extraConfig = ''
+      pinentry-program ${pkgs.pinentry}/bin/pinentry
+    '';
   };
 }
