@@ -1,0 +1,244 @@
+{ config, pkgs, lib, ... }:
+
+{
+  imports =
+    [
+      <home-manager/nixos>
+    ];
+
+  nixpkgs = {
+    config = {
+      allowUnfree = true;
+    };
+  };
+
+  nix = {
+    buildCores = 0;
+    autoOptimiseStore = true;
+    maxJobs = lib.mkDefault 2;
+    nixPath = [
+      "/nix"
+      "nixos-config=/etc/nixos/configuration.nix"
+    ];
+  };
+
+  fonts = {
+    enableDefaultFonts = false;
+    fonts = with pkgs; [
+      carlito
+      corefonts
+      emojione
+      font-awesome
+      google-fonts
+      inconsolata
+      nerdfonts
+      noto-fonts
+      noto-fonts-extra
+      source-code-pro
+      symbola
+
+      # default fonts (except unifont)
+      xorg.fontbhlucidatypewriter100dpi
+      xorg.fontbhlucidatypewriter75dpi
+      dejavu_fonts
+      freefont_ttf
+      gyre-fonts
+      liberation_ttf
+      xorg.fontbh100dpi
+      xorg.fontmiscmisc
+      xorg.fontcursormisc
+      noto-fonts-emoji
+    ];
+  };
+
+
+  networking.hostName = "surface-nixos";
+
+  i18n = {
+    consoleFont = "Lat2-Terminus16";
+    consoleKeyMap = "us";
+    defaultLocale = "en_US.UTF-8";
+  };
+
+  time.timeZone = "Europe/Zurich";
+
+  environment.systemPackages = with pkgs; [
+    silver-searcher
+    emacs
+    neovim
+    wget
+    xorg.xrdb
+  ];
+
+  programs = {
+    gnupg = {
+      agent = {
+        enable = true;
+        enableSSHSupport = true;
+      };
+    };
+    iftop = {
+      enable = true;
+    };
+    iotop = {
+      enable = true;
+    };
+    mtr = {
+      enable = true;
+    };
+  };
+
+  services = {
+    openssh = {
+      enable = true;
+      permitRootLogin = "yes";
+      forwardX11 = true;
+    };
+  };
+
+  networking = {
+    enableIPv6 = true;
+    defaultGateway = "192.168.4.1";
+    nameservers = ["8.8.8.8" "192.168.4.1"];
+    interfaces = {
+      eth0 = {
+        ipv4 = {
+          addresses = [{
+            address = "192.168.4.2";
+            prefixLength = 24;
+          }];
+        };
+      };
+    };
+  };
+
+  system.stateVersion = "20.03";
+
+  users = {
+    users =
+      let
+        sshKey = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDFqXLmL2FVGAkSlndgqaEDx0teA6Ai1wLu21KSdcBnV6XldetAHZ8AAeodgEqIYD/sO69xCm9Kwa3DbktdMO28MO6A7poQ4jvDVHray7mpsm3z5xgc1HAadjNUBvlPjPBbCvZkhcI2/MSvVknl5uFXeH58AqaIq6Ump4gIC27Mj9vLMuw7S5MoR6vJgxKK/h52yuKXs8bisBvrHYngBgxA0wpg/v3G04iplPtTtyIY3uqkgPv3VfMSEyOuZ+TLujFg36FxU5I7Ok0Bjf8f+/OdE41MYYUH1VPIHFtxNs8MPCcz2Sv0baxEhAiEBpnWsQx8mBhxmQ/cK4Ih2EOLqPKR";
+      in
+        {
+          silvio = {
+            shell = pkgs.zsh;
+            home = "/home/silvio";
+            description = "Silvio Böhler";
+            isNormalUser = true;
+            extraGroups = [
+              "audio"
+              "cdrom"
+              "docker"
+              "libvirtd"
+              "networkmanager"
+              "transmission"
+              "video"
+              "wheel"
+            ];
+            uid = 1000;
+            openssh.authorizedKeys.keys = [sshKey];
+          };
+          root = {
+            openssh.authorizedKeys.keys = [sshKey];
+          };
+        };
+  };
+
+  security = {
+    sudo = {
+      enable = true;
+      wheelNeedsPassword = false;
+    };
+  };
+
+
+
+  boot = {
+    loader = {
+      systemd-boot = {
+        enable = true;
+      };
+      efi = {
+        canTouchEfiVariables = true;
+      };
+    };
+    initrd = {
+      availableKernelModules = [ "sd_mod" "sr_mod" ];
+      kernelModules = [ ];
+    };
+    kernelModules = [ ];
+    extraModulePackages = [ ];
+  };
+
+  fileSystems."/" =
+    { device = "/dev/disk/by-uuid/9673761a-caf2-4329-ba53-0a1a883a1228";
+      fsType = "ext4";
+    };
+
+  fileSystems."/boot" =
+    { device = "/dev/disk/by-uuid/0328-BCA3";
+      fsType = "vfat";
+    };
+
+  swapDevices = [ ];
+
+  virtualisation = {
+    hypervGuest = {
+      enable = true;
+    };
+  };
+
+  home-manager = {
+    users = {
+      silvio = {
+        services = {
+          gpg-agent = {
+            enable = true;
+          };
+        };
+
+        programs = {
+          direnv = {
+            enable = true;
+          };
+
+          zsh = {
+            enable = true;
+            enableCompletion = true;
+            initExtra = ''
+              HYPHEN_INSENSITIVE="true"
+            '';
+          };
+
+          git = {
+            enable = true;
+            userName  = "Silvio Böhler";
+            userEmail = "sboehler@noreply.users.github.com";
+            extraConfig = {
+              merge.conflictstyle = "diff3";
+              pull.rebase = true;
+              rebase = {
+                autosquash = true;
+                autostash = true;
+              };
+              color.ui = true;
+            };
+            aliases = {
+              unstage = "reset HEAD --";
+              last = "log -1 HEAD";
+              ls = ''log --graph --decorate --pretty=format:\"%C(yellow)%h%C(red)%d %C(reset)%s %C(blue)[%cn]\"'';
+              cp = "cherry-pick";
+              sh = "show --word-diff";
+              ci = "commit";
+              dc = "diff --cached";
+              wd = "diff --word-diff";
+              ll = ''log --pretty=format:\"%h%C(reset)%C(red) %d %C(bold green)%s%C(reset)%Cblue [%cn] %C(green) %ad\" --decorate --numstat --date=iso'';
+              nc = ''commit -a --allow-empty-message -m \"\"'';
+              cr = ''commit -C HEAD@{1}'';
+            };
+          };
+        };
+      };
+    };
+  };
+}
