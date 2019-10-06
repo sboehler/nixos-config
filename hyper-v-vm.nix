@@ -1,5 +1,7 @@
 { config, pkgs, lib, ... }:
-
+let
+  sources = import ./nix/sources.nix;
+in
 {
   imports =
     [
@@ -9,6 +11,23 @@
   nixpkgs = {
     config = {
       allowUnfree = true;
+
+      packageOverrides = pkgs: rec {
+        niv = (import sources.niv {}).niv;
+        lorri = (import sources.lorri {});
+
+        haskell = pkgs.haskell // {
+          packages = pkgs.haskell.packages // {
+            ghc865 = pkgs.haskell.packages.ghc865.override {
+              overrides = self: super: {
+                beans = self.callPackage ./beans.nix {};
+              };
+            };
+          };
+        };
+
+        haskellPackages = haskell.packages.ghc865;
+      };
     };
   };
 
@@ -20,6 +39,19 @@
       "/nix"
       "nixos-config=/etc/nixos/configuration.nix"
     ];
+    binaryCaches = [
+      "https://cache.nixos.org/"
+      "https://all-hies.cachix.org"
+      "https://nixcache.reflex-frp.org"
+      "https://hercules-ci.cachix.org"
+    ];
+    binaryCachePublicKeys = [
+      "hie-nix.cachix.org-1:EjBSHzF6VmDnzqlldGXbi0RM3HdjfTU3yDRi9Pd0jTY="
+      "ryantrinkle.com-1:JJiAKaRv9mWgpVAz8dwewnZe0AzzEAzPkagE9SP5NWI="
+      "hercules-ci.cachix.org-1:ZZeDl9Va+xe9j+KqdzoBZMFJHVQ42Uu/c/1/KMC5Lw0="
+    ];
+    trustedUsers = [ "root" "silvio" ];
+
   };
 
   fonts = {
@@ -63,9 +95,11 @@
   time.timeZone = "Europe/Zurich";
 
   environment.systemPackages = with pkgs; [
-    silver-searcher
     emacs
+    lorri
     neovim
+    samba
+    silver-searcher
     wget
     xorg.xrdb
   ];
@@ -94,12 +128,46 @@
       permitRootLogin = "yes";
       forwardX11 = true;
     };
+
+    samba = {
+      enable = true;
+      # extraConfig = ''
+        # workgroup = WORKGROUP
+        # server string = "SURFACE-NIXOS"
+        # netbios name = "SURFACE-NIXOS"
+      #   guest account = nobody
+      #   map to guest = bad user
+      #   follow symlinks = yes
+      # '';
+      shares = {
+        silvio = {
+          comment = "Silvio's home";
+          path = "/home/silvio/shared";
+          "valid users" = ["silvio"];
+          public = "no";
+          writable = "yes";
+          browseable = "yes";
+          printable = "no";
+        };
+      };
+    };
   };
 
   networking = {
     enableIPv6 = true;
     defaultGateway = "192.168.4.1";
     nameservers = ["8.8.8.8" "192.168.4.1"];
+    firewall = {
+      allowedTCPPorts = [
+        137 # netbios
+        139 # netbios
+        445 # smb
+      ];
+      allowedUDPPorts = [
+        137 # netbios
+        139 # netbios
+      ];
+    };
     interfaces = {
       eth0 = {
         ipv4 = {
