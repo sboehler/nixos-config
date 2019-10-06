@@ -98,6 +98,7 @@ in
     emacs
     lorri
     neovim
+    nmap
     samba
     silver-searcher
     wget
