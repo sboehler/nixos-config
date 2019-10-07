@@ -1,6 +1,6 @@
 { config, pkgs, lib, ... }:
 let
-  sources = import ./nix/sources.nix;
+  sources = import ../nix/sources.nix;
 in
 {
   imports =
@@ -34,7 +34,7 @@ in
   nix = {
     buildCores = 0;
     autoOptimiseStore = true;
-    maxJobs = lib.mkDefault 2;
+    maxJobs = lib.mkDefault 4;
     nixPath = [
       "/nix"
       "nixos-config=/etc/nixos/configuration.nix"
@@ -83,9 +83,6 @@ in
     ];
   };
 
-
-  networking.hostName = "surface-nixos";
-
   i18n = {
     consoleFont = "Lat2-Terminus16";
     consoleKeyMap = "us";
@@ -98,12 +95,18 @@ in
     emacs
     lorri
     neovim
+    niv
     nmap
     samba
     silver-searcher
     wget
     xorg.xrdb
-  ];
+  ] ++ (with gitAndTools; [
+    git-annex
+    git-annex-remote-b2
+    git-annex-remote-rclone
+    gitFull
+  ]);
 
   programs = {
     gnupg = {
@@ -133,9 +136,9 @@ in
     samba = {
       enable = true;
       # extraConfig = ''
-        # workgroup = WORKGROUP
-        # server string = "SURFACE-NIXOS"
-        # netbios name = "SURFACE-NIXOS"
+      # workgroup = WORKGROUP
+      # server string = "SURFACE-NIXOS"
+      # netbios name = "SURFACE-NIXOS"
       #   guest account = nobody
       #   map to guest = bad user
       #   follow symlinks = yes
@@ -220,9 +223,8 @@ in
     };
   };
 
-
-
   boot = {
+    kernelParams = [ "elevator=noop" ];
     loader = {
       systemd-boot = {
         enable = true;
@@ -239,21 +241,10 @@ in
     extraModulePackages = [ ];
   };
 
-  fileSystems."/" =
-    { device = "/dev/disk/by-uuid/9673761a-caf2-4329-ba53-0a1a883a1228";
-      fsType = "ext4";
-    };
-
-  fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/0328-BCA3";
-      fsType = "vfat";
-    };
-
-  swapDevices = [ ];
-
   virtualisation = {
     hypervGuest = {
       enable = true;
+      videoMode = "1024x768";
     };
   };
 
