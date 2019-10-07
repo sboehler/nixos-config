@@ -146,7 +146,7 @@ in
       shares = {
         silvio = {
           comment = "Silvio's home";
-          path = "/home/silvio/shared";
+          path = "/home/silvio";
           "valid users" = ["silvio"];
           public = "no";
           writable = "yes";
