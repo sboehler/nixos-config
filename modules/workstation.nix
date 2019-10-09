@@ -57,11 +57,13 @@ in
       "https://all-hies.cachix.org"
       "https://nixcache.reflex-frp.org"
       "https://hercules-ci.cachix.org"
+      "https://cache.dhall-lang.org"
     ];
     binaryCachePublicKeys = [
       "hie-nix.cachix.org-1:EjBSHzF6VmDnzqlldGXbi0RM3HdjfTU3yDRi9Pd0jTY="
       "ryantrinkle.com-1:JJiAKaRv9mWgpVAz8dwewnZe0AzzEAzPkagE9SP5NWI="
       "hercules-ci.cachix.org-1:ZZeDl9Va+xe9j+KqdzoBZMFJHVQ42Uu/c/1/KMC5Lw0="
+      "cache.dhall-lang.org:I9/H18WHd60olG5GsIjolp7CtepSgJmM2CsO813VTmM="
     ];
     trustedUsers = [ "root" "silvio" ];
   };
@@ -96,6 +98,7 @@ in
     firefox
     fdupes
     git-review
+    google-cloud-sdk
     gradle
     gthumb
     # gnome-podcasts
@@ -145,6 +148,7 @@ in
     rubber
     sbcl
     shared_mime_info
+    sops
     spotify
     stack
     (texlive.combine {
@@ -168,7 +172,7 @@ in
     # beans
     cabal-install
     apply-refact
-    cabal2nix
+    # cabal2nix
     # hasktags
     hindent
     # hlint

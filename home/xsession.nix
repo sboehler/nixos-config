@@ -154,9 +154,9 @@
       enable = true;
       profiles = {
         silvio = {
-          userChrome = ''
-          #TabsToolbar { visibility: collapse !important; }
-          '';
+          # userChrome = ''
+          # TabsToolbar { visibility: collapse !important; }
+          # '';
         };
       };
     };
