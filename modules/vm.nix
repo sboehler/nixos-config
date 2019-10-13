@@ -92,6 +92,7 @@ in
   time.timeZone = "Europe/Zurich";
 
   environment.systemPackages = with pkgs; [
+    cifs-utils
     emacs
     lorri
     neovim
