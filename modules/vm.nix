@@ -248,6 +248,15 @@ in
     };
   };
 
+  systemd.mounts = [
+    {
+      type = "cifs";
+      where = "/home/silvio/winhome";
+      what="//192.168.4.1/silvio";
+      options="credentials=/home/silvio/secrets/samba,uid=1000,gid=100,rw";
+    }
+  ];
+
   home-manager = {
     users = {
       silvio = {
