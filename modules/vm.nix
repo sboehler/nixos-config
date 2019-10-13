@@ -252,14 +252,29 @@ in
     };
   };
 
-  systemd.mounts = [
-    {
-      type = "cifs";
-      where = "/home/silvio/winhome";
-      what="//192.168.4.1/silvio";
-      options="credentials=/home/silvio/secrets/samba,uid=1000,gid=100,rw";
-    }
-  ];
+  fileSystems."/home/silvio/winhome" = {
+      device = "//192.168.4.1/silvio";
+      fsType = "cifs";
+      options = let
+        # this line prevents hanging on network split
+        automount_opts = "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s";
+
+      in ["${automount_opts},credentials=/home/silvio/secrets/samba"];
+  };
+
+  # systemd.mounts = [
+  #   {
+  #     type = "cifs";
+  #     where = "/home/silvio/winhome";
+  #     what= "//192.168.4.1/silvio";
+  #     options= "credentials=/home/silvio/secrets/samba,uid=1000,gid=100,rw";
+  #     unitConfig = {
+  #       after = "network-online.service";
+  #       requires = "network-online.target";
+  #       wantedBy = "multi-user.target";
+  #     };
+  #   }
+  # ];
 
   home-manager = {
     users = {
