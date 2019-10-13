@@ -135,6 +135,9 @@ in
 
     samba = {
       enable = true;
+      extraConfig = ''
+        follow symlinks = yes
+         '';
       # extraConfig = ''
       # workgroup = WORKGROUP
       # server string = "SURFACE-NIXOS"
