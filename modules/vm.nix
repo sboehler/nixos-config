@@ -16,6 +16,20 @@ in
         niv = (import sources.niv {}).niv;
         lorri = (import sources.lorri {});
 
+        xrdp-vsock = pkgs.xrdp.overrideAttrs (oldAttrs: rec {
+          configureFlags = oldAttrs.configureFlags ++ ["--enable-vsock"];
+          postInstall = oldAttrs.postInstall + ''
+            # use vsock transport.
+            sed -i_orig -e 's/use_vsock=false/use_vsock=true/g' $out/etc/xrdp/xrdp.ini
+            # use rdp security.
+            sed -i_orig -e 's/security_layer=negotiate/security_layer=rdp/g' $out/etc/xrdp/xrdp.ini
+            # remove encryption validation.
+            sed -i_orig -e 's/crypt_level=high/crypt_level=none/g' $out/etc/xrdp/xrdp.ini
+            # disable bitmap compression since its local its much faster
+            sed -i_orig -e 's/bitmap_compression=true/bitmap_compression=false/g' $out/etc/xrdp/xrdp.ini
+          '';
+        });
+
         haskell = pkgs.haskell // {
           packages = pkgs.haskell.packages // {
             ghc865 = pkgs.haskell.packages.ghc865.override {
@@ -102,12 +116,9 @@ in
     silver-searcher
     wget
     xorg.xrdb
-  ] ++ (with gitAndTools; [
-    git-annex
-    git-annex-remote-b2
-    git-annex-remote-rclone
+    xrdp-vsock
     gitFull
-  ]);
+  ];
 
   programs = {
     gnupg = {
@@ -128,6 +139,10 @@ in
   };
 
   services = {
+    dbus.packages = [
+      pkgs.gnome3.dconf
+    ];
+
     openssh = {
       enable = true;
       permitRootLogin = "yes";
@@ -159,6 +174,12 @@ in
         };
       };
     };
+
+    xrdp = {
+      enable = true;
+      package = pkgs.xrdp-vsock;
+      defaultWindowManager = "$HOME/.xsession";
+    };
   };
 
   networking = {
@@ -170,6 +191,7 @@ in
         137 # netbios
         139 # netbios
         445 # smb
+        3389 # Microsoft RDP
       ];
       allowedUDPPorts = [
         137 # netbios
@@ -239,9 +261,8 @@ in
     };
     initrd = {
       availableKernelModules = [ "sd_mod" "sr_mod" ];
-      kernelModules = [ ];
     };
-    kernelModules = [ ];
+    kernelModules = ["hv_sock"];
     extraModulePackages = [ ];
   };
 
@@ -253,13 +274,13 @@ in
   };
 
   fileSystems."/home/silvio/winhome" = {
-      device = "//192.168.4.1/silvio";
-      fsType = "cifs";
-      options = let
-        # this line prevents hanging on network split
-        automount_opts = "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s";
+    device = "//192.168.4.1/silvio";
+    fsType = "cifs";
+    options = let
+      # this line prevents hanging on network split
+      automount_opts = "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s";
 
-      in ["${automount_opts},credentials=/home/silvio/secrets/samba"];
+    in ["${automount_opts},credentials=/home/silvio/secrets/samba"];
   };
 
   # systemd.mounts = [
@@ -279,6 +300,38 @@ in
   home-manager = {
     users = {
       silvio = {
+
+        systemd = {
+          user = {
+            sessionVariables = {
+              EDITOR = "${pkgs.emacs}/bin/emacs";
+            };
+          };
+        };
+
+        gtk = {
+          enable = true;
+          theme = {
+            package = pkgs.gnome3.gnome-themes-standard;
+            name = "Adwaita";
+          };
+          font = {
+            package = pkgs.dejavu_fonts;
+            name = "DejaVu Sans 10";
+          };
+          iconTheme = {
+            package = pkgs.gnome3.adwaita-icon-theme;
+            name = "Adwaita";
+          };
+        };
+
+        home = {
+          sessionVariables = {
+            TERMINAL = "${pkgs.gnome3.gnome-terminal}/bin/gnome-terminal";
+            EDITOR = "${pkgs.emacs}/bin/emacs";
+          };
+        };
+
         services = {
           gpg-agent = {
             enable = true;
@@ -286,8 +339,26 @@ in
         };
 
         programs = {
+
+          bash = {
+            enable = true;
+          };
+
           direnv = {
             enable = true;
+          };
+
+          gnome-terminal = {
+            enable = true;
+            showMenubar = false;
+            profile = {
+              profile = {
+                default = true;
+                visibleName = "silvio";
+                font = "Source Code Pro";
+                allowBold = true;
+              };
+            };
           };
 
           zsh = {
@@ -323,6 +394,56 @@ in
               ll = ''log --pretty=format:\"%h%C(reset)%C(red) %d %C(bold green)%s%C(reset)%Cblue [%cn] %C(green) %ad\" --decorate --numstat --date=iso'';
               nc = ''commit -a --allow-empty-message -m \"\"'';
               cr = ''commit -C HEAD@{1}'';
+            };
+          };
+        };
+        xsession = {
+          enable = true;
+          windowManager = {
+            i3 = {
+              enable = true;
+              config = let
+                modifier = "Mod4";
+              in {
+                inherit modifier;
+                fonts = ["DejaVu Sans Mono" "FontAwesome5Free 10"];
+                keybindings = lib.mkOptionDefault {
+                  "${modifier}+d" = ''exec --no-startup-id "${pkgs.rofi}/bin/rofi -combi-modi window,drun -show combi -modi combi,run"'';
+
+                  "${modifier}+Control+j" = "focus left";
+                  "${modifier}+Control+k" = "focus down";
+                  "${modifier}+Control+l" = "focus up";
+                  "${modifier}+Control+semicolon" = "focus right";
+
+                  "${modifier}+Shift+j" = "move left 40px";
+                  "${modifier}+Shift+k" = "move down 40px";
+                  "${modifier}+Shift+l" = "move up 40px";
+                  "${modifier}+Shift+semicolon" = "move right 40px";
+
+                  "${modifier}+a" = "focus parent";
+                  "${modifier}+q" = "focus child";
+
+                  "${modifier}+Shift+e" = "exit";
+                  "${modifier}+apostrophe" = "mode app";
+                };
+
+                modes = lib.mkOptionDefault {
+                  resize = {
+                    "j" = "resize shrink width 10 px or 10 ppt";
+                    "k" = "resize grow height 10 px or 10 ppt";
+                    "l" = "resize shrink height 10 px or 10 ppt";
+                    "semicolon" = "resize grow width 10 px or 10 ppt";
+                    "${modifier}+r" = "mode default";
+                  };
+                  app = {
+                    "f" = "exec ${pkgs.firefox}/bin/firefox; mode default";
+                    "e" = "exec ${pkgs.emacs}/bin/emacsclient -c; mode default";
+                    "${modifier}+apostrophe" = "mode default";
+                    "Escape" = "mode default";
+                    "Return" = "mode default";
+                  };
+                };
+              };
             };
           };
         };
