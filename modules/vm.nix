@@ -178,7 +178,7 @@ in
     xrdp = {
       enable = true;
       package = pkgs.xrdp-vsock;
-      defaultWindowManager = "$HOME/.xsession";
+      defaultWindowManager = "/home/silvio/.xsession";
     };
   };
 
