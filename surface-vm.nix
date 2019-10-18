@@ -10,6 +10,10 @@
 
   networking.hostName = "surface-nixos";
 
+  home-manager.users.silvio.xresources.properties = {
+    "Xft.dpi" = 144;
+  };
+
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/9673761a-caf2-4329-ba53-0a1a883a1228";
       fsType = "ext4";

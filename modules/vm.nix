@@ -369,6 +369,7 @@ in
             enableCompletion = true;
             initExtra = ''
               HYPHEN_INSENSITIVE="true"
+              [ ! -z "$DISPLAY" ] && xrdb -merge ~/.Xresources
             '';
           };
 
@@ -448,12 +449,6 @@ in
                 };
               };
             };
-          };
-        };
-
-        xresources = {
-          properties = {
-            "Xft.dpi" = 144;
           };
         };
       };
