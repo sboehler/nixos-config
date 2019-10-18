@@ -400,7 +400,15 @@ in
               cr = ''commit -C HEAD@{1}'';
             };
           };
+
+          tmux = {
+            enable = true;
+            baseIndex = 1;
+            clock24 = true;
+            disableConfirmationPrompt = true;
+          };
         };
+
         xsession = {
           enable = true;
           windowManager = {
