@@ -133,7 +133,7 @@
       options = [ "subvol=@data" ];
     };
 
-  systemd.generator-packages = [ pkgs.systemd-cryptsetup-generator ];
+  systemd.packages = [ pkgs.systemd-cryptsetup-generator ];
   environment.etc = {
     "crypttab" = {
       enable = true;
