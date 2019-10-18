@@ -26,7 +26,7 @@
     useDHCP = true;
     enableIPv6 = true;
     wireless = {
-      enable = true;
+      enable = false;
       userControlled = true;
     };
     firewall.allowedTCPPorts = [ 139 445 9091 ];
