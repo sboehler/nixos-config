@@ -124,7 +124,6 @@ in
     gnupg = {
       agent = {
         enable = true;
-        enableSSHSupport = true;
       };
     };
     iftop = {
@@ -135,6 +134,13 @@ in
     };
     mtr = {
       enable = true;
+    };
+
+    ssh = {
+      startAgent = true;
+      extraConfig = ''
+        AddKeysToAgent yes
+      '';
     };
   };
 
