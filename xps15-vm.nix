@@ -6,6 +6,8 @@
       ./modules/vm.nix
     ];
 
+  hostHostName = "xps15";
+
   networking.hostName = "xps15-nixos";
 
   nix.maxJobs = 8;

@@ -8,6 +8,8 @@
 
   nix.maxJobs = 4;
 
+  hostHostName = "surface";
+
   networking.hostName = "surface-nixos";
 
   home-manager.users.silvio.xresources.properties = {
