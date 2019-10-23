@@ -11,7 +11,6 @@
       ./modules/networking.nix
       ./modules/syncthing.nix
       ./modules/workstation.nix
-      ./modules/tw-backup.nix
       ./modules/twjava
     ];
 
