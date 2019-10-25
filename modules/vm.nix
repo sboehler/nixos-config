@@ -22,7 +22,7 @@ in
 
         packageOverrides = pkgs: rec {
           niv = (import sources.niv {}).niv;
-          lorri = (import sources.lorri {});
+          # lorri = (import sources.lorri {});
 
           xrdp-vsock = pkgs.xrdp.overrideAttrs (oldAttrs: rec {
             configureFlags = oldAttrs.configureFlags ++ ["--enable-vsock"];
@@ -116,13 +116,14 @@ in
     environment.systemPackages = with pkgs; [
       cifs-utils
       emacs
-      lorri
+      # lorri
       neovim
       niv
       nmap
       samba
       silver-searcher
       wget
+      speedtest-cli
       xorg.xrdb
       xrdp-vsock
       gitFull
@@ -283,7 +284,7 @@ in
       fsType = "cifs";
       options = let
         # this line prevents hanging on network split
-        automount_opts = "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s";
+        automount_opts = "x-systemd.automount,noauto,uid=1000,gid=100,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s";
 
       in ["${automount_opts},credentials=/home/silvio/secrets/samba"];
     };
@@ -372,6 +373,8 @@ in
               initExtra = ''
               HYPHEN_INSENSITIVE="true"
               [ ! -z "$DISPLAY" ] && xrdb -merge ~/.Xresources
+              alias ls='ls --color=auto'
+              alias ll='ls -la'
             '';
             };
 
