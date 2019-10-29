@@ -77,31 +77,8 @@ in
     };
 
     fonts = {
-      enableDefaultFonts = false;
       fonts = with pkgs; [
-        carlito
-        corefonts
-        emojione
-        font-awesome
-        google-fonts
-        inconsolata
-        nerdfonts
-        noto-fonts
-        noto-fonts-extra
         source-code-pro
-        symbola
-
-        # default fonts (except unifont)
-        xorg.fontbhlucidatypewriter100dpi
-        xorg.fontbhlucidatypewriter75dpi
-        dejavu_fonts
-        freefont_ttf
-        gyre-fonts
-        liberation_ttf
-        xorg.fontbh100dpi
-        xorg.fontmiscmisc
-        xorg.fontcursormisc
-        noto-fonts-emoji
       ];
     };
 
@@ -118,7 +95,7 @@ in
       emacs
       # lorri
       neovim
-      niv
+      # niv
       nmap
       samba
       silver-searcher
@@ -199,6 +176,8 @@ in
 
     networking = {
       enableIPv6 = true;
+      defaultGateway = "172.21.21.1";
+      nameservers = ["8.8.8.8" "192.168.2.1"];
       firewall = {
         allowedTCPPorts = [
           137 # netbios
@@ -210,6 +189,16 @@ in
           137 # netbios
           139 # netbios
         ];
+      };
+      interfaces = {
+        eth0 = {
+          ipv4 = {
+            addresses = [{
+              address = "172.21.21.2";
+              prefixLength = 24;
+            }];
+          };
+        };
       };
     };
 
