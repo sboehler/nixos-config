@@ -269,7 +269,7 @@ in
     };
 
     fileSystems."/home/silvio/winhome" = {
-      device = "//${config.hostHostName}/silvio";
+      device = "//172.21.21.1/silvio";
       fsType = "cifs";
       options = let
         # this line prevents hanging on network split
