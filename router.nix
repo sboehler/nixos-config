@@ -8,15 +8,11 @@
   imports =
     [ # Include the results of the hardware scan.
       <nixpkgs/nixos/modules/installer/scan/not-detected.nix>
-#      ./modules/initrd-ssh.nix
       ./modules/firewall.nix
-#      ./modules/syncthing.nix
-#      ./modules/mbsyncd.nix
-#      ./modules/transmission.nix
       ./modules/base.nix
-#      ./modules/nuc-backup.nix
+      #      ./modules/nuc-backup.nix
       ./modules/efi.nix
-#      ./modules/wireguard-server.nix
+      #      ./modules/wireguard-server.nix
     ];
 
   networking = {
@@ -28,16 +24,14 @@
       enable = false;
       userControlled = true;
     };
-#    firewall.allowedTCPPorts = [ 139 445 9091 ];
-#    firewall.allowedUDPPorts = [ 137 138 ];
+    #    firewall.allowedTCPPorts = [ 139 445 9091 ];
+    #    firewall.allowedUDPPorts = [ 137 138 ];
     interfaces = {
       enp0s31f6 = {
         useDHCP = true;
       };
     };
   };
-
- # i18n.consoleFont = "latarcyrheb-sun32";
 
   programs = {
     ssh = {
@@ -55,8 +49,6 @@
     kernelModules = [ "kvm-intel" ];
   };
 
-#  programs.mosh.enable = true;
-
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/87526952-e44d-4d7c-af43-4a2bd73b73db";
       fsType = "btrfs";
@@ -72,7 +64,15 @@
     { device = "/dev/disk/by-uuid/87526952-e44d-4d7c-af43-4a2bd73b73db";
       fsType = "btrfs";
       options = [ "subvol=@home" ];
-  };
+    };
+
+  swapDevices = [
+    {
+      device = "/dev/disk/by-partuuid/e1346b73-6dc9-c943-9a52-7c3677215e4f";
+      randomEncryption = true;
+    }
+  ];
+
 
   nix.maxJobs = lib.mkDefault 2;
   powerManagement.cpuFreqGovernor = "ondemand";
