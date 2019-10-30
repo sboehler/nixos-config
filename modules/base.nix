@@ -45,20 +45,21 @@
     ack
     bind
     borgbackup
+    cryptsetup
     direnv
     exfat
     file
+    gnumake
     gnupg
-    gptfdisk
     gopass
-    htop
+    gptfdisk
     hdparm
+    htop
     iotop
     jnettop
-    gnumake
     ncftp
-    nix-prefetch-scripts
     neovim
+    nix-prefetch-scripts
     nvme-cli
     patchelf
     pciutils
