@@ -81,7 +81,6 @@
     unzip
     upower
     wget
-    # stable.haskellPackages.git-annex
   ] ++ (with gitAndTools; [
     git-annex
     git-annex-remote-b2
@@ -96,7 +95,7 @@
   services.btrfs = {
     autoScrub = {
       enable = true;
-#      fileSystems = [ "/" ];
+      fileSystems = [ "/" ];
     };
   };
 
