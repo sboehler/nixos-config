@@ -29,14 +29,10 @@
 
   boot = {
     kernelPackages = pkgs.linuxPackagesFor pkgs.linux_5_2;
-    kernelParams = [ "usb-storage.quirks=152d:0578:u,0dc4:0210:u" ];
-    extraModprobeConfig = ''
-      options usb-storage quirks=152d:0578:u,0dc4:0210:u
-    '';
   };
 
   hardware = {
-    enableAllFirmware = true;
+    enableRedistributableFirmware = true;
     cpu = {
       amd.updateMicrocode = true;
       intel.updateMicrocode = true;
@@ -64,7 +60,6 @@
     nix-prefetch-scripts
     neovim
     nvme-cli
-    (pass.withExtensions (e: [e.pass-otp]))
     patchelf
     pciutils
     pinentry
@@ -93,16 +88,14 @@
     gitFull
   ]);
 
-  virtualisation.docker.enable = true;
 
   time.timeZone = "Europe/Zurich";
 
-  services.geoclue2.enable = true;
 
   services.btrfs = {
     autoScrub = {
       enable = true;
-      fileSystems = [ "/" ];
+#      fileSystems = [ "/" ];
     };
   };
 
@@ -123,24 +116,10 @@
       '';
   };
 
-
-
   services.fstrim.enable = true;
 
   services.timesyncd.enable = true;
 
-  services.avahi = {
-    enable = true;
-    nssmdns = true;
-    ipv6 = true;
-    publish = {
-      enable = true;
-      domain = true;
-      addresses = true;
-      hinfo = true;
-      workstation = true;
-    };
-  };
 
   security = {
     sudo = {
