@@ -66,6 +66,24 @@
       options = [ "subvol=@home" ];
     };
 
+  fileSystems."/mnt/data" =
+    { device = "/dev/mapper/data";
+      fsType = "btrfs";
+      options = [
+        "noauto"
+        "subvol=@data"
+      ];
+    };
+
+  environment.etc = {
+    "crypttab" = {
+      enable = true;
+      text = ''
+        data UUID=02ffb944-cf2d-49c3-bbb3-21689fca0cb1 none noauto
+      '';
+    };
+  };
+
   swapDevices = [
     {
       device = "/dev/disk/by-partuuid/e1346b73-6dc9-c943-9a52-7c3677215e4f";
@@ -73,7 +91,64 @@
     }
   ];
 
+  environment.systemPackages = with pkgs; [
+    (writeScriptBin "data-mount" ''
+      ${pkgs.systemd}/bin/systemctl start mnt-data.mount
+    '')
+    (writeScriptBin "data-umount" ''
+      ${pkgs.systemd}/bin/systemctl stop systemd-cryptsetup@data
+    '')
+  ];
+
 
   nix.maxJobs = lib.mkDefault 2;
   powerManagement.cpuFreqGovernor = "ondemand";
+
+  systemd = {
+
+    # parse crypttab and generate systemd units
+    packages = [ pkgs.systemd-cryptsetup-generator ];
+
+    services = {
+      onedrive = {
+        serviceConfig = {
+          ExecStart = "${pkgs.rclone}/bin/rclone --config /mnt/data/config/rclone.conf sync --transfers=16 onedrive: /mnt/data/onedrive";
+          Type = "oneshot";
+          User = "silvio";
+        };
+        unitConfig = {
+          After="mnt-data.mount";
+          Requisite="mnt-data.mount";
+        };
+      };
+
+      restic-backups-onedrive-b2 = {
+        unitConfig = {
+          After="onedrive.service mnt-data.mount";
+          Requires="onedrive.service";
+          Requisite="mnt-data.mount";
+        };
+      };
+    };
+  };
+
+  services = {
+    restic = {
+      backups = {
+        onedrive-b2 = {
+          passwordFile = "/mnt/data/config/restic-b2-data";
+          s3CredentialsFile = "/mnt/data/config/restic-b2-data-credentials";
+          user = "silvio";
+          paths = ["/mnt/data/onedrive"];
+          repository = "b2:restic-smb:repos";
+          extraOptions = ["b2.connections=25"];
+          extraBackupArgs = [ "--verbose" ];
+          timerConfig = {
+            OnCalendar = "*-*-* 04:00:00";
+            Persistent = true;
+          };
+        };
+      };
+    };
+  };
 }
