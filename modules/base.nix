@@ -99,8 +99,6 @@
     };
   };
 
-  programs.zsh.enable = true;
-
   services.fwupd.enable = true;
 
   services.openssh = {
@@ -109,17 +107,19 @@
     forwardX11 = true;
   };
 
-  programs.ssh = {
-    startAgent = true;
-    extraConfig = ''
+  programs = {
+    ssh = {
+      startAgent = true;
+      extraConfig = ''
         AddKeysToAgent yes
       '';
+    };
+    zsh.enable = true;
   };
 
   services.fstrim.enable = true;
 
   services.timesyncd.enable = true;
-
 
   security = {
     sudo = {
