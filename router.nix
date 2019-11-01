@@ -24,8 +24,18 @@
       enable = false;
       userControlled = true;
     };
-    #    firewall.allowedTCPPorts = [ 139 445 9091 ];
-    #    firewall.allowedUDPPorts = [ 137 138 ];
+    firewall = {
+      allowedTCPPorts = [
+        137 # netbios
+        139 # netbios
+        445 # smb
+      ];
+      allowedUDPPorts = [
+        137 # netbios
+        139 # netbios
+      ];
+    };
+
     interfaces = {
       enp0s31f6 = {
         useDHCP = true;
@@ -100,7 +110,6 @@
     '')
   ];
 
-
   nix.maxJobs = lib.mkDefault 2;
   powerManagement.cpuFreqGovernor = "ondemand";
 
@@ -116,23 +125,54 @@
           Type = "oneshot";
           User = "silvio";
         };
-        unitConfig = {
-          After="mnt-data.mount";
-          Requisite="mnt-data.mount";
-        };
+        after=["mnt-data.mount"];
+        requisite=["mnt-data.mount"];
       };
 
       restic-backups-onedrive-b2 = {
-        unitConfig = {
-          After="onedrive.service mnt-data.mount";
-          Requires="onedrive.service";
-          Requisite="mnt-data.mount";
-        };
+        after=["onedrive.service" "mnt-data.mount"];
+        requires=["onedrive.service"];
+        requisite=["mnt-data.mount"];
       };
     };
   };
 
   services = {
+
+    samba = {
+      enable = true;
+      extraConfig = ''
+      workgroup = WORKGROUP
+      guest account = nobody
+      map to guest = bad user
+      follow symlinks = yes
+    '';
+      shares = {
+        media = {
+          path = "/mnt/data/repos/Media";
+          browseable = "yes";
+          "read only" = "no";
+          "guest ok" = "yes";
+          "force user" = "silvio";
+          "force group" = "users";
+        };
+        music = {
+          path = "/mnt/data/repos/Music";
+          browseable = "yes";
+          "read only" = "no";
+          "guest ok" = "yes";
+          "force user" = "silvio";
+          "force group" = "users";
+        };
+        lightroom = {
+          path = "/mnt/data/lightroom";
+          browseable = "yes";
+          "valid users" = "silvio";
+          "read only" = "no";
+        };
+      };
+    };
+
     restic = {
       backups = {
         onedrive-b2 = {
