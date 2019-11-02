@@ -2,7 +2,6 @@
 {
   imports =
     [
-      <home-manager/nixos>
       ./modules/vm.nix
     ];
 
