@@ -6,6 +6,8 @@ in
   imports =
     [
       <home-manager/nixos>
+      ./home/base.nix
+      ./home/xorg.nix
     ];
 
   options = {
@@ -37,18 +39,6 @@ in
             sed -i_orig -e 's/bitmap_compression=true/bitmap_compression=false/g' $out/etc/xrdp/xrdp.ini
           '';
           });
-
-          haskell = pkgs.haskell // {
-            packages = pkgs.haskell.packages // {
-              ghc865 = pkgs.haskell.packages.ghc865.override {
-                overrides = self: super: {
-                  beans = self.callPackage ./beans.nix {};
-                };
-              };
-            };
-          };
-
-          haskellPackages = haskell.packages.ghc865;
         };
       };
     };
@@ -73,7 +63,6 @@ in
         "hercules-ci.cachix.org-1:ZZeDl9Va+xe9j+KqdzoBZMFJHVQ42Uu/c/1/KMC5Lw0="
       ];
       trustedUsers = [ "root" "silvio" ];
-
     };
 
     fonts = {
@@ -281,162 +270,6 @@ in
         "x-systemd.mount-timeout=5s"
         "x-systemd.automount"
       ];
-    };
-
-    home-manager = {
-      users = {
-        silvio = {
-          gtk = {
-            enable = true;
-            theme = {
-              package = pkgs.gnome3.gnome-themes-standard;
-              name = "Adwaita";
-            };
-            font = {
-              package = pkgs.dejavu_fonts;
-              name = "DejaVu Sans 10";
-            };
-            iconTheme = {
-              package = pkgs.gnome3.adwaita-icon-theme;
-              name = "Adwaita";
-            };
-          };
-
-          home = {
-            sessionVariables = {
-              TERMINAL = "${pkgs.gnome3.gnome-terminal}/bin/gnome-terminal";
-              EDITOR = "${pkgs.emacs}/bin/emacs";
-            };
-          };
-
-          services = {
-            gpg-agent = {
-              enable = true;
-            };
-          };
-
-          programs = {
-
-            bash = {
-              enable = true;
-            };
-
-            direnv = {
-              enable = true;
-            };
-
-            gnome-terminal = {
-              enable = true;
-              showMenubar = false;
-              profile = {
-                profile = {
-                  default = true;
-                  visibleName = "silvio";
-                  font = "Source Code Pro";
-                  allowBold = true;
-                };
-              };
-            };
-
-            zsh = {
-              enable = true;
-              enableCompletion = true;
-              initExtra = ''
-              HYPHEN_INSENSITIVE="true"
-              [ ! -z "$DISPLAY" ] && xrdb -merge ~/.Xresources
-              alias ls='ls --color=auto'
-              alias ll='ls -la'
-            '';
-            };
-
-            git = {
-              enable = true;
-              userName  = "Silvio Böhler";
-              userEmail = "sboehler@noreply.users.github.com";
-              extraConfig = {
-                merge.conflictstyle = "diff3";
-                pull.rebase = true;
-                rebase = {
-                  autosquash = true;
-                  autostash = true;
-                };
-                color.ui = true;
-              };
-              aliases = {
-                unstage = "reset HEAD --";
-                last = "log -1 HEAD";
-                ls = ''log --graph --decorate --pretty=format:\"%C(yellow)%h%C(red)%d %C(reset)%s %C(blue)[%cn]\"'';
-                cp = "cherry-pick";
-                sh = "show --word-diff";
-                ci = "commit";
-                dc = "diff --cached";
-                wd = "diff --word-diff";
-                ll = ''log --pretty=format:\"%h%C(reset)%C(red) %d %C(bold green)%s%C(reset)%Cblue [%cn] %C(green) %ad\" --decorate --numstat --date=iso'';
-                nc = ''commit -a --allow-empty-message -m \"\"'';
-                cr = ''commit -C HEAD@{1}'';
-              };
-            };
-
-            tmux = {
-              enable = true;
-              baseIndex = 1;
-              clock24 = true;
-              disableConfirmationPrompt = true;
-            };
-          };
-
-          xsession = {
-            enable = true;
-            windowManager = {
-              i3 = {
-                enable = true;
-                config = let
-                  modifier = "Mod4";
-                in {
-                  inherit modifier;
-                  fonts = ["DejaVu Sans Mono" "FontAwesome5Free 10"];
-                  keybindings = lib.mkOptionDefault {
-                    "${modifier}+d" = ''exec --no-startup-id "${pkgs.rofi}/bin/rofi -combi-modi window,drun -show combi -modi combi,run"'';
-
-                    "${modifier}+Control+j" = "focus left";
-                    "${modifier}+Control+k" = "focus down";
-                    "${modifier}+Control+l" = "focus up";
-                    "${modifier}+Control+semicolon" = "focus right";
-
-                    "${modifier}+Shift+j" = "move left 40px";
-                    "${modifier}+Shift+k" = "move down 40px";
-                    "${modifier}+Shift+l" = "move up 40px";
-                    "${modifier}+Shift+semicolon" = "move right 40px";
-
-                    "${modifier}+a" = "focus parent";
-                    "${modifier}+q" = "focus child";
-
-                    "${modifier}+Shift+e" = "exit";
-                    "${modifier}+apostrophe" = "mode app";
-                  };
-
-                  modes = lib.mkOptionDefault {
-                    resize = {
-                      "j" = "resize shrink width 10 px or 10 ppt";
-                      "k" = "resize grow height 10 px or 10 ppt";
-                      "l" = "resize shrink height 10 px or 10 ppt";
-                      "semicolon" = "resize grow width 10 px or 10 ppt";
-                      "${modifier}+r" = "mode default";
-                    };
-                    app = {
-                      "f" = "exec ${pkgs.firefox}/bin/firefox; mode default";
-                      "e" = "exec ${pkgs.emacs}/bin/emacsclient -c; mode default";
-                      "${modifier}+apostrophe" = "mode default";
-                      "Escape" = "mode default";
-                      "Return" = "mode default";
-                    };
-                  };
-                };
-              };
-            };
-          };
-        };
-      };
     };
   };
 }

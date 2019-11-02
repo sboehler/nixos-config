@@ -8,11 +8,10 @@
   imports =
     [ # Include the results of the hardware scan.
       <nixpkgs/nixos/modules/installer/scan/not-detected.nix>
-      ./modules/firewall.nix
+      ./modules/sys/firewall.nix
+      ./modules/sys/efi.nix
       ./modules/base.nix
-      #      ./modules/nuc-backup.nix
-      ./modules/efi.nix
-      #      ./modules/wireguard-server.nix
+      ./modules/home/base.nix
     ];
 
   networking = {

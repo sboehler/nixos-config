@@ -3,7 +3,6 @@
 {
   imports = [
     <home-manager/nixos>
-    ../home/base.nix
     ./users.nix
   ];
 
