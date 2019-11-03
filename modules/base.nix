@@ -105,6 +105,8 @@
     enable = true;
     passwordAuthentication = false;
     forwardX11 = true;
+    permitRootLogin = "no";
+    openFirewall = false;
   };
 
   programs = {
