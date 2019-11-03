@@ -178,6 +178,17 @@
       '';
     };
 
+    ddclient = let
+      secrets = import ./secrets/ddclient.crypt.nix;
+    in {
+      enable = true;
+      server = "freemyip.com";
+      username = secrets.token;
+      password = secrets.token;
+      domains = [ secrets.domain ];
+      protocol = "dyndns2";
+    };
+
     samba = {
       enable = true;
       extraConfig = ''
