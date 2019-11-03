@@ -16,7 +16,6 @@ in
     };
   };
 
-
   config = {
     nixpkgs = {
       config = {
