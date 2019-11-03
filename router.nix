@@ -24,21 +24,41 @@
       userControlled = true;
     };
     firewall = {
-      allowedTCPPorts = [
-        137 # netbios
-        139 # netbios
-        445 # smb
-      ];
-      allowedUDPPorts = [
-        137 # netbios
-        139 # netbios
-      ];
+      trustedInterfaces = [ "enp1s0" ];
+      # interfaces = {
+      #   enp1s0 = {
+      #     allowedTCPPorts = [
+      #       137 # netbios
+      #       139 # netbios
+      #       445 # smb
+      #     ];
+      #     allowedUDPPorts = [
+      #       137 # netbios
+      #       139 # netbios
+      #     ];
+      #   };
+      # };
     };
 
     interfaces = {
       enp0s31f6 = {
         useDHCP = true;
       };
+      enp1s0 = {
+        ipv4 = {
+          addresses = [{
+            address = "10.0.0.1";
+            prefixLength = 24;
+          }];
+        };
+      };
+    };
+
+    nat = {
+      enable = true;
+      externalInterface = "enp0s31f6";
+      internalInterfaces = ["enp1s0"];
+      internalIPs = [ "10.0.0.0/24" ];
     };
   };
 
@@ -137,6 +157,26 @@
   };
 
   services = {
+
+    dnsmasq = {
+      enable = true;
+      alwaysKeepRunning = true;
+      resolveLocalQueries = true;
+      extraConfig = ''
+        domain-needed
+        bogus-priv
+        filterwin2k
+        expand-hosts
+        domain=lan
+        local=/lan/
+        listen-address=127.0.0.1
+        listen-address=10.0.0.1
+
+        dhcp-range=10.0.0.10,10.0.0.200,12h
+        dhcp-lease-max=50
+        dhcp-option=option:router,10.0.0.1
+      '';
+    };
 
     samba = {
       enable = true;
