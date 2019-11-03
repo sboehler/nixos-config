@@ -24,20 +24,16 @@
       userControlled = true;
     };
     firewall = {
-      trustedInterfaces = [ "enp1s0" ];
-      # interfaces = {
-      #   enp1s0 = {
-      #     allowedTCPPorts = [
-      #       137 # netbios
-      #       139 # netbios
-      #       445 # smb
-      #     ];
-      #     allowedUDPPorts = [
-      #       137 # netbios
-      #       139 # netbios
-      #     ];
-      #   };
-      # };
+      trustedInterfaces = [ "enp1s0" "wg0" ];
+      interfaces = {
+        enp0s31f6 = {
+          allowedUDPPorts = [ 51820 ];
+        };
+      };
+      extraCommands = ''
+        iptables -A FORWARD -i wg0 -j ACCEPT
+        iptables -A FORWARD -o wg0 -j ACCEPT
+      '';
     };
 
     interfaces = {
@@ -57,8 +53,30 @@
     nat = {
       enable = true;
       externalInterface = "enp0s31f6";
-      internalInterfaces = ["enp1s0"];
-      internalIPs = [ "10.0.0.0/24" ];
+      internalInterfaces = ["enp1s0" "wg0" ];
+      internalIPs = [ "10.0.0.0/24" "10.0.1.0/24" ];
+    };
+
+    wireguard = {
+      interfaces = {
+        wg0 = {
+          ips = ["10.0.1.1/24"];
+          listenPort = 51820;
+          privateKeyFile = "/home/silvio/wireguard-keys/private";
+          peers = [
+            {
+              # Phone
+              publicKey = "imUVLCuhttorPeRmSHDfoRI8t07wB9RAgp5VAVTgHgw=";
+              allowedIPs = [ "10.0.1.0/24" ];
+            }
+            {
+              # Surface
+              publicKey = "DbPYec00eG1MIbl53W+JNRJpIYt/xDk0+4NczHNTbk0=";
+              allowedIPs = [ "10.0.1.0/24" ];
+            }
+          ];
+        };
+      };
     };
   };
 
@@ -169,9 +187,7 @@
         expand-hosts
         domain=lan
         local=/lan/
-        listen-address=127.0.0.1
-        listen-address=10.0.0.1
-
+        listen-address=127.0.0.1,10.0.0.1,10.0.1.1
         dhcp-range=10.0.0.10,10.0.0.200,12h
         dhcp-lease-max=50
         dhcp-option=option:router,10.0.0.1
