@@ -81,6 +81,7 @@
     upower
     wget
   ] ++ (with gitAndTools; [
+    git-crypt
     git-annex
     git-annex-remote-b2
     git-annex-remote-rclone
