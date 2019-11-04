@@ -82,6 +82,8 @@ in
       cifs-utils
       emacs
       # lorri
+      git-crypt
+      gopass
       neovim
       # niv
       nmap
