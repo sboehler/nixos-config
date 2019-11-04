@@ -89,6 +89,7 @@ in
       nameservers = ["8.8.8.8" "192.168.2.1"];
       firewall = {
         allowedTCPPorts = [
+          22  # ssh
           137 # netbios
           139 # netbios
           445 # smb
@@ -111,12 +112,7 @@ in
       };
     };
 
-    users.users = let
-      sshKey = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDFqXLmL2FVGAkSlndgqaEDx0teA6Ai1wLu21KSdcBnV6XldetAHZ8AAeodgEqIYD/sO69xCm9Kwa3DbktdMO28MO6A7poQ4jvDVHray7mpsm3z5xgc1HAadjNUBvlPjPBbCvZkhcI2/MSvVknl5uFXeH58AqaIq6Ump4gIC27Mj9vLMuw7S5MoR6vJgxKK/h52yuKXs8bisBvrHYngBgxA0wpg/v3G04iplPtTtyIY3uqkgPv3VfMSEyOuZ+TLujFg36FxU5I7Ok0Bjf8f+/OdE41MYYUH1VPIHFtxNs8MPCcz2Sv0baxEhAiEBpnWsQx8mBhxmQ/cK4Ih2EOLqPKR";
-    in {
-      silvio.openssh.authorizedKeys.keys = [ sshKey ];
-      root.openssh.authorizedKeys.keys = [sshKey];
-    };
+    users.users.silvio.openssh.authorizedKeys.keyFiles = [ ./id_rsa.pub.vm ];
 
     boot = {
       kernelParams = [ "elevator=noop" ];
