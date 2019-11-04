@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   imports = [
@@ -14,11 +14,24 @@
 
   nix = {
     buildCores = 0;
+    maxJobs = lib.mkDefault 4;
     autoOptimiseStore = true;
     nixPath = [
       "/nix"
       "nixos-config=/etc/nixos/configuration.nix"
     ];
+    binaryCaches = [
+      "https://cache.nixos.org/"
+      "https://all-hies.cachix.org"
+      "https://nixcache.reflex-frp.org"
+      "https://hercules-ci.cachix.org"
+    ];
+    binaryCachePublicKeys = [
+      "hie-nix.cachix.org-1:EjBSHzF6VmDnzqlldGXbi0RM3HdjfTU3yDRi9Pd0jTY="
+      "ryantrinkle.com-1:JJiAKaRv9mWgpVAz8dwewnZe0AzzEAzPkagE9SP5NWI="
+      "hercules-ci.cachix.org-1:ZZeDl9Va+xe9j+KqdzoBZMFJHVQ42Uu/c/1/KMC5Lw0="
+    ];
+    trustedUsers = [ "root" "silvio" ];
   };
 
   i18n = {
@@ -41,13 +54,17 @@
   environment.pathsToLink = [ "/share/zsh" ];
 
   environment.systemPackages = with pkgs; [
+    # lorri
+    # niv
     ack
     bind
-    borgbackup
+    cifs-utils
     cryptsetup
     direnv
+    emacs
     exfat
     file
+    git-crypt
     gnumake
     gnupg
     gopass
@@ -59,6 +76,7 @@
     ncftp
     neovim
     nix-prefetch-scripts
+    nmap
     nvme-cli
     patchelf
     pciutils
@@ -80,7 +98,10 @@
     unzip
     upower
     wget
+    xorg.xrdb
+    wget
   ] ++ (with gitAndTools; [
+    gitFull
     git-crypt
     git-annex
     git-annex-remote-b2
@@ -88,25 +109,29 @@
     gitFull
   ]);
 
-
   time.timeZone = "Europe/Zurich";
 
-
-  services.btrfs = {
-    autoScrub = {
-      enable = true;
-      fileSystems = [ "/" ];
+  services= {
+    btrfs = {
+      autoScrub = {
+        enable = true;
+        fileSystems = [ "/" ];
+      };
     };
-  };
 
-  services.fwupd.enable = true;
+    fwupd.enable = true;
 
-  services.openssh = {
-    enable = true;
-    passwordAuthentication = false;
-    forwardX11 = true;
-    permitRootLogin = "no";
-    openFirewall = false;
+    fstrim.enable = true;
+
+    timesyncd.enable = true;
+
+    openssh = {
+      enable = true;
+      passwordAuthentication = false;
+      forwardX11 = true;
+      permitRootLogin = "no";
+      openFirewall = false;
+    };
   };
 
   programs = {
@@ -117,11 +142,15 @@
       '';
     };
     zsh.enable = true;
+
+    gnupg.agent.enable = true;
+
+    iftop.enable = true;
+
+    iotop.enable = true;
+
+    mtr.enable = true;
   };
-
-  services.fstrim.enable = true;
-
-  services.timesyncd.enable = true;
 
   security = {
     sudo = {
@@ -130,5 +159,5 @@
     };
   };
 
-  system.stateVersion = "19.09";
+  system.stateVersion = "20.03";
 }

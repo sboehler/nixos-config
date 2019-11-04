@@ -5,8 +5,6 @@
       ./modules/vm.nix
     ];
 
-  hostHostName = "surfacepro";
-
   networking.hostName = "surfacepro-nixos";
 
   nix.maxJobs = 8;
