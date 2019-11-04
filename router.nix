@@ -19,6 +19,14 @@
     hostId = "e110e344";
     useDHCP = false;
     enableIPv6 = true;
+    dhcpcd = {
+      extraConfig = ''
+        noipv6rs
+        interface enp0s31f6
+          ipv6rs
+          ia_pd 1/::/48 enp1s0/1 wlp2s0/2
+      '';
+    };
     wireless = {
       enable = false;
       userControlled = true;
@@ -39,6 +47,7 @@
     interfaces = {
       enp0s31f6 = {
         useDHCP = true;
+        preferTempAddress = false;
       };
       enp1s0 = {
         ipv4 = {
@@ -94,6 +103,12 @@
       availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" "sd_mod" "rtsx_usb_sdmmc" ];
     };
     kernelModules = [ "kvm-intel" ];
+    kernel = {
+      sysctl = {
+        "net.ipv6.conf.enp0s31f6.accept_ra" = 2;
+        "net.ipv6.conf.all.forwarding" = 1;
+      };
+    };
   };
 
   fileSystems."/" =
@@ -187,7 +202,9 @@
         expand-hosts
         domain=lan
         local=/lan/
-        listen-address=127.0.0.1,10.0.0.1,10.0.1.1
+        enable-ra
+        except-interface=enp0s31f6
+        dhcp-range=::1,constructor:enp1s0,ra-stateless,ra-names,12h
         dhcp-range=10.0.0.10,10.0.0.200,12h
         dhcp-lease-max=50
         dhcp-option=option:router,10.0.0.1
