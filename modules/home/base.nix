@@ -35,6 +35,11 @@
         baseIndex = 1;
         clock24 = true;
         disableConfirmationPrompt = true;
+        shortcut = "a";
+        newSession = true;
+        extraConfig = ''
+          bind C-a send-prefix
+        '';
       };
 
       emacs.enable = true;
