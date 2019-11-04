@@ -55,6 +55,9 @@
               "${mod}+Control+l" = "focus up";
               "${mod}+Control+semicolon" = "focus right";
 
+              "${mod}+j" = "focus left";
+              "${mod}+semicolon" = "focus right";
+
               "${mod}+Shift+j" = "move left 40px";
               "${mod}+Shift+k" = "move down 40px";
               "${mod}+Shift+l" = "move up 40px";
