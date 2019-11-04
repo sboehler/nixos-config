@@ -36,12 +36,16 @@
 
     xsession = {
       enable = true;
+      initExtra = ''
+        ${pkgs.xorg.xrdb}/bin/xrdb -merge $HOME/.Xresources
+      '';
       windowManager = {
         i3 = let
           mod = "Mod4";
         in {
           enable = true;
           config = {
+            modifier = mod;
             fonts = ["DejaVu Sans Mono" "FontAwesome5Free 10"];
             keybindings = lib.mkOptionDefault {
               "${mod}+d" = ''exec --no-startup-id "${pkgs.rofi}/bin/rofi -combi-modi window,drun -show combi -modi combi,run"'';
