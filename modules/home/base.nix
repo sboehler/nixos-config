@@ -66,6 +66,8 @@
         bindkey -M emacs '^P' history-substring-search-up
         bindkey -M emacs '^N' history-substring-search-down
 
+        eval $(${pkgs.coreutils}/bin/dircolors "${./dircolors.ansi-universal}")
+
         # Fix tramp:
         if [[ "$TERM" == "dumb" ]]
         then
