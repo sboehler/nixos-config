@@ -17,6 +17,7 @@
   networking = {
     hostName = "router";
     hostId = "e110e344";
+    hosts = { "10.0.0.1" = [ "router" ]; };
     useDHCP = false;
     enableIPv6 = true;
     dhcpcd = {
@@ -209,6 +210,7 @@
         domain=lan
         local=/lan/
         enable-ra
+        localise-queries
         except-interface=enp0s31f6
         dhcp-range=::1,constructor:enp1s0,ra-stateless,ra-names,12h
         dhcp-range=10.0.0.10,10.0.0.200,12h
