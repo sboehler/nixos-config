@@ -24,7 +24,9 @@
         noipv6rs
         interface enp0s31f6
           ipv6rs
-          ia_pd 1/::/48 enp1s0/1 wlp2s0/2
+          ia_pd 1/::/48 enp1s0/1
+        interface enp1s0
+          noipv4
       '';
     };
     wireless = {
@@ -106,6 +108,7 @@
     kernel = {
       sysctl = {
         "net.ipv6.conf.enp0s31f6.accept_ra" = 2;
+        "net.ipv6.conf.enp0s31f6.use_tempaddr" = 0;
         "net.ipv6.conf.all.forwarding" = 1;
       };
     };
@@ -162,7 +165,7 @@
     '')
   ];
 
-  nix.maxJobs = lib.mkDefault 2;
+  nix.maxJobs = 2;
   powerManagement.cpuFreqGovernor = "ondemand";
 
   systemd = {
@@ -204,7 +207,7 @@
         local=/lan/
         enable-ra
         except-interface=enp0s31f6
-        dhcp-range=::1,constructor:enp1s0,ra-stateless,ra-names,12h
+        dhcp-range=::1,constructor:enp1s0,slaac,ra-names,12h
         dhcp-range=10.0.0.10,10.0.0.200,12h
         dhcp-lease-max=50
         dhcp-option=option:router,10.0.0.1
