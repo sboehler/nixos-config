@@ -43,6 +43,8 @@ in
 
     environment.systemPackages = with pkgs; [
       xrdp-vsock
+      cabal2nix
+      tcpdump
     ];
 
     services = {
@@ -135,6 +137,9 @@ in
       hypervGuest = {
         enable = true;
         videoMode = "1024x768";
+      };
+      docker = {
+        enable = true;
       };
     };
 
