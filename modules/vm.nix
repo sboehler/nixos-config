@@ -88,7 +88,7 @@ in
     networking = {
       enableIPv6 = true;
       defaultGateway = "172.21.21.1";
-      nameservers = ["8.8.8.8" "192.168.2.1"];
+      nameservers = ["10.0.0.1" "8.8.8.8"];
       firewall = {
         allowedTCPPorts = [
           22  # ssh
