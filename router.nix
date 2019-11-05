@@ -21,12 +21,13 @@
     enableIPv6 = true;
     dhcpcd = {
       extraConfig = ''
+        duid
         noipv6rs
+        waitip 6
         interface enp0s31f6
-          ipv6rs
-          ia_pd 1/::/48 enp1s0/1
-        interface enp1s0
-          noipv4
+        ipv6rs
+        iaid 1
+        ia_pd 1/::/48 enp1s0/1
       '';
     };
     wireless = {
@@ -34,6 +35,7 @@
       userControlled = true;
     };
     firewall = {
+      enable = true;
       trustedInterfaces = [ "enp1s0" "wg0" ];
       interfaces = {
         enp0s31f6 = {
@@ -49,9 +51,10 @@
     interfaces = {
       enp0s31f6 = {
         useDHCP = true;
-        preferTempAddress = false;
+        preferTempAddress = true;
       };
       enp1s0 = {
+        preferTempAddress = false;
         ipv4 = {
           addresses = [{
             address = "10.0.0.1";
@@ -108,8 +111,7 @@
     kernel = {
       sysctl = {
         "net.ipv6.conf.enp0s31f6.accept_ra" = 2;
-        "net.ipv6.conf.enp0s31f6.use_tempaddr" = 0;
-        "net.ipv6.conf.all.forwarding" = 1;
+        "net.ipv6.conf.all.forwarding" = true;
       };
     };
   };
@@ -163,6 +165,7 @@
     (writeScriptBin "data-umount" ''
       ${pkgs.systemd}/bin/systemctl stop systemd-cryptsetup@data
     '')
+    dnsmasq
   ];
 
   nix.maxJobs = 2;
@@ -207,10 +210,11 @@
         local=/lan/
         enable-ra
         except-interface=enp0s31f6
-        dhcp-range=::1,constructor:enp1s0,slaac,ra-names,12h
+        dhcp-range=::1,constructor:enp1s0,ra-stateless,ra-names,12h
         dhcp-range=10.0.0.10,10.0.0.200,12h
-        dhcp-lease-max=50
+        dhcp-lease-max=100
         dhcp-option=option:router,10.0.0.1
+        dhcp-authoritative
       '';
     };
 
