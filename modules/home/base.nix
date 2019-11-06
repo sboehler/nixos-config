@@ -39,6 +39,7 @@
         newSession = true;
         extraConfig = ''
           bind C-a send-prefix
+          set -g mouse on
         '';
       };
 
