@@ -212,8 +212,8 @@
         enable-ra
         localise-queries
         except-interface=enp0s31f6
-        dhcp-range=::1,constructor:enp1s0,ra-stateless,ra-names,12h
-        dhcp-range=10.0.0.10,10.0.0.200,12h
+        dhcp-range=::1,constructor:enp1s0,ra-stateless,ra-names,1800
+        dhcp-range=10.0.0.10,10.0.0.200
         dhcp-lease-max=100
         dhcp-option=option:router,10.0.0.1
         dhcp-authoritative
