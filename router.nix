@@ -22,13 +22,11 @@
     enableIPv6 = true;
     dhcpcd = {
       extraConfig = ''
-        duid
         noipv6rs
-        waitip 6
+        # waitip 6
         interface enp0s31f6
         ipv6rs
-        iaid 1
-        ia_pd 1/::/48 enp1s0/1
+        ia_pd 1/::/48 enp1s0
       '';
     };
     wireless = {
@@ -212,8 +210,8 @@
         enable-ra
         localise-queries
         except-interface=enp0s31f6
-        dhcp-range=::1,constructor:enp1s0,ra-stateless,ra-names,1800
-        dhcp-range=10.0.0.10,10.0.0.200
+        dhcp-range=::,constructor:enp1s0,ra-stateless,ra-names
+        dhcp-range=10.0.0.2,10.0.0.200
         dhcp-lease-max=100
         dhcp-option=option:router,10.0.0.1
         dhcp-authoritative
