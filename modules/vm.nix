@@ -45,6 +45,7 @@ in
       xrdp-vsock
       cabal2nix
       tcpdump
+      racket
     ];
 
     services = {
