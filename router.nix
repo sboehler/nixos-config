@@ -5,6 +5,19 @@
 { config, lib, pkgs, ... }:
 
 {
+  nixpkgs = {
+    config = {
+      packageOverrides = pkgs: rec {
+        dhcpcd = pkgs.dhcpcd.overrideAttrs (oldAttrs: rec {
+          patches = [
+            # make it work with init7
+            ./dhcpcd.patch
+          ];
+        });
+      };
+    };
+  };
+
   imports =
     [ # Include the results of the hardware scan.
       <nixpkgs/nixos/modules/installer/scan/not-detected.nix>
@@ -23,10 +36,10 @@
     dhcpcd = {
       extraConfig = ''
         noipv6rs
-        # waitip 6
         interface enp0s31f6
-        ipv6rs
-        ia_pd 1/::/48 enp1s0
+          ipv6rs
+          # ia_na 1
+          ia_pd 1 enp1s0
       '';
     };
     wireless = {
