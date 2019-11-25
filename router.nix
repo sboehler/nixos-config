@@ -35,11 +35,12 @@
     enableIPv6 = true;
     dhcpcd = {
       extraConfig = ''
+        debug
         noipv6rs
         interface enp0s31f6
           ipv6rs
-          # ia_na 1
-          ia_pd 1 enp1s0
+          ia_na 1
+          ia_pd 2 enp1s0
       '';
     };
     wireless = {
