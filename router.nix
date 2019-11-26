@@ -128,31 +128,33 @@
     };
   };
 
-  fileSystems."/" =
-    { device = "/dev/disk/by-uuid/87526952-e44d-4d7c-af43-4a2bd73b73db";
-      fsType = "btrfs";
-      options = [ "subvol=@root" ];
-    };
+  fileSystems = {
+    "/" =
+      { device = "/dev/disk/by-uuid/87526952-e44d-4d7c-af43-4a2bd73b73db";
+        fsType = "btrfs";
+        options = [ "subvol=@root" ];
+      };
 
-  fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/B538-D20A";
-      fsType = "vfat";
-    };
+    "/boot" =
+      { device = "/dev/disk/by-uuid/B538-D20A";
+        fsType = "vfat";
+      };
 
-  fileSystems."/home" =
-    { device = "/dev/disk/by-uuid/87526952-e44d-4d7c-af43-4a2bd73b73db";
-      fsType = "btrfs";
-      options = [ "subvol=@home" ];
-    };
+    "/home" =
+      { device = "/dev/disk/by-uuid/87526952-e44d-4d7c-af43-4a2bd73b73db";
+        fsType = "btrfs";
+        options = [ "subvol=@home" ];
+      };
 
-  fileSystems."/mnt/data" =
-    { device = "/dev/mapper/data";
-      fsType = "btrfs";
-      options = [
-        "noauto"
-        "subvol=@data"
-      ];
-    };
+    "/mnt/data" =
+      { device = "/dev/mapper/data";
+        fsType = "btrfs";
+        options = [
+          "noauto"
+          "subvol=@data"
+        ];
+      };
+  };
 
   environment.etc = {
     "crypttab" = {
