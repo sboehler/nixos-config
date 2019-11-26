@@ -7,8 +7,8 @@
 {
   nixpkgs = {
     config = {
-      packageOverrides = pkgs: rec {
-        dhcpcd = pkgs.dhcpcd.overrideAttrs (oldAttrs: rec {
+      packageOverrides = pkgs: {
+        dhcpcd = pkgs.dhcpcd.overrideAttrs (oldAttrs: {
           patches = [
             # make it work with init7
             ./dhcpcd.patch
