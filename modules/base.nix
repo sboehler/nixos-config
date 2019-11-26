@@ -40,7 +40,7 @@
   };
 
   boot = {
-    kernelPackages = pkgs.linuxPackagesFor pkgs.linux_5_2;
+    kernelPackages = pkgs.linuxPackagesFor pkgs.linux_5_3;
   };
 
   hardware = {
@@ -65,9 +65,9 @@
     exfat
     file
     git-crypt
+    gitFull
     gnumake
     gnupg
-    gopass
     gptfdisk
     hdparm
     htop
@@ -100,14 +100,7 @@
     wget
     xorg.xrdb
     wget
-  ] ++ (with gitAndTools; [
-    gitFull
-    git-crypt
-    git-annex
-    git-annex-remote-b2
-    git-annex-remote-rclone
-    gitFull
-  ]);
+  ];
 
   time.timeZone = "Europe/Zurich";
 
