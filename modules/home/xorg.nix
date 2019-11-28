@@ -21,13 +21,6 @@
           };
         };
       };
-
-      firefox = {
-        enable = true;
-        profiles = {
-          silvio = {};
-        };
-      };
     };
 
     services = {

@@ -15,7 +15,6 @@ in
     nixpkgs = {
       config = {
         packageOverrides = pkgs: rec {
-          niv = (import sources.niv {}).niv;
           # lorri = (import sources.lorri {});
 
           xrdp-vsock = pkgs.xrdp.overrideAttrs (oldAttrs: rec {
@@ -42,10 +41,12 @@ in
     };
 
     environment.systemPackages = with pkgs; [
-      xrdp-vsock
       cabal2nix
-      tcpdump
+      firefox
+      niv
       racket
+      tcpdump
+      xrdp-vsock
     ];
 
     services = {
@@ -91,6 +92,7 @@ in
       defaultGateway = "172.21.21.1";
       nameservers = ["10.0.0.1" "8.8.8.8"];
       firewall = {
+        enable = false;
         allowedTCPPorts = [
           22  # ssh
           137 # netbios

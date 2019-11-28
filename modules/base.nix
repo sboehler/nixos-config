@@ -51,8 +51,6 @@
     };
   };
 
-  environment.pathsToLink = [ "/share/zsh" ];
-
   environment.systemPackages = with pkgs; [
     # lorri
     # niv
@@ -134,7 +132,22 @@
         AddKeysToAgent yes
       '';
     };
-    zsh.enable = true;
+
+    zsh = {
+      enable = true;
+      enableCompletion = true;
+      histSize = 100000;
+      promptInit = ''
+        autoload -U promptinit && promptinit && prompt suse && setopt prompt_sp
+        '';
+      setOptions =  [
+        "hist_ignore_dups"
+        "share_history"
+        "hist_fcntl_lock"
+        "auto_cd"
+        "extended_glob"
+      ];
+    };
 
     gnupg.agent.enable = true;
 

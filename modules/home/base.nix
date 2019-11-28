@@ -50,27 +50,14 @@
       bash.enable = true;
 
       zsh = {
-        enable = true;
+        enable = false;
         enableCompletion = true;
-        oh-my-zsh = {
-          enable = true;
-          theme = "avit";
-          plugins = [
-            "git"
-            "rsync"
-            "stack"
-            "history-substring-search"
-          ];
-        };
         shellAliases = {
           e = "emacsclient -c";
         };
         initExtra = ''
         export PATH=$HOME/.local/bin:$PATH
         HYPHEN_INSENSITIVE="true"
-
-        bindkey -M emacs '^P' history-substring-search-up
-        bindkey -M emacs '^N' history-substring-search-down
 
         eval $(${pkgs.coreutils}/bin/dircolors "${./dircolors.ansi-universal}")
 
