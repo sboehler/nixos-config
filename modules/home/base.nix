@@ -37,9 +37,11 @@
         disableConfirmationPrompt = true;
         shortcut = "a";
         newSession = true;
+	      terminal = "screen-256color";
         extraConfig = ''
           bind C-a send-prefix
           set -g mouse on
+          set -ga terminal-overrides ",*256col*:Tc"
         '';
       };
 

@@ -5,19 +5,6 @@
 { config, lib, pkgs, ... }:
 
 {
-  nixpkgs = {
-    config = {
-      packageOverrides = pkgs: {
-        dhcpcd = pkgs.dhcpcd.overrideAttrs (oldAttrs: {
-          patches = [
-            # make it work with init7
-            ./dhcpcd.patch
-          ];
-        });
-      };
-    };
-  };
-
   imports =
     [ # Include the results of the hardware scan.
       <nixpkgs/nixos/modules/installer/scan/not-detected.nix>
@@ -39,6 +26,7 @@
         noipv6rs
         interface enp0s31f6
           ipv6rs
+          ia_na 1
           ia_pd 2 enp1s0
       '';
     };
