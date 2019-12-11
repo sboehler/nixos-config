@@ -41,7 +41,7 @@
         extraConfig = ''
           bind C-a send-prefix
           set -g mouse on
-          set -ga terminal-overrides ",*256col*:Tc"
+          set-option -sa terminal-overrides ",*:Tc"
         '';
       };
 
