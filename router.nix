@@ -272,7 +272,10 @@
           passwordFile = "/mnt/data/config/restic-b2-data";
           s3CredentialsFile = "/mnt/data/config/restic-b2-data-credentials";
           user = "silvio";
-          paths = ["/mnt/data/onedrive"];
+          paths = [
+            "/mnt/data/onedrive"
+            "/mnt/data/r"
+          ];
           repository = "b2:restic-smb:repos";
           extraOptions = ["b2.connections=25"];
           extraBackupArgs = [ "--verbose" ];
