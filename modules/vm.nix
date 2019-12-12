@@ -28,6 +28,8 @@ in
             sed -i_orig -e 's/crypt_level=high/crypt_level=none/g' $out/etc/xrdp/xrdp.ini
             # disable bitmap compression since its local its much faster
             sed -i_orig -e 's/bitmap_compression=true/bitmap_compression=false/g' $out/etc/xrdp/xrdp.ini
+            # Fix the port
+            echo "port=5910" >> $out/etc/xrdp/xrdp.ini
           '';
           });
         };
