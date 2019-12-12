@@ -45,8 +45,6 @@
         '';
       };
 
-      emacs.enable = true;
-
       direnv.enable = true;
 
       bash.enable = true;
@@ -55,11 +53,11 @@
         enable = false;
         enableCompletion = true;
         shellAliases = {
-          e = "emacsclient -c";
         };
         initExtra = ''
         export PATH=$HOME/.local/bin:$PATH
         HYPHEN_INSENSITIVE="true"
+        WORDCHARS=
 
         eval $(${pkgs.coreutils}/bin/dircolors "${./dircolors.ansi-universal}")
 
@@ -78,12 +76,11 @@
     };
 
     services = {
-      emacs.enable = true;
       gpg-agent.enable = true;
     };
 
     home.sessionVariables = {
-      EDITOR = "${pkgs.emacs}/bin/emacsclient -c";
+      EDITOR = "${pkgs.emacs}/bin/emacs -nw";
     };
   };
 }
