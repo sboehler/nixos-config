@@ -140,6 +140,10 @@
       promptInit = ''
         autoload -U promptinit && promptinit && prompt suse && setopt prompt_sp
         '';
+      interactiveShellInit = ''
+        HYPHEN_INSENSITIVE="true"
+        WORDCHARS=
+      '';
       setOptions =  [
         "hist_ignore_dups"
         "share_history"
