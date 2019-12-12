@@ -73,7 +73,7 @@
               };
               app = {
                 "f" = "exec ${pkgs.firefox}/bin/firefox; mode default";
-                "e" = "exec ${pkgs.emacs}/bin/emacsclient -c; mode default";
+                "e" = "exec ${pkgs.emacs}/bin/emacs; mode default";
                 "${mod}+apostrophe" = "mode default";
                 "Escape" = "mode default";
                 "Return" = "mode default";
