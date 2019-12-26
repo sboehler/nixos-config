@@ -3,11 +3,15 @@
   home-manager.users.silvio = {
 
     home = {
+      keyboard = {
+        layout = "us(altgr-intl)";
+        model = "pc104";
+        options = ["ctrl:swapcaps" "compose:ralt" "terminate:ctrl_alt_bksp"];
+      };
       sessionVariables = {
         TERMINAL = "${pkgs.gnome3.gnome-terminal}/bin/gnome-terminal";
       };
     };
-
     programs = {
       gnome-terminal = {
         enable = true;
@@ -21,10 +25,6 @@
           };
         };
       };
-    };
-
-    services = {
-      xsuspender.enable = true;
     };
 
     xsession = {
@@ -43,12 +43,9 @@
             keybindings = lib.mkOptionDefault {
               "${mod}+d" = ''exec --no-startup-id "${pkgs.rofi}/bin/rofi -combi-modi window,drun -show combi -modi combi,run"'';
 
-              "${mod}+Control+j" = "focus left";
-              "${mod}+Control+k" = "focus down";
-              "${mod}+Control+l" = "focus up";
-              "${mod}+Control+semicolon" = "focus right";
-
               "${mod}+j" = "focus left";
+              "${mod}+k" = "focus down";
+              "${mod}+l" = "focus up";
               "${mod}+semicolon" = "focus right";
 
               "${mod}+Shift+j" = "move left 40px";
