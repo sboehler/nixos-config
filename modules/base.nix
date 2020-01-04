@@ -1,5 +1,4 @@
-{ config, pkgs, lib, ... }:
-
+{ config, pkgs, lib, stdenv, ... }:
 {
   imports = [
     <home-manager/nixos>
@@ -9,6 +8,9 @@
   nixpkgs = {
     config = {
       allowUnfree = true;
+      packageOverrides = pkgs: {
+        xterm-24bit = pkgs.callPackage ./sys/xterm-24bit.nix {};
+      };
     };
   };
 
@@ -97,6 +99,7 @@
     upower
     wget
     xorg.xrdb
+    xterm-24bit
     wget
   ];
 
