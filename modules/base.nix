@@ -36,8 +36,11 @@
     trustedUsers = [ "root" "silvio" ];
   };
 
+  console = {
+    keyMap = "us";
+  };
+
   i18n = {
-    consoleKeyMap = "us";
     defaultLocale = "en_US.UTF-8";
   };
 
@@ -146,6 +149,9 @@
       interactiveShellInit = ''
         HYPHEN_INSENSITIVE="true"
         WORDCHARS=
+        if [ -f .nix-profile/etc/profile.d/hm-session-vars.sh ]; then
+          source  .nix-profile/etc/profile.d/hm-session-vars.sh
+        fi
       '';
       setOptions =  [
         "hist_ignore_dups"

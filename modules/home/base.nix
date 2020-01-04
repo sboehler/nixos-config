@@ -42,7 +42,7 @@
           resurrect
         ];
         extraConfig = ''
-          ;; bind C-a send-prefix
+          bind C-a send-prefix
           set -g mouse on
           set -sa terminal-overrides ",xterm*:Tc"
         '';
@@ -84,6 +84,7 @@
 
     home.sessionVariables = {
       EDITOR = "${pkgs.emacs}/bin/emacs -nw";
+      PAGER = "${pkgs.most}/bin/most";
     };
   };
 }

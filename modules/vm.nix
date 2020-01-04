@@ -28,6 +28,7 @@ in
     environment.systemPackages = with pkgs; [
       cabal2nix
       firefox
+      most
       niv
       racket
       tcpdump
@@ -70,6 +71,7 @@ in
       enableIPv6 = true;
       defaultGateway = "172.21.21.1";
       nameservers = ["10.0.0.1" "8.8.8.8"];
+      useDHCP = false;
       firewall = {
         enable = false;
         allowedTCPPorts = [
