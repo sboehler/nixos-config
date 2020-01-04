@@ -2,15 +2,12 @@
 {
   imports =
     [
-      <home-manager/nixos>
       ./modules/vm.nix
     ];
 
-  nix.maxJobs = 4;
-
-  hostHostName = "surface";
-
   networking.hostName = "surface-nixos";
+
+  nix.maxJobs = 4;
 
   home-manager.users.silvio.xresources.properties = {
     "Xft.dpi" = 144;

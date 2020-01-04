@@ -15,24 +15,6 @@ in
     nixpkgs = {
       config = {
         packageOverrides = pkgs: rec {
-          # lorri = (import sources.lorri {});
-
-          xrdp-vsock = pkgs.xrdp.overrideAttrs (oldAttrs: rec {
-            configureFlags = oldAttrs.configureFlags ++ ["--enable-vsock"];
-            postInstall = oldAttrs.postInstall + ''
-            # use vsock transport.
-            sed -i_orig -e 's/use_vsock=false/use_vsock=true/g' $out/etc/xrdp/xrdp.ini
-            # use rdp security.
-            sed -i_orig -e 's/security_layer=negotiate/security_layer=rdp/g' $out/etc/xrdp/xrdp.ini
-            # remove encryption validation.
-            sed -i_orig -e 's/crypt_level=high/crypt_level=none/g' $out/etc/xrdp/xrdp.ini
-            # disable bitmap compression since its local its much faster
-            sed -i_orig -e 's/bitmap_compression=true/bitmap_compression=false/g' $out/etc/xrdp/xrdp.ini
-            sed -i_orig -e 's/username=ask/username=silvio/g' $out/etc/xrdp/xrdp.ini
-            # Fix the port
-            echo "port=5910" >> $out/etc/xrdp/xrdp.ini
-          '';
-          });
         };
       };
     };
@@ -49,7 +31,7 @@ in
       niv
       racket
       tcpdump
-      xrdp-vsock
+      xclip
     ];
 
     services = {
@@ -81,12 +63,6 @@ in
             printable = "no";
           };
         };
-      };
-
-      xrdp = {
-        enable = true;
-        package = pkgs.xrdp-vsock;
-        defaultWindowManager = "/home/silvio/.xsession";
       };
     };
 

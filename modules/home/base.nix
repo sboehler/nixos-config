@@ -37,9 +37,12 @@
         disableConfirmationPrompt = true;
         shortcut = "a";
         newSession = true;
-	      terminal = "screen-256color";
+	      terminal = "xterm-24bits";
+        plugins = with pkgs.tmuxPlugins; [
+          resurrect
+        ];
         extraConfig = ''
-          bind C-a send-prefix
+          ;; bind C-a send-prefix
           set -g mouse on
           set -sa terminal-overrides ",xterm*:Tc"
         '';
