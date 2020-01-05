@@ -45,7 +45,7 @@
   };
 
   boot = {
-    kernelPackages = pkgs.linuxPackagesFor pkgs.linux_5_3;
+    kernelPackages = pkgs.linuxPackagesFor pkgs.linux_5_4;
   };
 
   hardware = {
